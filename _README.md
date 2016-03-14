@@ -42,6 +42,23 @@ npm install
 bower install
 ```
 
+Create a database and load the tables:
+
+```
+mysqld # to start up sql server
+mysql -uroot # in a new tab
+CREATE DATABASE bookShare_development;
+exit
+../node_modules/.bin/sequelize db:migrate
+```
+
+Helpful commands
+```sh
+../node_modules/.bin/sequelize help
+../node_modules/.bin/sequelize db:migrate # to update SQL schema
+../node_modules/.bin/sequelize help:model:create #to create a new table
+```
+
 ### Roadmap
 
 View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
