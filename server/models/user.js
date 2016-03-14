@@ -4,27 +4,10 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     passwordHash: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        console.log("USER-start");
-        User.hasMany(models.UserBook, {foreignKey: 'userId'});
-        // User.belongsToMany(models.Book, {
-        //   through: { //for many to many relationships
-        //     model: models.UserBook,
-        //     // unique: true,
-        //   },
-        //   // foreignKey: 'userId',
-        //   // constraints: false
-        // });
-        console.log("USER-end");
-      }
-    }
   });
+  User.belongsToMany(models.UserBook, {through: 'UserBook'});
   return User;
 };
-
 
 // TODO: PUT IN CONTROLLER
 // This finds all books that a user owns in 2 steps
@@ -39,7 +22,7 @@ UserBook.findAll({
   }).then(function(books) {
     res.json(books)
   })
-})
+});
 
 // there might be some convenient functions that sequelize
 // automatically adds for you like this:
