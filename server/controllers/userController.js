@@ -1,21 +1,15 @@
-var user = require('../models/user.js');
+var User = require('../models/user.js');
 var helper = require('../config/helpers.js');
 
 
 module.exports.addUser =function(req, res){
   console.log('in ctrl: addUser');
-  var newUser = req.body;
-  User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password
-  })
+  User.create(req.body, {fields: ['name', 'email', 'password']})
   .then(function(user) {
-
-  user.addUser(newUser, function (err, data) {
-    if(err) {
-      return res.status(500).json(err);
-    }
+    // TODO: error handling
+    // if(err) {
+    //   return res.status(500).json(err);
+    // }
     var token = helper.encode(data);
     res.status(201).json({token: token});
   });
