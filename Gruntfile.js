@@ -16,7 +16,7 @@ module.exports = function(grunt){
       }
     },
     clean:[
-      'client/build/js/components.min.js',
+      'client/build/js/components.js',
       'client/build/style/style.css',
       'client/build/style/style.css.map',
       '.sass-cache/**',
@@ -33,8 +33,8 @@ module.exports = function(grunt){
       }
     },
     watch: {
-      files: ['./client/assets/style/base.scss'],
-      taks: ['sass']
+      files: ['./client/assets/style/base.scss', './client/components/App.jsx', './client/build/index.html'],
+      tasks: ['clean', 'babel', 'sass']
     }
   });
 

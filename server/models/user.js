@@ -5,8 +5,10 @@ module.exports = function(sequelize, DataTypes) {
     email: DataTypes.STRING,
     passwordHash: DataTypes.STRING
   }, {
-    associate: function(models){
-      User.belongsToMany(models.Book, {through: 'UserBook'});
+    classMethods: {
+      associate: function(models){
+        User.belongsToMany(models.Book, {through: 'UserBook',  foreignKey: 'User_bookId'});
+      }
     }
   });
   return User;

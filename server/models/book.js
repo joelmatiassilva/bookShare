@@ -8,8 +8,10 @@ module.exports = function(sequelize, DataTypes) {
     image: DataTypes.STRING,
     genre: DataTypes.STRING
   }, {
-    associate: function(models){
-      Book.belongsToMany(models.User, {through:'UserBook'});
+    classMethods: {
+        associate: function(models){
+          Book.belongsToMany(models.User, {through:'UserBook', foreignKey: 'Book_userId'});
+      }
     }
   });
   return Book;
