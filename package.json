@@ -1,22 +1,21 @@
 {
-  "name": "bookShare",
+  "name": "bookshare",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "an app to share books btw friends",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carlosyasu91/bookShare.git"
+    "url": "git+https://github.com/jblza/bookShare.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/carlosyasu91/bookShare/issues"
+    "url": "https://github.com/jblza/bookShare/issues"
   },
-  "homepage": "https://github.com/carlosyasu91/bookShare#readme",
+  "homepage": "https://github.com/jblza/bookShare#readme",
   "dependencies": {
     "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",

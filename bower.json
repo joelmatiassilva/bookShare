@@ -1,0 +1,20 @@
+{
+  "name": "bookShare",
+  "version": "1.0.0",
+  "authors": [
+    "Cavernous Rhinos"
+  ],
+  "main": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.14.6",
+    "jquery": "~2.2.0",
+    "lodash": "~4.0.0"
+  }
+}
