@@ -8,24 +8,46 @@ module.exports = function(grunt){
         }
       }
     },
-    sass:{
+    sass: {
       dist: {
         files: {
-          expand: truen,
-          cwd: 'styles',
-          src: ['./client/assets/style/*.scss'],
-          des: '../client/assets/style/style',
-          ect: '.css' 
+          './client/build/style/style.css':'./client/assets/style/base.scss',
+        }
+      }
+    },
+    clean:[
+      'client/build/js/components.min.js',
+      'client/build/style/style.css',
+      'client/build/style/style.css.map',
+      '.sass-cache/**'
+    ],
+    babel: {
+      options: {
+        sourceMap: true, 
+        presets: ['es2015', 'react']
+      },
+      dist: {
+        files: {
+          'client/build/js/components.js': 'client/components/App.jsx'
         }
       }
     },
     watch: {
-      files: [],
-      takss: ['jshint']
+      files: ['./client/assets/style/base.scss'],
+      taks: ['sass']
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-babel');
+  grunt.loadNpmTasks('grunt-eslint');
+  grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-nodemon');
+
+  grunt.registerTask('build', ['clean','sass', 'babel']);
 }
