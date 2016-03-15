@@ -11,12 +11,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-    res.sendFile(path.resolve(__dirname + '/../client/index.html'));
+    res.sendFile(path.resolve(__dirname + '/../client/build/index.html'));
 });
 
 
-app.use(express.static(__dirname + '/../client'));
-
+app.use(express.static(__dirname + '/../client/build'));
 router(app, express);
 
 models.sequelize.sync().then(function () {

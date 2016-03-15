@@ -1,5 +1,12 @@
 module.exports = function(grunt){
   grunt.initConfig({
+    shell: {
+      runBuild: {
+        command: function () {
+          return 'node build.js';
+        }
+      }
+    },
     jshint: {
       files: ['Gruntfile.js', 'client/**/*.js', 'server/**/*.js'],
       options: {
@@ -33,8 +40,8 @@ module.exports = function(grunt){
       }
     },
     watch: {
-      files: ['./client/assets/style/base.scss', './client/components/App.jsx', './client/build/index.html'],
-      tasks: ['clean', 'babel', 'sass']
+      files: ['./client/assets/style/base.scss', './client/components/*.jsx', './client/build/index.html'],
+      tasks: ['clean', 'sass', 'shell:runBuild']
     }
   });
 
@@ -44,10 +51,11 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('build', ['clean','sass', 'babel']);
+  grunt.registerTask('build', ['clean','sass', 'shell:runBuild']);
 }
