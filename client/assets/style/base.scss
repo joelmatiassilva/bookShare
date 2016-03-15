@@ -1,5 +1,33 @@
 @import 'reset';
 
-nav li{
+$primary-color: #333;
+$error-color: red;
+$success-color: green;
+$alert-color: yellow;
 
+h1{
+  color: $primary-color;
+}
+
+.message{
+  font-size: 15px;
+}
+
+.error{
+  @extend .message;
+  color: $error-color;
+}
+
+.success{
+  @extend .message;
+  color: $success-color;
+}
+
+.alert{
+  @extend .message;
+  color: $alert-color;
+}
+
+nav li{
+  display: inline-block;
 }
