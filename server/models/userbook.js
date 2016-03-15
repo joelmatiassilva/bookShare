@@ -6,11 +6,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
-        console.log("SHARE-start")
         UserBook.belongsTo(models.User, {foreignKey: 'userId'});
         UserBook.belongsTo(models.Book, {foreignKey: 'bookId'});
-        // console.log("SHARE-end")
       }
     }
   });

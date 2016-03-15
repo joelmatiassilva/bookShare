@@ -19,7 +19,7 @@ module.exports = function(grunt){
       'client/build/js/components.min.js',
       'client/build/style/style.css',
       'client/build/style/style.css.map',
-      '.sass-cache/**'
+      '.sass-cache/**',
     ],
     babel: {
       options: {
