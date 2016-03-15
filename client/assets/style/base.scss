@@ -5,8 +5,18 @@ $error-color: red;
 $success-color: green;
 $alert-color: yellow;
 
+*{
+  font-family: Arial;
+}
+
 h1{
   color: $primary-color;
+}
+
+input{
+  width: 400px;
+  padding: 5px;
+  font-size: 16px;
 }
 
 .message{
@@ -30,4 +40,21 @@ h1{
 
 nav li{
   display: inline-block;
+}
+
+nav{
+  background-color: black;
+  padding: 10px;
+  color: white;
+}
+nav a{
+ color: white; 
+}
+.signin, .signin table{
+  width: 400px;
+  margin: 0 auto;
+}
+
+.hero{
+  text-align: center;
 }

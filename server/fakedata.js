@@ -1,6 +1,6 @@
 var data = {};
 
-books = [
+var books = [
   {
     isbn: '',
     author: '',
@@ -9,6 +9,10 @@ books = [
     image: '',
     genre: ''
   }
+];
+
+var users = [
+
 ];
 
 module.exports = data
