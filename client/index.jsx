@@ -13,14 +13,13 @@ import SignUp from './components/SignUp.jsx';
 import SignIn from './components/SignIn.jsx';
 import App from './components/App.jsx';
 
-
 var store = createStore(reducer);
 
 var Main = () => (
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={App}>
-        <Route path="/signIp" component={SignIn} />
+        <Route path="/signIn" component={SignIn} />
         <Route path="/signUp" component={SignUp} />
       </Route>
     </Router>
