@@ -40,7 +40,7 @@ module.exports = function(grunt){
       }
     },
     watch: {
-      files: ['./client/assets/style/base.scss', './client/components/*.jsx', './client/build/index.html'],
+      files: ['./client/assets/style/base.scss', './client/components/*.jsx', './client/index.jsx' ,'./client/build/index.html'],
       tasks: ['clean', 'sass', 'shell:runBuild']
     }
   });
