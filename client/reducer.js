@@ -11,7 +11,7 @@ function regularLogin(state, info){
 function facebookLogin(state){
   //TODO make facebookLogin GET request
   $.ajax({
-    url: '/login/facebook'
+    url: '/login/facebook',
     method: 'POST',
     success: function(res){
       console.log(res);
