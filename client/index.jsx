@@ -12,6 +12,7 @@ import reducer from './reducer';
 import SignUp from './components/SignUp.jsx';
 import SignIn from './components/SignIn.jsx';
 import App from './components/App.jsx';
+import Explore from './component/Explore.jsx';
 
 var store = createStore(reducer);
 
@@ -21,6 +22,7 @@ var Main = () => (
       <Route path="/" component={App}>
         <Route path="/signIn" component={SignIn} />
         <Route path="/signUp" component={SignUp} />
+        <Route path="/explore" component={Explore} />
       </Route>
     </Router>
   </Provider>

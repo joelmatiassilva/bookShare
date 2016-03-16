@@ -62,5 +62,6 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('build', ['clean','sass', 'shell:webpack', 'nodemon']);
+  grunt.registerTask('build', ['clean','sass', 'shell:webpack']);
+  grunt.registerTask('run', ['clean','sass', 'shell:webpack', 'nodemon']);
 }

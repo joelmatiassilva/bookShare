@@ -14,6 +14,10 @@ module.exports.addUser = function(req, res){
   });
 };
 
+module.exports.facebookSignIn = function(req, res){
+  
+}
+
 module.exports.signIn = function(req, res){
     User.signIn(req.body.email, req.body.password, function(err, data){
 

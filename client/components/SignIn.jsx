@@ -8,7 +8,7 @@ var SignIn = () => (
         <tr><td>Password</td></tr>
         <tr><td><input type="password" name="password" placeholder="Please enter your password"/></td></tr>
         <tr><td><input type="submit" value="Log in"/></td></tr>
-        <tr><td><a href="/">Login with facebook</a></td></tr>
+        <tr><td><a href="login/facebook">Login with facebook</a></td></tr>
       </table>
     </form>
   </div>
