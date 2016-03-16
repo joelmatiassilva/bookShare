@@ -1,22 +1,27 @@
 //react
 import ReactDOM from 'react-dom';
 import React from 'react';
-import {Router, Route} from 'react-router';
+import {Router, Route, hashHistory} from 'react-router';
 
 //redux
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
+import reducer from './reducer';
 
 //components
 import SignUp from './components/SignUp.jsx';
+import SignIn from './components/SignIn.jsx';
 import App from './components/App.jsx';
+
+
+var store = createStore(reducer);
 
 var Main = () => (
   <Provider store={store}>
-    <Router>
-      <Route path="/" component={App} >
-        <Route path="/SignUp" component={SignIn} />
-        <Route path="/SignUp" component={SignUp} />
+    <Router history={hashHistory}>
+      <Route path="/" component={App}>
+        <Route path="/signIp" component={SignIn} />
+        <Route path="/signUp" component={SignUp} />
       </Route>
     </Router>
   </Provider>
