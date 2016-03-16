@@ -11,5 +11,4 @@ var SignUp = () => (
     <input type='text' value='retypePassword'/>
   </div>
 );
-
-window.SignUp = SignUp;
+export default SignUp
