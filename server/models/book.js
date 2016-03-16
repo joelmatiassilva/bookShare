@@ -8,9 +8,15 @@ module.exports = function(sequelize, DataTypes) {
     image: DataTypes.STRING,
     genre: DataTypes.STRING
   }, {
+    instanceMethods: {
+      viewMyShelf: function(){}, //TODO
+      viewFriendsBooks: function(){}, //TODO
+      deleteBook: function(){} //TODO
+    }
+  }, {
     classMethods: {
-        associate: function(models){
-          Book.belongsToMany(models.User, {through:'UserBook', foreignKey: 'Book_userId'});
+      associate: function(models){
+        Book.belongsToMany(models.User, {through:'UserBook', foreignKey: 'Book_userId'});
       }
     }
   });
