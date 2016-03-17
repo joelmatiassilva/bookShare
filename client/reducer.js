@@ -16,7 +16,6 @@ function regularLogin(state, info){
   //TODO make login GET request
   var username = state.getIn(['userInfo', 'username']);
   var password = state.getIn(['userInfo','password']);
-  
 }
 
 function facebookLogin(state){
