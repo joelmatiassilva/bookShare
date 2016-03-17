@@ -51,6 +51,7 @@
     "redux": "^3.3.1",
     "sequelize": "^3.19.3",
     "webpack": "^1.12.14",
+    "webpack-cli": "^1.0.0",
     "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {

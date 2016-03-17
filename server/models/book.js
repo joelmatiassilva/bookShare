@@ -12,13 +12,13 @@ module.exports = function(sequelize, DataTypes) {
       viewMyShelf: function(){}, //TODO
       viewFriendsBooks: function(){}, //TODO
       deleteBook: function(){} //TODO
-    }
-  }, {
+    },
     classMethods: {
       associate: function(models){
-        Book.belongsToMany(models.User, {through:'UserBook', foreignKey: 'Book_userId'});
+        Book.belongsToMany(models.User, {through:'UserBook', foreignKey: 'bookId', constraints: false});
       }
     }
   });
   return Book;
 };
+

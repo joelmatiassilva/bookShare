@@ -15,16 +15,16 @@ module.exports = function (app, express) {
   // TODO: security admin or currentUser access only for delete
   // app.delete('/api/users/:id', userController.deleteUser);
 
-  /*Facebook Login Routes */
+  /*Facebook Login Routes*/
   app.get('/login/facebook', passport.authenticate('facebook'));
-  app.get('/login/facebook/return', 
+  app.get('/login/facebook/return',
   passport.authenticate('facebook', { failureRedirect: '/#/signIn' }),
   function(req, res) {
     res.redirect('/#/explore');
   });
 
-  /*Friend Routes?*/
-  app.post('/api/friends', userController.addFriend);
+  /*Friend Routes*/
+  app.post('/api/friendRequests', userController.addFriend); //creates a friendRequest
   app.get('/api/friends', userController.viewAllFriends);
   app.get('api/friend/:id',userController.viewFriend);
 
