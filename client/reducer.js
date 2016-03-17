@@ -33,8 +33,6 @@ function facebookLogin(state){
 }
 
 export default function(state = Map(), action){
-  console.log(action.type);
-  console.log(state);
   switch(action.type){
     case 'SET_STATE':
       return setState(state, action.state);

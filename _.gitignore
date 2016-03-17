@@ -22,7 +22,6 @@ coverage
 server/keys.js
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
-build/
 dist/
 client/lib
 
