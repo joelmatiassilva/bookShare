@@ -1,7 +1,7 @@
 //react
 import ReactDOM from 'react-dom';
 import React from 'react';
-import {Router, Route, hashHistory} from 'react-router';
+import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 //redux
 import {createStore} from 'redux';
@@ -10,20 +10,29 @@ import reducer from './reducer';
 
 //components
 import SignUp from './components/SignUp.jsx';
-import SignIn from './components/SignIn.jsx';
+import {SignInContainer} from './components/SignIn.jsx';
 import App from './components/App.jsx';
 import Explore from './components/Explore.jsx';
 
 var store = createStore(reducer);
 
+store.subscribe(() => {
+  console.log(store.getState());
+});
+
+// var createElement = function(Component, props){
+//   return <Component {...props} />
+// }
+
 var Main = () => (
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={hashHistory} >
       <Route path="/" component={App}>
-        <Route path="/signIn" component={SignIn} />
+        <IndexRoute component={SignInContainer}/>
+        <Route path="/signIn" component={SignInContainer} />
         <Route path="/signUp" component={SignUp} />
-        <Route path="/explore" component={Explore} />
       </Route>
+      <Route path="/explore" component={Explore} />
     </Router>
   </Provider>
 );

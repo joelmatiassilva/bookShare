@@ -1,7 +1,5 @@
 import React from 'react';
-class Explore extends React.Componponent{
-  render(){
-    return <h1>WELCOME TO EXPLORE</h1>;
-  }
-}
-
+var Explore = () => (
+  <h1>WELCOME TO EXPLORE</h1>
+);
+export default Explore;
