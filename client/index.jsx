@@ -12,7 +12,7 @@ import reducer from './reducer';
 import SignUp from './components/SignUp.jsx';
 import SignIn from './components/SignIn.jsx';
 import App from './components/App.jsx';
-import Explore from './component/Explore.jsx';
+import Explore from './components/Explore.jsx';
 
 var store = createStore(reducer);
 

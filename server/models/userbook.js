@@ -6,8 +6,8 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        UserBook.belongsTo(models.User, {foreignKey: 'userId'});
-        UserBook.belongsTo(models.Book, {foreignKey: 'bookId'});
+        UserBook.belongsTo(models.User, {foreignKey: 'userId', constraints: false});
+        UserBook.belongsTo(models.Book, {foreignKey: 'bookId', constraints: false});
       }
     }
   });

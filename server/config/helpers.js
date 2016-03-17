@@ -15,7 +15,7 @@ module.exports = {
   encode: function (user){
     console.log('encode',user);
 
-    var token = jwt.encode({id: user.userID}, secret);
+    var token = jwt.encode({id: user.id}, secret);
     return token;
   },
 
@@ -23,13 +23,12 @@ module.exports = {
     var token = req.headers['authorization'];
     var user;
 
-    // if (!token) {
-    //   return res.send(403);
-    // }
+    if (!token) {
+      return res.send(403);
+    }
 
     try {
-      // user = jwt.decode(token, secret);
-      user = {id: 6}; // test data
+      user = jwt.decode(token, secret);
 
       if (user === undefined || user.id === undefined) {
         return res.status(401).json({error: 'invalid token', user: user});

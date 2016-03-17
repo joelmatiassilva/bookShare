@@ -3,7 +3,7 @@ module.exports = function(grunt){
     shell: {
       webpack: {
         command: function () {
-          return 'webpack';
+          return 'node_modules/.bin/webpack';
         }
       }
     },
