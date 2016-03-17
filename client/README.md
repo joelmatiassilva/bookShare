@@ -12,10 +12,24 @@
 Our state uses the [immutable](https://facebook.github.io/immutable-js/) library and is composed of
 
 * state (Map)
-  * login (Map)
+  * userInfo (Map)
     * username (String)
     * password (String)
   * dashboard (Map)
     * mybooks (Array)
     * 
   * explore
+
+
+How Redux Works in this project
+
+1. actions - Objects that have a 'type' and extra properties. The actions are sent to the reducer and it decides what to do with the action depending on it's 'type' property and the extra properties that are sent with it
+
+2. action_creators - They are in charge of creating actions, they store the action 'type' that is used to identify which function is going to be executed by the reducer
+
+3. reducer - The reducer holds the functionallity, it modifies the state (store)
+
+4. store - The store is created with the creatStore redux method  and takes in a reducer as a parameter, the store is where all the information is 'stored'
+
+We used the immutable facebook library to keep track of the state
+
