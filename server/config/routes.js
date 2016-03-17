@@ -1,4 +1,5 @@
 var helpers = require('./helpers.js');
+var passport = require('passport');
 var userController = require('../controllers/userController.js');
 var bookController = require('../controllers/bookController.js');
 
@@ -13,6 +14,14 @@ module.exports = function (app, express) {
 
   // TODO: security admin or currentUser access only for delete
   // app.delete('/api/users/:id', userController.deleteUser);
+
+  /*Facebook Login Routes */
+  app.get('/login/facebook', passport.authenticate('facebook'));
+  app.get('/login/facebook/return', 
+  passport.authenticate('facebook', { failureRedirect: '/#/signIn' }),
+  function(req, res) {
+    res.redirect('/#/explore');
+  });
 
   /*Friend Routes?*/
   app.post('/api/friends', userController.addFriend);

@@ -8,6 +8,9 @@ $alert-color: yellow;
 *{
   font-family: Arial;
 }
+#app {
+  background-image: 'assets/background.jpg';
+}
 
 h1{
   color: $primary-color;

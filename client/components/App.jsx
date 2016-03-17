@@ -6,7 +6,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("app did mount");
+    console.log(this.props.children);
   }
 
   render() {
@@ -14,7 +14,7 @@ class App extends React.Component {
       <div className="hero">
         <h1>Bookshare</h1>
         <h3>Start sharing books with your friends!</h3>
-        <SignIn/>
+        {this.props.children}
       </div>
     )
   }

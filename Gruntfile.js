@@ -1,9 +1,9 @@
 module.exports = function(grunt){
   grunt.initConfig({
     shell: {
-      runBuild: {
+      webpack: {
         command: function () {
-          return 'node build.js';
+          return 'webpack';
         }
       }
     },
@@ -40,8 +40,13 @@ module.exports = function(grunt){
       }
     },
     watch: {
-      files: ['./client/assets/style/base.scss', './client/components/*.jsx', './client/build/index.html'],
-      tasks: ['clean', 'sass', 'shell:runBuild']
+      files: ['./client/assets/style/base.scss', './client/components/*.jsx', './client/index.jsx' ,'./client/build/index.html'],
+      tasks: ['clean', 'sass', 'shell:webpack']
+    },
+    nodemon: {
+      dev: {
+        script: 'server/server.js'
+      }
     }
   });
 
@@ -57,5 +62,6 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('build', ['clean','sass', 'shell:runBuild']);
+  grunt.registerTask('build', ['clean','sass', 'shell:webpack']);
+  grunt.registerTask('run', ['clean','sass', 'shell:webpack', 'nodemon']);
 }
