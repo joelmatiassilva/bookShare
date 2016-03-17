@@ -2,7 +2,10 @@ node_modules/
 bower_components/
 *.log
 
-build/
 dist/
+server/keys.js
+
+client/build/lib
+client/build/bundle.js
 
 .DS_Store
