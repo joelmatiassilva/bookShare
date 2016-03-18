@@ -73,7 +73,24 @@ module.exports.viewAllFriends = function(req, res){
 
 module.exports.viewFriend = function(req, res){
 // tables involved:  friendrequests & users
-
+ req.currentUser.getFriendRequests({
+    where: {friendId: req.params.id},
+    include: {model: User, as: 'Friend'} // references "belongsTo" in FriendRequest
+  }).then(function(friendRequests) {
+    if (friendRequests.length !== 0) {
+      var friend = {
+        id: friendRequests[0].Friend.id,
+        name: friendRequests[0].Friend.name,
+        email: friendRequests[0].Friend.email
+      };
+      res.status(200).json(friend);
+    } else {
+      res.status(404).end();
+    }
+  }).catch(function(err) {
+    console.log(err);
+    res.status(500).json(err);
+  });
 };
 
 module.exports.deleteUser = function(req, res){
