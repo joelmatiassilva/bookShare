@@ -9,7 +9,7 @@ var helper = require('../config/helpers.js');
 //Sign In
 module.exports.addUser = function(req, res){
   //TODO: check if user already exists
-  User.create(req.body, {fields: ['name', 'email', 'password']} )
+  User.create(req.body, {fields: ['username', 'email', 'password']})
   .then(function(user) {
     var token = helper.encode(user);
     res.status(201).json({token: token});
