@@ -8,16 +8,16 @@ function setPassword(state, password){
   return state.setIn(['userInfo','password'], password);
 }
 
+function setPasswordConfirmation(state, username){
+  return state.setIn(['userInfo','passwordConfirmation'], username);
+}
+
 function setUsername(state, username){
   return state.setIn(['userInfo','username'], username);
 }
 
 function setEmail(state, username){
   return state.setIn(['userInfo','email'], username);
-}
-
-function setPasswordConfirmation(state, username){
-  return state.setIn(['userInfo','passwordConfirmation'], username);
 }
 
 function regularLogin(state){
@@ -31,10 +31,19 @@ function regularSignUp(state, info){
   var email = state.getIn(['userInfo','email']);
   var password = state.getIn(['userInfo','password']);
   var passwordConfirmation = state.getIn(['userInfo','passwordConfirmation']);
-  console.log('Username:', username);
-  console.log('email:', email);
-  console.log('password:', password);
-  console.log('passwordConfirmation:', passwordConfirmation);
+  if(password !== passwordConfirmation) return state.set('errorMessage', 'Passwords do not match');
+    $.ajax({
+      url: '/api/signUp',
+      method: 'POST',
+      data: {username: username, password: password, email: email},
+      success: function(res){
+        console.log('GOT RESPONSE, USER SIGNED UP')
+      },
+      error: function(err){
+        console.log('ERROR, USER NOT SIGNED UP')
+        console.error(err);
+      }
+    });
 }
 
 function facebookLogin(state){
