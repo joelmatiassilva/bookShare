@@ -1,5 +1,6 @@
 import React from 'react';
-import ExploreBooksListEntry from './ExploreBooksListEntry.jsx';
+import ExploreBooksListEntry from './ExploreBooksListEntry';
+import NavBar from './NavBar';
 class ExploreBooksList extends React.Component{
   render(){
     return <div>
