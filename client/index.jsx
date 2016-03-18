@@ -11,18 +11,16 @@ import reducer from './reducer';
 //components
 import {SignUpContainer} from './components/SignUp.jsx';
 import {SignInContainer} from './components/SignIn.jsx';
+import Dashboard from './components/Dashboard.jsx';
 import App from './components/App.jsx';
 import Explore from './components/Explore.jsx';
 
 var store = createStore(reducer);
 
+//TODO DELETE: deletethis subscribe when deploying
 store.subscribe(() => {
   console.log(store.getState());
 });
-
-// var createElement = function(Component, props){
-//   return <Component {...props} />
-// }
 
 var Main = () => (
   <Provider store={store}>
@@ -33,6 +31,7 @@ var Main = () => (
         <Route path="/signUp" component={SignUpContainer} />
       </Route>
       <Route path="/explore" component={Explore} />
+      <Route path="/dashboard" component={Dashboard} />
     </Router>
   </Provider>
 );
