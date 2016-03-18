@@ -11,10 +11,29 @@ export function regularLogin(){
   }
 }
 
+export function regularSignUp(){
+  return {
+    type: 'REGULAR_SIGNUP'
+  }
+}
 
 export function facebookLogin(){
   return {
     type: 'FACEBOOK_LOGIN'
+  }
+}
+
+export function setUsername(username){
+  return {
+    type: 'SET_USERNAME',
+    username: username
+  }
+}
+
+export function setEmail(email){
+  return {
+    type: 'SET_EMAIL',
+    email: email
   }
 }
 
@@ -25,9 +44,9 @@ export function setPassword(password){
   }
 }
 
-export function setUsername(username){
+export function setPasswordConfirmation(password){
   return {
-    type: 'SET_USERNAME',
-    username: username
+    type: 'SET_PASSWORD_CONFIRMATION',
+    password: password
   }
 }
