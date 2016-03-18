@@ -9,8 +9,8 @@ module.exports = function(app){
     callbackURL: 'http://localhost:5000/login/facebook/return'
   },
   function(accessToken, refresh, profile, cb){
-    console.log('ACCESS TOKEN');
-    console.log(accessToken);
+    //TODO Save user information on database 
+    //if user doesn't exist already
     console.log(profile);
     return cb(null, profile);
   }));

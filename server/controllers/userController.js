@@ -3,7 +3,7 @@ var User = models.User;
 var FriendRequest = models.FriendRequest;
 var helper = require('../config/helpers.js');
 
-
+//Sign In
 module.exports.addUser = function(req, res){
   User.create(req.body, {fields: ['name', 'email', 'password']})
   .then(function(user) {
@@ -19,6 +19,7 @@ module.exports.facebookSignIn = function(req, res){
 
 };
 
+//Log In / Sign In
 module.exports.signIn = function(req, res){
   User.signIn(req.body.email, req.body.password, function(err, data){
     if(err){
