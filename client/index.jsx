@@ -9,7 +9,7 @@ import {Provider} from 'react-redux';
 import reducer from './reducer';
 
 //components
-import SignUp from './components/SignUp.jsx';
+import {SignUpContainer} from './components/SignUp.jsx';
 import {SignInContainer} from './components/SignIn.jsx';
 import App from './components/App.jsx';
 import Explore from './components/Explore.jsx';
@@ -30,7 +30,7 @@ var Main = () => (
       <Route path="/" component={App}>
         <IndexRoute component={SignInContainer}/>
         <Route path="/signIn" component={SignInContainer} />
-        <Route path="/signUp" component={SignUp} />
+        <Route path="/signUp" component={SignUpContainer} />
       </Route>
       <Route path="/explore" component={Explore} />
     </Router>
