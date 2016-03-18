@@ -4,32 +4,44 @@
 
 ## Actions - action_creators.js
 
-* SET_STATE - Sets
-* LOGIN - Sends the login information to the Server and logs in if password and username is correct
+These are our actions that are created by our action_creators.js
+
+* **SET_STATE** - Sets
+* **REGULAR_LOGIN** - Sends the login information to the Server and logs in if password and username is correct
+* **REGULAR_SIGNUP** - Signs up the user with username/email and password
+* **FACEBOOK_LOGIN** - 
+* **SET_USERNAME**
+* **SET_EMAIL**
+* **SET_PASSWORD**
+* **SET_PASSWORD_CONFIRMATION**
 
 ## State
 
 Our state uses the [immutable](https://facebook.github.io/immutable-js/) library and is composed of
 
+_Map means the immutable Map Class_
+_List means the immutable List Class_
+
 * state (Map)
   * userInfo (Map)
     * username (String)
+    * email (String)
     * password (String)
+    * passwordConfirmation (String)
   * dashboard (Map)
-    * mybooks (Array)
-    * 
+    * myBooks (List)
   * explore
+    * myFriendsBooks
 
 
 How Redux Works in this project
 
-1. actions - Objects that have a 'type' and extra properties. The actions are sent to the reducer and it decides what to do with the action depending on it's 'type' property and the extra properties that are sent with it
+1. **actions** - Objects that have a 'type' and extra properties. The actions are sent to the reducer and it decides what to do with the action depending on it's 'type' property and the extra properties that are sent with it
 
-2. action_creators - They are in charge of creating actions, they store the action 'type' that is used to identify which function is going to be executed by the reducer
+2. **action_creators** - They are in charge of creating actions, they store the action 'type' that is used to identify which function is going to be executed by the reducer
 
-3. reducer - The reducer holds the functionallity, it modifies the state (store)
+3. **reducer** - The reducer holds the functionallity, it modifies the state (store)
 
-4. store - The store is created with the creatStore redux method  and takes in a reducer as a parameter, the store is where all the information is 'stored'
+4. **store** - The store is created with the creatStore redux method  and takes in a reducer as a parameter, the store is where all the information is 'stored'
 
-We used the immutable facebook library to keep track of the state
 
