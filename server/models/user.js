@@ -8,9 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods: {
       signIn: function(){}, //TODO
       logout: function(){}, //TODO
-      // addFriend: function(){}, //TODO
-      // viewAllFriends: function(){}, //TODO
-      // viewFriend: function(){} //TODO
+
     },
     classMethods: {
       associate: function(models){
@@ -24,6 +22,5 @@ module.exports = function(sequelize, DataTypes) {
   });
   return User;
 };
-
 
 //TODO: add validations
