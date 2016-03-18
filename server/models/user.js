@@ -8,9 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     instanceMethods: {
       signIn: function(){}, //TODO
       logout: function(){}, //TODO
-      // addFriend: function(){}, //TODO
-      // viewAllFriends: function(){}, //TODO
-      // viewFriend: function(){} //TODO
+
     },
     classMethods: {
       associate: function(models){
@@ -18,11 +16,11 @@ module.exports = function(sequelize, DataTypes) {
         User.belongsToMany(models.Book, {through: 'UserBook', foreignKey: 'userId', constraints: false});
         User.belongsToMany(models.User, {through: 'FriendRequest', as: 'Friends', foreignKey: 'userId', constraints: false});
         User.belongsToMany(models.User, {through: 'FriendRequest', as: 'Users', foreignKey: 'friendId', constraints: false});
+        User.hasMany(models.FriendRequest, {foreignKey: 'userId', constraints: false});
       }
     }
   });
   return User;
 };
-
 
 //TODO: add validations
