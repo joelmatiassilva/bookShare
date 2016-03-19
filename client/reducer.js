@@ -1,23 +1,13 @@
 import {Map, List, fromJS} from 'immutable';
+// import {searchBooks} from './searchBooks';
 
 function setState(state, newState){
   return state.merge(newState);
 }
 
-function setPassword(state, password){
-  return state.setIn(['userInfo','password'], password);
-}
 
-function setPasswordConfirmation(state, username){
-  return state.setIn(['userInfo','passwordConfirmation'], username);
-}
-
-function setUsername(state, username){
-  return state.setIn(['userInfo','username'], username);
-}
-
-function setEmail(state, username){
-  return state.setIn(['userInfo','email'], username);
+function setFoundBooks(state, foundBooks){
+  return state.set('foundBooks', foundBooks);
 }
 
 function regularLogin(state){
@@ -72,6 +62,12 @@ function facebookLogin(state){
   })
 }
 
+function searchBooks(title){
+  // searchBook(title, function(response){
+
+  // });
+}
+
 export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
@@ -84,6 +80,8 @@ export default function(state = Map(), action){
       return setUsername(state, action.username);
     case 'SET_EMAIL':
       return setEmail(state, action.email);
+    case 'SET_FOUND_BOOKS':
+      return setFoundBooks(state, action.foundBooks);
     case 'REGULAR_LOGIN':
       return regularLogin(state);
     case 'REGULAR_SIGNUP':
