@@ -19,7 +19,23 @@ module.exports.addBook= function(req, res){
 };
 
 module.exports.viewMyShelf= function(req, res){
-// TODO
+  req.currentUser.getBooks().then(function(books) {
+    books = books.map(function(book) {
+      return {
+        isbn: book.id,
+        author: book.author,
+        title: book.title,
+        description: book.description,
+        image: book.image,
+        genre: book.genre
+      };
+    });
+    res.status(200).json(books);
+  })
+  .catch(function(err) {
+    res.status(500).json(err);
+  });
+
 };
 
 module.exports.viewFriendsBooks= function(req, res){
