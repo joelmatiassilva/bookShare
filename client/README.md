@@ -44,4 +44,29 @@ How Redux Works in this project
 
 4. **store** - The store is created with the creatStore redux method  and takes in a reducer as a parameter, the store is where all the information is 'stored'
 
+### cURL Commands to test ISBNdb
+
+function request(){
+  $.ajax({
+    url: 'http://isbndb.com/api/books.xml',
+    data: {access_key:'5MIPCZBD',index1:'title', value1:'thief of time'},
+    success: function(res){
+      console.log(res);
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
+
+
+curl -X POST http://www.isbndb.com/api/books.xml  \
+-d "access_key=5MIPCZBD&index1=title&value1=thief+of+time"
+
+
+curl -X POST http://www.isbndb.com/api/books.xml  \
+-d "access_key=5MIPCZBD&index1=name&value1=astronomy+teaching"
+
+
+/api/subjects.xml?access_key=Z&index1=name&value1=astronomy+teaching
 
