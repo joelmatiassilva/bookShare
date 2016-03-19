@@ -9,13 +9,14 @@ module.exports = function(sequelize, DataTypes) {
     genre: DataTypes.STRING
   }, {
     instanceMethods: {
-      viewMyShelf: function(){}, //TODO
-      viewFriendsBooks: function(){}, //TODO
+      // viewMyShelf: function(){}, //TODO
+      // viewFriendsBooks: function(){}, //TODO
       deleteBook: function(){} //TODO
     },
     classMethods: {
       associate: function(models){
         Book.belongsToMany(models.User, {through:'UserBook', foreignKey: 'bookId', constraints: false});
+        Book.hasMany(models.UserBook, {foreignKey: 'bookId', constraints: false});
       }
     }
   });
