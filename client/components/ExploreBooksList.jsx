@@ -1,14 +1,14 @@
 import React from 'react';
 import ExploreBooksListEntry from './ExploreBooksListEntry';
 import NavBar from './NavBar';
+
 class ExploreBooksList extends React.Component{
   render(){
     return <div>
-      <h1>Book List!</h1>
-      <ExploreBooksListEntry/>
-      <ExploreBooksListEntry/>
-      <ExploreBooksListEntry/>
-      <ExploreBooksListEntry/>
+      <h1>These are your friend's books</h1>
+      {this.props.books.map((book)=>{
+        return <ExploreBooksListEntry {...book}/>
+      })}
     </div>;
   }
 }

@@ -24,6 +24,18 @@ function regularLogin(state){
   //TODO make login GET request
   var username = state.getIn(['userInfo', 'username']);
   var password = state.getIn(['userInfo','password']);
+  $.ajax({
+    url: '/api/signIn',
+    method: 'POST',
+    data: {username: username, password: password},
+    success: function(res){
+      console.log('GOT RESPONSE, USER LOGGED IN');
+    },
+    error: function(err){
+      console.log('ERROR, USER NOT LOGGED IN')
+      console.error(err);
+    }
+  });
 }
 
 function regularSignUp(state, info){

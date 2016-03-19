@@ -1,5 +1,5 @@
 import React from 'react';
-class ExploreBooksListEntry extends React.Component{
+class BooksListEntry extends React.Component{
   render(){
     return <div className="book-entry">
       <p class="title">{this.props.title}</p>
@@ -7,8 +7,12 @@ class ExploreBooksListEntry extends React.Component{
       <p>{this.props.description}</p>
       <img src={this.props.imageUrl}/>
       <p>{this.props.genre}</p>
+      {this.props.borrower ? 
+        <p>Lent to: {this.props.borrower}</p> : null}
+      {this.props.owner ? 
+      <p>Borrowed from: {this.props.owner}</p> : null}
     </div>;
   }
 }
 
-export default ExploreBooksListEntry;
+export default BooksListEntry;
