@@ -1,5 +1,5 @@
 import React from 'react';
-import BookListEntry from './BookListEntry';
+import BookList from './BookList';
 
 class MyBooks extends React.Component{
   constructor(props){
@@ -9,9 +9,8 @@ class MyBooks extends React.Component{
   render(){
     return <div>
       <h1>This is the MyBooks Component</h1>
-    {this.props.myBooks.map((book) => {
-      return <BookListEntry {...book} />
-    })}
+      <input type="text" placeholder="Search for a book"/>
+      <BookList books={this.props.myBooks}/>
     </div>
   }
 }
