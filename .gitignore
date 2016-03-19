@@ -5,6 +5,7 @@ bower_components/
 
 dist/
 server/keys.js
+client/keys.js
 
 client/build/lib
 client/build/bundle.js
