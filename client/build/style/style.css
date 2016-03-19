@@ -49,4 +49,10 @@ nav a {
 .hero {
   text-align: center; }
 
+.book-entry {
+  width: 300px; }
+
+.book-list {
+  display: flex; }
+
 /*# sourceMappingURL=style.css.map */

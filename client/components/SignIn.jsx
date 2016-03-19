@@ -15,7 +15,7 @@ export const SignIn = class SignIn extends React.Component {
     <form>
       <table>
         <tr><td>User Name or Email</td></tr>
-        <tr><td><input onChange={(event) => this.props.setUsername(event.target.value)} type="text" name="username" placeholder="Please enter your username"/></td></tr>
+        <tr><td><input onChange={(event) => this.props.setEmail(event.target.value)} type="text" name="username" placeholder="Please enter your username"/></td></tr>
         <tr><td>Password</td></tr>
         <tr>
           <td>

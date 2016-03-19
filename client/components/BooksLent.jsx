@@ -4,7 +4,7 @@ import BookList from './BookList';
 class BooksLent extends React.Component{
   render(){
     return <div>
-      This is the BooksLent Component
+      <h2>Books that I lent to friends</h2>
       <BookList books={this.props.booksLent}/>
     </div>
   }

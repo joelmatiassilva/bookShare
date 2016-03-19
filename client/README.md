@@ -28,11 +28,13 @@ _List means the immutable List Class_
     * email (String)
     * password (String)
     * passwordConfirmation (String)
+    * accessToken
   * dashboard (Map)
     * myBooks (List)
   * explore
     * myFriendsBooks
-
+  * dashboard (List)
+    * foundBooksI
 
 How Redux Works in this project
 
@@ -46,10 +48,9 @@ How Redux Works in this project
 
 ### cURL Commands to test ISBNdb
 
-function request(){
+function request(query){
   $.ajax({
-    url: 'http://isbndb.com/api/books.xml',
-    data: {access_key:'5MIPCZBD',index1:'title', value1:'thief of time'},
+    url: 'http://isbndb.com/api/v2/json/5MIPCZBD/books?q='+query,
     success: function(res){
       console.log(res);
     },
