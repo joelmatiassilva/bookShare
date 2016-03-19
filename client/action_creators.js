@@ -26,7 +26,6 @@ export function setUsername(username){
   }
 }
 
-
 export function setEmail(email){
   return {
     type: 'SET_EMAIL',
