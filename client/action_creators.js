@@ -33,6 +33,12 @@ export function setEmail(email){
   }
 }
 
+export function setFoundBooks(foundBooks){
+  return {
+    type: 'SET_FOUND_BOOKS',
+    foundBooks: foundBooks
+  }
+}
 
 export function regularLogin(){
   return {
