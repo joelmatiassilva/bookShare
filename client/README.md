@@ -28,11 +28,13 @@ _List means the immutable List Class_
     * email (String)
     * password (String)
     * passwordConfirmation (String)
+    * accessToken
   * dashboard (Map)
     * myBooks (List)
   * explore
     * myFriendsBooks
-
+  * dashboard (List)
+    * foundBooksI
 
 How Redux Works in this project
 
@@ -44,4 +46,28 @@ How Redux Works in this project
 
 4. **store** - The store is created with the creatStore redux method  and takes in a reducer as a parameter, the store is where all the information is 'stored'
 
+### cURL Commands to test ISBNdb
+
+function request(query){
+  $.ajax({
+    url: 'http://isbndb.com/api/v2/json/5MIPCZBD/books?q='+query,
+    success: function(res){
+      console.log(res);
+    },
+    error: function(err){
+      console.error(err);
+    }
+  });
+}
+
+
+curl -X POST http://www.isbndb.com/api/books.xml  \
+-d "access_key=5MIPCZBD&index1=title&value1=thief+of+time"
+
+
+curl -X POST http://www.isbndb.com/api/books.xml  \
+-d "access_key=5MIPCZBD&index1=name&value1=astronomy+teaching"
+
+
+/api/subjects.xml?access_key=Z&index1=name&value1=astronomy+teaching
 

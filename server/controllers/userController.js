@@ -5,6 +5,7 @@ var models = require('../models');
 var User = models.User;
 var FriendRequest = models.FriendRequest;
 var helper = require('../config/helpers.js');
+var bcrypt = require('bcrypt');
 
 //Sign In
 module.exports.addUser = function(req, res){

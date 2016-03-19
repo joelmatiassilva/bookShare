@@ -26,7 +26,6 @@ export function setUsername(username){
   }
 }
 
-
 export function setEmail(email){
   return {
     type: 'SET_EMAIL',
@@ -34,6 +33,12 @@ export function setEmail(email){
   }
 }
 
+export function setFoundBooks(foundBooks){
+  return {
+    type: 'SET_FOUND_BOOKS',
+    foundBooks: foundBooks
+  }
+}
 
 export function regularLogin(){
   return {

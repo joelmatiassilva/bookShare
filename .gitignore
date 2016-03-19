@@ -1,9 +1,11 @@
 node_modules/
 bower_components/
 *.log
+.sass-cache
 
 dist/
 server/keys.js
+client/keys.js
 
 client/build/lib
 client/build/bundle.js
