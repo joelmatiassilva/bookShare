@@ -1,13 +1,11 @@
 import React from 'react';
-import BookListEntry from './BookListEntry';
+import BookList from './BookList';
 
 class BooksLent extends React.Component{
   render(){
     return <div>
       This is the BooksLent Component
-      {this.props.booksLent.map((book) => {
-        return <BookListEntry {...book} />
-      })}
+      <BookList books={this.props.booksLent}/>
     </div>
   }
 }
