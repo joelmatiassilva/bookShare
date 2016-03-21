@@ -10,7 +10,6 @@ module.exports = function (app, express) {
 
 
   app.use(helpers.decode);
-  app.post('/api/logout', userController.logout);
   // TODO: security admin or currentUser access only for delete
   // app.delete('/api/users/:id', userController.deleteUser);
 
@@ -25,8 +24,6 @@ module.exports = function (app, express) {
   });
 
   app.use(helpers.decode);
-
-  app.post('/api/logout', userController.logout);
 
   // TODO: security admin or currentUser access only for delete
   // app.delete('/api/users/:id', userController.deleteUser);
