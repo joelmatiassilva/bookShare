@@ -1,62 +1,48 @@
 'use strict';
 var Promise = require('bluebird');
 var bcrypt = require('bcrypt-nodejs');
-// var salt = bcrypt.genSaltSync(10); // FIXME: salts should be per-user and need to be stored in database
-var cipher = Promise.promisify(bcrypt.hash);
+var salt = bcrypt.genSaltSync(10); // FIXME: salts should be per-user and need to be stored in database
 
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    salt: DataTypes.STRING
+    password: DataTypes.STRING
   }, {
     hooks: {
       beforeCreate: function(user, options) {
-        user.setHashPassword();
+        return user.setHashPassword();
       }
     },
     instanceMethods: {
       setHashPassword: function(){
-        var salt = bcrypt.genSaltSync(10);
-        return User.hashPassword(this.password, salt).bind(this)
+        return User.hashPassword(this.password).bind(this)
           .then(function(hash){
             this.password = hash;
-            console.log('GENERATED SALT: ' + salt);
-            this.salt = salt;
-            this.save().then(function(){
-              console.log('Saved salt and hash');
-              return;
-            });
+            return this;
           });
-      },
-      comparePassword: function(){
-
       }
     },
     classMethods: {
-      hashPassword: function(password, salt) {
-        return cipher(this.password, salt, null);
+      hashPassword: function(password) {
+        var cipher = Promise.promisify(bcrypt.hash);
+        return cipher(password, salt, null);
       },
       signIn: function(email, password){
         return new Promise(function (resolve, reject) {
-            User.findAll({where: {email: email}})
+          User.hashPassword(password)
+          .then(function(hash){
+            User.findAll({where: {email: email, password: hash}})
             .then(function(users) {
               if(users.length === 0) {
                 reject("Not found");
-                return;
-              }  
-              var userSalt = users[0].salt;
-              var userPassword = users[0].password;
-              User.hashPassword(userPassword, userSalt).then(function(hash){
-                if((users[0].salt + hash) === users[0].salt + users[0].password){
-                  resolve(users[0]);
-                } else {
-                  reject("Password does not match");
-                }
-              });
+              } else {
+                resolve(users[0]);
+              }
             })
             .catch(reject);
+          })
+          .catch(reject);
         });
       },
       associate: function(models){
