@@ -1,0 +1,64 @@
+html,
+body,
+ul,
+ol {
+  margin: 0;
+  padding: 0; }
+
+* {
+  font-family: Arial; }
+
+#app {
+  background-image: 'assets/background.jpg'; }
+
+h1 {
+  color: #333; }
+
+input {
+  width: 400px;
+  padding: 5px;
+  font-size: 16px; }
+
+.message, .error, .success, .alert {
+  font-size: 15px; }
+
+.error {
+  color: red; }
+
+.success {
+  color: green; }
+
+.alert {
+  color: yellow; }
+
+nav li {
+  display: inline-block; }
+
+nav {
+  background-color: black;
+  padding: 10px;
+  color: white; }
+
+nav a {
+  color: white; }
+
+.signin, .signin table {
+  width: 400px;
+  margin: 0 auto; }
+
+.hero {
+  text-align: center; }
+
+.book-entry {
+  width: 250px;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px; }
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; }
+
+/*# sourceMappingURL=style.css.map */
