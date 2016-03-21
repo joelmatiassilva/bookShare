@@ -41,6 +41,31 @@ function formatBooksResponse(response){
   return books;
 }
 
+export function addBookToMyShelf(state, book){
+  console.log('addBookToMyShelf: Trying to add book with server call');
+  console.log(book);
+  var bookToSave = {
+    authors: book.authors,
+    categories: book.categories,
+    description: book.description,
+    isbn10: book.isbn10,
+    isbn13: book.isbn13,
+    imageUrl: book.imageUrl,
+    title: book.title
+  }
+  // $.ajax({
+  //   url: '/api/books',
+  //   method: 'POST',
+  //   data: bookToSave,
+  //   success: function(res){
+  //     console.log(res);
+  //     console.log('Sucessfully added book');
+  //   },
+  //   error: function(err){
+  //     console.log('Error');
+  //   }
+  // });
+}
 
 export function requestBooks(state, query){
   //TODO set message or spinner to show user that we are fetching the books
