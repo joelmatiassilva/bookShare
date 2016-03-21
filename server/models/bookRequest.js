@@ -15,3 +15,13 @@ module.exports = function(sequelize, DataTypes) {
   });
   return BookRequest;
 };
+
+/* Is it better to have 2 tables
+id:
+borrowerId: Fkey-User
+userId: Fkey-User
+bookId: Fkey-Book
+accept:
+
+
+*/
