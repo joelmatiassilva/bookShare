@@ -6,6 +6,7 @@ var User = models.User;
 var FriendRequest = models.FriendRequest;
 var helper = require('../config/helpers.js');
 var bcrypt = require('bcrypt');
+// var salt = bcrypt.genSaltSync(10);
 
 //Sign In
 module.exports.addUser = function(req, res){
@@ -15,8 +16,9 @@ module.exports.addUser = function(req, res){
     var token = helper.encode(user);
     res.status(201).json({token: token});
   })
-  .catch(function(err){
-    return res.status(500).json(err);
+  .catch(function(err) {
+    console.log('err here', err);
+    res.status(500).json(err);
   });
 };
 
@@ -26,18 +28,15 @@ module.exports.facebookSignIn = function(req, res){
 
 //Log In / Sign In
 module.exports.signIn = function(req, res){
-  User.signIn(req.body.email, req.body.password, function(err, data){
-    if(err){
-      return res.status(500).json(err);
-    } else {
-      var token = helper.encode(data);
-      res.status(200).json({token: token});
-    }
+  User.signIn(req.body.email, req.body.password)
+  .then(function(user){
+    var token = helper.encode(user);
+    res.status(200).json({token: token});
+  })
+  .catch(function(err) {
+    console.log('err here', err);
+    res.status(500).json(err);
   });
-};
-
-module.exports.logout = function(req, res){
-// TODO
 };
 
 module.exports.addFriend = function(req, res){

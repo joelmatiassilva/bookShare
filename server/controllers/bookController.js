@@ -48,7 +48,6 @@ module.exports.viewFriendBooks= function(req, res){
 };
 
 module.exports.viewFriendsBooks= function(req, res){
-  // TODO
   req.currentUser.getFriends().then(function(friends) {
     var friendIds = friends.map(function(friend) { return friend.id; });
 
