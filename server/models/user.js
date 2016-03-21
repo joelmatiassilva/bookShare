@@ -16,6 +16,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     instanceMethods: {
       setHashPassword: function(){
+        console.log(this.password);
         return User.hashPassword(this.password).bind(this)
           .then(function(hash){
             this.password = hash;
