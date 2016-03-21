@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar';
-import MyBooks from './MyBooks';
+import {MyBooksContainer} from './MyBooks';
 import MyFriends from './MyFriends';
 import BooksLent from './BooksLent';
 import BooksBorrowed from './BooksBorrowed';
@@ -108,16 +108,22 @@ var booksBorrowed = [
 ];
 
 class Dashboard extends React.Component{
+  constructor(props){
+    super(props);
+  }
   render(){
     return <div>
         <NavBar/>
         <h1>Welcome to dashboard!</h1>
-        <MyBooks myBooks={myBooks}/>
+        <MyBooksContainer myBooks={myBooks}/>
         <MyFriends friends={myFriends}/>
         <BooksLent booksLent={booksLent}/>
         <BooksBorrowed booksBorrowed={booksBorrowed}/>
       </div>
   }
+}
+function mapStateToProps(state){
+  return{}
 }
 
 export default Dashboard;
