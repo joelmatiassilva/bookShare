@@ -1,6 +1,7 @@
 'use strict';
 var Promise = require('bluebird');
 var bcrypt = require('bcrypt-nodejs');
+var salt = bcrypt.genSaltSync(10); // FIXME: salts should be per-user and need to be stored in database
 
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
@@ -8,25 +9,42 @@ module.exports = function(sequelize, DataTypes) {
     email: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
+    hooks: {
+      beforeCreate: function(user, options) {
+        return user.setHashPassword();
+      }
+    },
     instanceMethods: {
-      signIn: function(){}, //TODO
-      logout: function(){}, //TODO,
-      comparePassword: function(password, callback){
-        bcrypt.compare(password, this.password, function(err, isMatch){
-          callback(isMatch);
-        });
-      },
-      //TODO verify if this works
-      hashPassword: function(){
-        var cipher = Promise.promisify(bcrypt.hash);
-        return cipher(this.password, null, null).bind(this)
+      setHashPassword: function(){
+        return User.hashPassword(this.password).bind(this)
           .then(function(hash){
             this.password = hash;
-            return this.save();
+            return this;
           });
       }
     },
     classMethods: {
+      hashPassword: function(password) {
+        var cipher = Promise.promisify(bcrypt.hash);
+        return cipher(this.password, salt, null);
+      },
+      signIn: function(email, password){
+        return new Promise(function (resolve, reject) {
+          User.hashPassword(password)
+          .then(function(hash){
+            User.findAll({where: {email: email, password: hash}})
+            .then(function(users) {
+              if(users.length === 0) {
+                reject("Not found");
+              } else {
+                resolve(users[0]);
+              }
+            })
+            .catch(reject);
+          })
+          .catch(reject);
+        });
+      },
       associate: function(models){
         //constraints set to false for now to prevent sequelize default behavior
         User.belongsToMany(models.Book, {through: 'UserBook', foreignKey: 'userId', constraints: false});
