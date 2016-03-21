@@ -1,3 +1,5 @@
+import {hashHistory} from 'react-router';
+
 export function setPassword(state, password){
   return state.setIn(['userInfo','password'], password);
 }
@@ -14,7 +16,9 @@ export function setEmail(state, email){
   return state.setIn(['userInfo','email'], email);
 }
 
-
+export function setToken(state, token){
+  return state.setIn(['userInfo', 'token'], token);
+}
 
 export function regularLogin(state){
   //TODO make login GET request
@@ -27,8 +31,10 @@ export function regularLogin(state){
     method: 'POST', //TODO change EMAIL to something generic when we allow users to login with either username or email
     data: {email: email, password: password},
     success: function(res){
-      console.log(res);
-      console.log('GOT RESPONSE, USER LOGGED IN');
+      if(res.token){
+        setToken(state, res.token);
+        hashHistory.push('/explore');
+      }
     },
     error: function(err){
       console.log('ERROR, USER NOT LOGGED IN')

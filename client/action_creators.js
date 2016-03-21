@@ -43,6 +43,14 @@ export function regularLogin(){
   }
 }
 
+export function setToken(token){
+  return {
+    type: 'SET_TOKEN',
+    token: token
+  }
+}
+
+
 export function regularSignUp(){
   return {
     type: 'REGULAR_SIGNUP'
@@ -95,3 +103,4 @@ export function fetchBooks(query){
     });
   }
 }
+

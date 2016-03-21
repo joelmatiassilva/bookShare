@@ -5,6 +5,7 @@ import {
   setPasswordConfirmation, 
   setUsername, 
   setEmail, 
+  setToken,
   regularLogin, 
   regularSignUp} from './reducers/authReducers';
 import {
@@ -28,6 +29,8 @@ export default function(state = Map(), action){
       return setUsername(state, action.username);
     case 'SET_EMAIL':
       return setEmail(state, action.email);
+    case 'SET_TOKEN':
+      return setToken(state, action.token);
     case 'REGULAR_LOGIN':
       return regularLogin(state);
     case 'REGULAR_SIGNUP':
