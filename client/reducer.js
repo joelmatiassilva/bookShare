@@ -1,9 +1,18 @@
 import {Map, List, fromJS} from 'immutable';
 // import {searchBooks} from './searchBooks';
-import {setPassword, setPasswordConfirmation, setUsername, setEmail, regularLogin, regularSignUp} from './reducers/authReducers';
-import {setFoundBooks, searchBooks} from './reducers/dashboardReducers';
+import {
+  setPassword, 
+  setPasswordConfirmation, 
+  setUsername, 
+  setEmail, 
+  regularLogin, 
+  regularSignUp} from './reducers/authReducers';
+import {
+  setFoundBooks,
+  requestBooks,
+  receiveBooks} from './reducers/dashboardReducers';
 
-function setState(state, newState){
+function setState(state = Map(), newState){
   return state.merge(newState);
 }
 
@@ -25,7 +34,9 @@ export default function(state = Map(), action){
       return regularSignUp(state);
     case 'SET_FOUND_BOOKS':
       return setFoundBooks(state, action.foundBooks);
-    case 'SEARCH_BOOKS':
-      return searchBooks(state, action.query);
+    case 'REQUEST_BOOKS':
+      return requestBooks(state, action.query);
+    case 'RECEIVE_BOOKS':
+      return receiveBooks(state, action.books);
   }
 }
