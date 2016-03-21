@@ -50,14 +50,6 @@ export function setToken(token){
   }
 }
 
-export function signIn(){
-  return function(dispatch){
-    dispatch(); //add action that starts user login
-    return searchGoogleBooksAJAX(query, (res) => { //change function call for function that logs user in
-      dispatch(receiveBooks(res)); //add action that finished user login
-    });
-  }
-}
 
 export function regularSignUp(){
   return {
