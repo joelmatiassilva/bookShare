@@ -1,6 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var FriendRequest = sequelize.define('FriendRequest', {
+    id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
     accepted: DataTypes.BOOLEAN
   }, {
     classMethods: {
