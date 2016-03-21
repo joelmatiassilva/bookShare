@@ -43,8 +43,8 @@ module.exports = function(grunt){
       files: ['./client/assets/style/base.scss', 
               './client/**/*.jsx', 
               './client/**/*.js' ,
-              '!./client/build/bundle.js',
-              './client/build/index.html'],
+              './client/build/index.html',
+              '!./client/build/bundle.js'],
       tasks: ['clean', 'sass', 'shell:webpack']
     },
     nodemon: {

@@ -4,7 +4,8 @@ import React from 'react';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 //redux
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import {Provider} from 'react-redux';
 import reducer from './reducer';
 
@@ -15,7 +16,12 @@ import App from './components/App';
 import Explore from './components/Explore';
 import Dashboard from './components/Dashboard';
 
-var store = createStore(reducer);
+var store = createStore(
+  reducer,
+  applyMiddleware(
+    thunkMiddleware
+  )
+);
 
 //TODO DELETE: delete this subscribe when deploying
 store.subscribe(() => {

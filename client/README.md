@@ -34,7 +34,7 @@ _List means the immutable List Class_
   * explore
     * myFriendsBooks
   * dashboard (List)
-    * foundBooksI
+    * foundBooks
 
 How Redux Works in this project
 

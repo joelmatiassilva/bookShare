@@ -50,9 +50,15 @@ nav a {
   text-align: center; }
 
 .book-entry {
-  width: 300px; }
+  width: 250px;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px; }
 
 .book-list {
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; }
 
 /*# sourceMappingURL=style.css.map */
