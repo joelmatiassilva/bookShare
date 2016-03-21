@@ -13,8 +13,6 @@ module.exports = {
     res.status(500).send({error: error})
   },
   encode: function (user){
-    console.log('encode',user);
-
     var token = jwt.encode({id: user.id}, secret);
     return token;
   },
