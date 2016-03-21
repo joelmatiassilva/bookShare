@@ -16,7 +16,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     instanceMethods: {
       setHashPassword: function(){
-        console.log(this.password);
         return User.hashPassword(this.password).bind(this)
           .then(function(hash){
             this.password = hash;
@@ -27,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       hashPassword: function(password) {
         var cipher = Promise.promisify(bcrypt.hash);
-        return cipher(this.password, salt, null);
+        return cipher(password, salt, null);
       },
       signIn: function(email, password){
         return new Promise(function (resolve, reject) {
