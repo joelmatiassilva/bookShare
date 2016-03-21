@@ -2,7 +2,7 @@ var models = require('../models');
 var Book = models.Book;
 var UserBook = models.UserBook;
 
-module.exports.addBook= function(req, res){
+module.exports.addBook = function(req, res){
   Book.create(req.body)
     //FIXME: security: whitelist attributes
     //TODO: look up sequel transaction to deal with the limbo period
