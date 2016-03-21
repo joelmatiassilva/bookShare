@@ -14,7 +14,9 @@ export function setEmail(state, email){
   return state.setIn(['userInfo','email'], email);
 }
 
-
+export function setToken(state, token){
+  return state.setIn(['userInfo', 'token'], token);
+}
 
 export function regularLogin(state){
   //TODO make login GET request
@@ -29,6 +31,7 @@ export function regularLogin(state){
     success: function(res){
       console.log(res);
       console.log('GOT RESPONSE, USER LOGGED IN');
+      setToken(state, res.token);
     },
     error: function(err){
       console.log('ERROR, USER NOT LOGGED IN')
