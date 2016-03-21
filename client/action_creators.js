@@ -50,7 +50,6 @@ export function setToken(token){
   }
 }
 
-
 export function regularSignUp(){
   return {
     type: 'REGULAR_SIGNUP'
@@ -76,6 +75,13 @@ export function searchBooks(query){
   return {
     type: 'SEARCH_BOOKS',
     query: query
+  }
+}
+
+export function addBookToMyShelf(book){
+  return {
+    type: 'ADD_BOOK_TO_SHELF',
+    book: book
   }
 }
 
