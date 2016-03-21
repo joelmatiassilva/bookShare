@@ -43,6 +43,22 @@ export function regularLogin(){
   }
 }
 
+export function setToken(token){
+  return {
+    type: 'SET_TOKEN',
+    token: token
+  }
+}
+
+export function signIn(){
+  return function(dispatch){
+    dispatch(); //add action that starts user login
+    return searchGoogleBooksAJAX(query, (res) => { //change function call for function that logs user in
+      dispatch(receiveBooks(res)); //add action that finished user login
+    });
+  }
+}
+
 export function regularSignUp(){
   return {
     type: 'REGULAR_SIGNUP'
@@ -95,3 +111,4 @@ export function fetchBooks(query){
     });
   }
 }
+
