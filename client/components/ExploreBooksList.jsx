@@ -8,7 +8,7 @@ class ExploreBooksList extends React.Component{
       <h1>These are your friend's books</h1>
       <div className="book-list">
       {this.props.books.map((book)=>{
-        return <ExploreBooksListEntry {...book}/>
+        return <ExploreBooksListEntry {...book} key={book.id}/>
       })}
       </div>
     </div>;
