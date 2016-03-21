@@ -11,3 +11,6 @@ client/build/lib
 client/build/bundle.js
 
 .DS_Store
+
+.sass-cache/
+

@@ -30,6 +30,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models){
         //constraints set to false for now to prevent sequelize default behavior
         User.belongsToMany(models.Book, {through: 'UserBook', foreignKey: 'userId', constraints: false});
+        //FIXME: error adding more than one friend per user
         User.belongsToMany(models.User, {through: 'FriendRequest', as: 'Friends', foreignKey: 'userId', constraints: false});
         User.belongsToMany(models.User, {through: 'FriendRequest', as: 'Users', foreignKey: 'friendId', constraints: false});
         User.hasMany(models.FriendRequest, {foreignKey: 'userId', constraints: false});
