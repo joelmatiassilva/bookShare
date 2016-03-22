@@ -26,6 +26,32 @@ module.exports.facebookSignIn = function(req, res){
   // TODO: remove or move to fbController
 };
 
+module.exports.findFriends = function(req, res){
+  console.log("findFriends" + req.params);
+  User.findAll({where: {
+    $or: [
+      {
+        username: req.params.query
+      },
+      {
+        email: req.params.query
+      }
+    ]
+  }}).then(function(users){
+    res.status(200).json(users);
+  }).catch(function(err) {
+    res.status(500).json(err);
+  });
+};
+
+module.exports.getFriendRequests = function(req, res) {
+  FriendRequest.findAll({ where: { accepted: false} }).then(function(requests) {
+    res.status(200).json(err);
+  }).catch(function(err) {
+    res.status(500).json(err);
+  });
+};
+
 //Log In / Sign In
 module.exports.signIn = function(req, res){
   User.signIn(req.body.email, req.body.password)
