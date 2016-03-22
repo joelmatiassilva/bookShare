@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './NavBar';
 import ExploreBooksList from './ExploreBooksList';
 import SearchBar from './SearchBar';
+import {hashHistory} from 'react-router';
 
 var books = [
   {
@@ -31,12 +32,19 @@ var books = [
 ];
 
 
-var Explore = () => (
-  <div className="explore">
-      <NavBar/>
-      <h1>Welcome to Explore!</h1>
-      <SearchBar/>
-      <ExploreBooksList books={books}/>
-  </div>
-);
+class Explore extends React.Component{
+  componentWillMount(){
+    if(!localStorage.token){
+      hashHistory.push('/signIn');
+    }
+  }
+  render(){
+    return <div className="explore">
+        <NavBar/>
+        <h1>Welcome to Explore!</h1>
+        <SearchBar/>
+        <ExploreBooksList books={books}/>
+    </div>
+  }
+}
 export default Explore;
