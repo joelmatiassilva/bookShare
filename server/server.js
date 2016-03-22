@@ -16,13 +16,12 @@ var models = require("./models");
 
 var app = express();
 
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.use(session({secret: 'unicorn', resave: true, saveUninitialized: true}));
 
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 
 app.get('/', function(req, res) {
     res.sendFile(path.resolve(__dirname + '/../client/build/index.html'));

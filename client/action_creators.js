@@ -1,4 +1,5 @@
 import {searchGoogleBooksAJAX} from './searchBooks';
+import {asyncSignIn} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -50,10 +51,33 @@ export function setToken(token){
   }
 }
 
-
 export function regularSignUp(){
   return {
     type: 'REGULAR_SIGNUP'
+  }
+}
+
+export function startSignIn(){
+  return {
+    type: 'START_SIGNIN'
+  }
+}
+
+export function endSignIn(token){
+  return {
+    type: 'END_SIGNIN',
+    token: token
+  }
+}
+
+export function regularSignIn(username, password){
+  console.log('Username: ' + username + ' Password: ' + password );
+  return function(dispatch){
+    dispatch(startSignIn(username, password));
+    return asyncSignIn(username, password, (res) => {
+      console.log('TOKEN:',res.token);
+      dispatch(endSignIn(res.token));
+    });
   }
 }
 
@@ -76,6 +100,13 @@ export function searchBooks(query){
   return {
     type: 'SEARCH_BOOKS',
     query: query
+  }
+}
+
+export function addBookToMyShelf(book){
+  return {
+    type: 'ADD_BOOK_TO_SHELF',
+    book: book
   }
 }
 

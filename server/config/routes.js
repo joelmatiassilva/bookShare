@@ -8,12 +8,6 @@ module.exports = function (app, express) {
   app.post('/api/signUp', userController.addUser);
   app.post('/api/signIn', userController.signIn);
 
-
-  app.use(helpers.decode);
-  // TODO: security admin or currentUser access only for delete
-  // app.delete('/api/users/:id', userController.deleteUser);
-
-
   //TODO: set up routes for viewing friendBooks
   /*Facebook Login Routes*/
   app.get('/login/facebook', passport.authenticate('facebook'));
@@ -23,6 +17,8 @@ module.exports = function (app, express) {
     res.redirect('/#/explore');
   });
 
+  // TODO: security admin or currentUser access only for delete
+  // app.delete('/api/users/:id', userController.deleteUser);
   app.use(helpers.decode);
 
   // TODO: security admin or currentUser access only for delete

@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       },
     accepted: DataTypes.BOOLEAN
   }, {
-    hooks: { // B-A
+    hooks: {
       afterCreate: function(friendRequest, options) {
         console.log("afterCreate", friendRequest);
         if (friendRequest.accepted === true) {

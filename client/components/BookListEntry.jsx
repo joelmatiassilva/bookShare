@@ -1,5 +1,8 @@
 import React from 'react';
-class BooksListEntry extends React.Component{
+import {connect} from 'react-redux';
+import * as actionCreators from '../action_creators';
+
+export const BookListEntry = class BooksListEntry extends React.Component{
   formatDescription(){
     var description = this.props.description;
     if(description && description.length > 150){
@@ -19,10 +22,16 @@ class BooksListEntry extends React.Component{
       {this.props.owner ? 
       <p>Borrowed from: {this.props.owner}</p> : null}
       {this.props.searchedBook ? 
-        <button onClick={() => {console.log('I want to add: ' + this.props.title + ' to my library!');}}>Add to my Library</button> 
+        <button onClick={() => {this.props.addBookToMyShelf(this.props); }}>Add to my Library</button> 
         : null}
     </div>;
   }
 }
+function mapStateToProps(){
+  return {};
+}
 
-export default BooksListEntry;
+export const BookListEntryContainer = connect(
+  mapStateToProps,
+  actionCreators
+)(BookListEntry);

@@ -15,6 +15,8 @@ import {SignInContainer} from './components/SignIn';
 import App from './components/App';
 import Explore from './components/Explore';
 import Dashboard from './components/Dashboard';
+import {setState} from './action_creators';
+import {Map} from 'immutable';
 
 var store = createStore(
   reducer,
@@ -23,6 +25,7 @@ var store = createStore(
   )
 );
 
+store.dispatch(setState(Map()));
 //TODO DELETE: delete this subscribe when deploying
 store.subscribe(() => {
   console.log(store.getState());
