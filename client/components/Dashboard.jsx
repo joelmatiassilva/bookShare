@@ -4,6 +4,7 @@ import {MyBooksContainer} from './MyBooks';
 import MyFriends from './MyFriends';
 import BooksLent from './BooksLent';
 import BooksBorrowed from './BooksBorrowed';
+import {hashHistory} from 'react-router';
 
 var myBooks = [
   {
@@ -110,6 +111,11 @@ var booksBorrowed = [
 class Dashboard extends React.Component{
   constructor(props){
     super(props);
+  }
+  componentWillMount(){
+    if(!localStorage.token){
+      hashHistory.push('/signIn');
+    }
   }
   render(){
     return <div>
