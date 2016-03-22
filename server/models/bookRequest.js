@@ -1,8 +1,32 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var BookRequest = sequelize.define('BookRequest', {
-    // accepted: DataTypes.BOOLEAN,
-    // dueDate: DataTypes.STRING,
+    id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+    accepted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+    dueDate: DataTypes.DATEONLY,
+    bookId: {
+        allowNull: false,
+        foreignKey: true,
+        type: DataTypes.INTEGER
+      },
+    ownerId: {
+        allowNull: false,
+        foreignKey: true,
+        type: DataTypes.INTEGER
+      },
+    borrowerId: {
+        allowNull: false,
+        foreignKey: true,
+        type: DataTypes.INTEGER
+      }
   }, {
     instanceMethods: {
       //TODO

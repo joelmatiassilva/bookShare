@@ -41,6 +41,13 @@ sudo npm install -g bower
 npm install
 bower install
 ```
+# weird one offs
+brew install mysql
+npm install bluebird
+ruby
+sass
+react-debounce-input
+api keys
 
 Create a database and load the tables:
 

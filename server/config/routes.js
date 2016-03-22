@@ -28,6 +28,8 @@ module.exports = function (app, express) {
   app.post('/api/friendRequests', userController.addFriend); //creates a friendRequest
   app.get('/api/friends', userController.viewAllFriends);
   app.get('/api/friends/:id', userController.viewFriend);
+  app.get('/api/findFriends/:query', userController.findFriends);
+  app.get('/api/friendRequests', userController.getFriendRequests);
 
   /*Book Routes*/
   app.get('/api/friends/:id/books', bookController.viewFriendBooks); // all books belonging to one friend
@@ -36,6 +38,8 @@ module.exports = function (app, express) {
   app.delete('/api/books/:id', bookController.deleteBook);
   app.get('/api/friendsBooks', bookController.viewFriendsBooks); // all books belonging to all friends
   app.get('/api/friendsBooks/:id', bookController.viewFriendBook); // one book belonging to one friend
+
+  app.post('api/bookRequests', bookController.bookRequest);
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);

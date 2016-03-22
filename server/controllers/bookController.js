@@ -1,6 +1,7 @@
 var models = require('../models');
 var Book = models.Book;
 var UserBook = models.UserBook;
+var BookRequest = models.BookRequest;
 
 module.exports.addBook = function(req, res){
   Book.create(req.body)
@@ -38,6 +39,19 @@ module.exports.viewMyShelf = function(req, res){
   });
 
 };
+
+module.exports.bookRequest = function(req, res) {
+  BookRequest.create({ bookId: req.body.bookId, ownerId: req.body.ownerId, borrowerId: req.body.borrowerId})
+  .then(function(request) {
+    console.log(BookRequest.get({
+      plain: true
+    }));
+    res.status(200);
+  })
+  .catch(function(err) {
+    res.status(500).json(err);
+  });
+}
 
 module.exports.viewMyBook= function(req, res){
 // TODO
