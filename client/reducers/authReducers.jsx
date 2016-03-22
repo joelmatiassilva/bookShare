@@ -16,7 +16,15 @@ export function setEmail(state, email){
   return state.setIn(['userInfo','email'], email);
 }
 
-export function setToken(state, token){
+export function startSignIn(state){
+  //TODO activate Spinner for better UX
+  return state;
+}
+
+export function endSignIn(state, token){
+  console.log('SET TOKEN TO :' + token);
+  localStorage.setItem('token', token);
+  hashHistory.push('/explore');
   return state.setIn(['userInfo', 'token'], token);
 }
 
@@ -41,6 +49,7 @@ export function regularLogin(state){
       console.error(err);
     }
   });
+  return state;
 }
 
 export function regularSignUp(state, info){
@@ -61,4 +70,5 @@ export function regularSignUp(state, info){
         console.error(err);
       }
     });
+  return state;
 }
