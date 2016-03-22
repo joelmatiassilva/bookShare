@@ -43,26 +43,30 @@ function formatBooksResponse(response){
 
 export function addBookToMyShelf(state, book){
   console.log('addBookToMyShelf: Trying to add book with server call');
-  console.log(book);
   var bookToSave = {
     authors: book.authors,
     categories: book.categories,
     description: book.description,
     isbn10: book.isbn10,
     isbn13: book.isbn13,
-    imageUrl: book.imageUrl,
+    image: book.imageUrl,
     title: book.title,
   }
+  console.log(bookToSave);
   $.ajax({
     url: '/api/books',
     method: 'POST',
     data: bookToSave,
+    headers: {
+      authorization: localStorage.token
+    },
     success: function(res){
       console.log(res);
       console.log('Sucessfully added book');
     },
     error: function(err){
-      console.log('Error');
+      console.error('Error saving book');
+      console.error(err);
     }
   });
   return state;

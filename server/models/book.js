@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var Book = sequelize.define('Book', {
     isbn10: DataTypes.STRING,
     isbn13: DataTypes.STRING,
-    author: DataTypes.STRING,
+    authors: DataTypes.STRING,
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
     image: DataTypes.STRING,

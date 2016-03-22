@@ -13,7 +13,7 @@ export const MyBooks = class MyBooks extends React.Component{
   getBooks(){
     return this.props.foundBooks || [];
   }
-  debouncedFetchBooks(){
+  componentWillMount(){
 
   }
   render(){
@@ -23,15 +23,17 @@ export const MyBooks = class MyBooks extends React.Component{
       <h3>Found books from search: </h3>
       {this.getBooks().length > 0 ? <BookList books={this.getBooks()}/> : null}
       <h3>Books that I own: </h3>
-      <BookList books={this.props.myBooks}/>
+      {this.props.myBooks ? <BookList books={this.props.myBooks}/> : null}
     </div>
   }
 }
 
 function mapStateToProps(state){
-  var books = state ? state.getIn(['dashboard', 'foundBooks']) : [];
+  //set defaults in case state is not defined
+  // var books = state ? state.getIn(['dashboard', 'foundBooks']) : [];
   return {
-    foundBooks: books
+    foundBooks: state.getIn(['dashboard', 'foundBooks']),
+    myBooks: state.getIn(['dashboard','myBooks'])
   }
 }
 
