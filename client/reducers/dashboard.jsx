@@ -5,14 +5,21 @@ function setState(state = Map(), newState){
   return state.merge(newState);
 }
 
+function startGettingMyFriends(state){
+  //TODO start spinner
+  return state;
+}
+
+function finishGettingMyFriends(state, friends){
+  return state.set('friends', friends);
+}
+
 function getMyBooks(state){
   return state;
 }
 
 function finishGetMyBooks(state, books){
-  console.log('MY BOOKS');
-  console.log(books);
-  return state.setIn(['dashboard','myBooks'], books);
+  return state.set('myBooks', books);
 }
 
 function formatBooksResponse(response){
@@ -94,13 +101,11 @@ function requestBooks(state, query){
 function receiveBooks(state, books){
   //TODO stop spinner or hide fetching message
   var formattedBooks = formatBooksResponse(books);
-  return state.setIn(['dashboard', 'foundBooks'], formattedBooks);
+  return state.set('foundBooks', formattedBooks);
 }
 
 function setFoundBooks(state, foundBooks){
-  console.log('Found some books: ');
-  console.log(foundBooks);
-  return state.setIn(['dashboard','foundBooks'], foundBooks);
+  return state.set('foundBooks', foundBooks);
 }
 
 export default function(state = Map(), action){
@@ -119,6 +124,8 @@ export default function(state = Map(), action){
       return getMyBooks(state);
     case 'FINISH_GET_MY_BOOKS':
       return finishGetMyBooks(state, action.books);
+    case 'FINISH_GET_MY_FRIENDS':
+      return finishGettingMyFriends(state, action.friends)
     default:
       return setState(state);
   }
