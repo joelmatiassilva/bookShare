@@ -51,20 +51,21 @@ export function addBookToMyShelf(state, book){
     isbn10: book.isbn10,
     isbn13: book.isbn13,
     imageUrl: book.imageUrl,
-    title: book.title
+    title: book.title,
   }
-  // $.ajax({
-  //   url: '/api/books',
-  //   method: 'POST',
-  //   data: bookToSave,
-  //   success: function(res){
-  //     console.log(res);
-  //     console.log('Sucessfully added book');
-  //   },
-  //   error: function(err){
-  //     console.log('Error');
-  //   }
-  // });
+  $.ajax({
+    url: '/api/books',
+    method: 'POST',
+    data: bookToSave,
+    success: function(res){
+      console.log(res);
+      console.log('Sucessfully added book');
+    },
+    error: function(err){
+      console.log('Error');
+    }
+  });
+  return state;
 }
 
 export function requestBooks(state, query){
