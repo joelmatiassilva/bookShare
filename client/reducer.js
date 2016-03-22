@@ -1,10 +1,11 @@
 import {Map, List, fromJS} from 'immutable';
-// import {searchBooks} from './searchBooks';
 import {
   setPassword, 
   setPasswordConfirmation, 
   setUsername, 
   setEmail, 
+  startSignIn,
+  endSignIn,
   setToken,
   regularLogin, 
   regularSignUp} from './reducers/authReducers';
@@ -22,6 +23,7 @@ export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
       return setState(state, action.state);
+    //authReducers
     case 'SET_USERNAME':
       return setUsername(state, action.username);
     case 'SET_PASSWORD':
@@ -30,12 +32,15 @@ export default function(state = Map(), action){
       return setPasswordConfirmation(state, action.password);
     case 'SET_EMAIL':
       return setEmail(state, action.email);
-    case 'SET_TOKEN':
-      return setToken(state, action.token);
     case 'REGULAR_LOGIN':
       return regularLogin(state);
     case 'REGULAR_SIGNUP':
       return regularSignUp(state);
+    case 'START_SIGNIN':
+      return startSignIn(state);
+    case 'END_SIGNIN':
+      return endSignIn(state, action.token);
+    //dashboardReducers
     case 'ADD_BOOK_TO_SHELF':
       return addBookToMyShelf(state, action.book);
     case 'SET_FOUND_BOOKS':
