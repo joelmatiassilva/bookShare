@@ -11,11 +11,12 @@ export const BookListEntry = class BooksListEntry extends React.Component{
     return description;
   }
   render(){
+    if(!this.props.hasOwnProperty('title')) return null;
     return <div className="book-entry">
       <p class="title">{this.props.title}</p>
       <p>{this.props.author}</p>
       <p>{this.formatDescription()}</p>
-      <img src={this.props.imageUrl}/>
+      <img src={this.props.image}/>
       <p>{this.props.genre}</p>
       {this.props.borrower ? 
         <p>Lent to: {this.props.borrower}</p> : null}
