@@ -9,22 +9,34 @@ export const SignIn = class SignIn extends React.Component {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
+  changeUsername(username){
+    this.setState({
+     username: username 
+    });
+    this.props.setEmail(username);
+  }
+  changePassword(password){
+    this.setState({
+      password: password
+    })
+    this.props.setPassword(password);
+  }
   render() {
     return <div className="signin">
     <h1>Sign In Page</h1>
     <form>
       <table>
         <tr><td>User Name or Email</td></tr>
-        <tr><td><input onChange={(event) => this.props.setEmail(event.target.value)} type="text" name="username" placeholder="Please enter your username"/></td></tr>
+        <tr><td><input onChange={(event) => this.changeUsername(event.target.value)} type="text" name="username" placeholder="Please enter your username"/></td></tr>
         <tr><td>Password</td></tr>
         <tr>
           <td>
-            <input onChange={(event)=>this.props.setPassword(event.target.value)} type="password" placeholder="Please enter your password"/>
+            <input onChange={(event)=>this.changePassword(event.target.value)} type="password" placeholder="Please enter your password"/>
           </td>
         </tr>
         <tr>
           <td>
-            <input onClick={(event) =>{event.preventDefault();this.props.regularLogin()} }type="submit" value="Log in"/>
+            <input onClick={(event) =>{event.preventDefault();this.props.regularSignIn(this.state.username, this.state.password)} }type="submit" value="Log in"/>
           </td>
         </tr>
         <tr><td><a href="login/facebook">Login with facebook</a></td></tr>
