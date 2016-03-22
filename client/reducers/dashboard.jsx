@@ -1,5 +1,19 @@
 import {searchGoogleBooksAJAX} from '../searchBooks';
+import {Map} from 'immutable'
 
+function setState(state = Map(), newState){
+  return state.merge(newState);
+}
+
+function getMyBooks(state){
+  return state;
+}
+
+function finishGetMyBooks(state, books){
+  console.log('MY BOOKS');
+  console.log(books);
+  return state.setIn(['dashboard','myBooks'], books);
+}
 
 function formatBooksResponse(response){
   if(!response.hasOwnProperty('items')) {
@@ -15,7 +29,6 @@ function formatBooksResponse(response){
         var identifiers = info.industryIdentifiers;
         isbn10 = null, 
         isbn13 = null;
-
         if(identifiers && identifiers[1] && identifiers[1].type === 'ISBN_10'){
           isbn10 = identifiers[1].identifier;
         }
@@ -30,7 +43,7 @@ function formatBooksResponse(response){
           description: info.description,
           authors: JSON.stringify(info.authors),
           categories: JSON.stringify(info.categories),
-          imageUrl: image,
+          image: image,
           isbn10: isbn10,
           isbn13: isbn13,
           searchedBook: true
@@ -41,15 +54,16 @@ function formatBooksResponse(response){
   return books;
 }
 
-export function addBookToMyShelf(state, book){
-  console.log('addBookToMyShelf: Trying to add book with server call');
+//TODO make this function async
+function addBookToMyShelf(state, book){
+  if(book.title === null || book.title === undefined) return;
   var bookToSave = {
     authors: book.authors,
     categories: book.categories,
     description: book.description,
     isbn10: book.isbn10,
     isbn13: book.isbn13,
-    image: book.imageUrl,
+    image: book.image,
     title: book.title,
   }
   console.log(bookToSave);
@@ -72,23 +86,43 @@ export function addBookToMyShelf(state, book){
   return state;
 }
 
-export function requestBooks(state, query){
+function requestBooks(state, query){
   //TODO set message or spinner to show user that we are fetching the books
   return state;
 }
 
-export function receiveBooks(state, books){
+function receiveBooks(state, books){
   //TODO stop spinner or hide fetching message
-  console.log('FOUND BOOKS: ');
-  console.log(books);
   var formattedBooks = formatBooksResponse(books);
-  console.log('FORMATTED BOOKS: ');
-  console.log(formattedBooks);
   return state.setIn(['dashboard', 'foundBooks'], formattedBooks);
 }
 
-export function setFoundBooks(state, foundBooks){
+function setFoundBooks(state, foundBooks){
   console.log('Found some books: ');
   console.log(foundBooks);
   return state.setIn(['dashboard','foundBooks'], foundBooks);
 }
+
+export default function(state = Map(), action){
+  switch(action.type){
+    case 'SET_STATE':
+      return setState(state, action.state);
+    case 'ADD_BOOK_TO_SHELF':
+      return addBookToMyShelf(state, action.book);
+    case 'SET_FOUND_BOOKS':
+      return setFoundBooks(state, action.foundBooks);
+    case 'REQUEST_BOOKS':
+      return requestBooks(state, action.query);
+    case 'RECEIVE_BOOKS':
+      return receiveBooks(state, action.books);
+    case 'START_GET_MY_BOOKS':
+      return getMyBooks(state);
+    case 'FINISH_GET_MY_BOOKS':
+      return finishGetMyBooks(state, action.books);
+    default:
+      return setState(state);
+  }
+}
+
+
+

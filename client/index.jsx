@@ -7,7 +7,7 @@ import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 import {createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import {Provider} from 'react-redux';
-import reducer from './reducer';
+import reducer from './reducers/index.jsx';
 
 //components
 import {SignUpContainer} from './components/SignUp';

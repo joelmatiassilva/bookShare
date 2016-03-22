@@ -14,7 +14,7 @@ export const MyBooks = class MyBooks extends React.Component{
     return this.props.foundBooks || [];
   }
   componentWillMount(){
-
+    this.props.getMyBooks();
   }
   render(){
     return <div>
@@ -29,11 +29,9 @@ export const MyBooks = class MyBooks extends React.Component{
 }
 
 function mapStateToProps(state){
-  //set defaults in case state is not defined
-  // var books = state ? state.getIn(['dashboard', 'foundBooks']) : [];
   return {
-    foundBooks: state.getIn(['dashboard', 'foundBooks']),
-    myBooks: state.getIn(['dashboard','myBooks'])
+    foundBooks: state.dashboard.getIn(['dashboard', 'foundBooks']),
+    myBooks: state.dashboard.getIn(['dashboard','myBooks'])
   }
 }
 
