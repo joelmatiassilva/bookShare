@@ -37,6 +37,8 @@ module.exports = function (app, express) {
   app.get('/api/friendsBooks', bookController.viewFriendsBooks); // all books belonging to all friends
   app.get('/api/friendsBooks/:id', bookController.viewFriendBook); // one book belonging to one friend
 
+  app.post('api/bookRequests', bookController.bookRequest);
+
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 };

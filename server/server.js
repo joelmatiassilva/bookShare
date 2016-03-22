@@ -40,6 +40,9 @@ models.sequelize.sync().then(function () {
   var server = app.listen(process.env.PORT || 5000, function() {
     console.log('Express server listening on port ' + server.address().port);
   });
+})
+.catch(function(err) {
+  console.log(err);
 });
 
 // User.create({name: "Bob", email: "bob@123.com", passwordHash: "falafel"});

@@ -41,6 +41,9 @@ sudo npm install -g bower
 npm install
 bower install
 ```
+# weird one offs
+brew install mysql
+npm install bluebird
 
 Create a database and load the tables:
 
