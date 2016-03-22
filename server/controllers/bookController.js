@@ -19,7 +19,7 @@ module.exports.addBook = function(req, res){
 
 };
 
-module.exports.viewMyShelf= function(req, res){
+module.exports.viewMyShelf = function(req, res){
   req.currentUser.getBooks().then(function(books) {
     books = books.map(function(book) {
       return {

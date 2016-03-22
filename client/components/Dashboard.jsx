@@ -8,28 +8,28 @@ import {hashHistory} from 'react-router';
 
 var myBooks = [
   {
-  isbn: 1234567,
-  author: 'J.K. Rowling',
-  title: 'Harry Potter: Philosopher\'s Stone',
-  description: 'Wizards and spells',
-  imageUrl: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-  genre: 'Novels'
+    isbn: 1234567,
+    author: 'J.K. Rowling',
+    title: 'Harry Potter: Philosopher\'s Stone',
+    description: 'Wizards and spells',
+    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
+    genre: 'Novels'
   },
   {
-  isbn: 1234567,
-  author: 'J.K. Rowling',
-  title: 'Harry Potter: Philosopher\'s Stone',
-  description: 'Wizards and spells',
-  imageUrl: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-  genre: 'Novels'
+    isbn: 1234567,
+    author: 'J.K. Rowling',
+    title: 'Harry Potter: Philosopher\'s Stone',
+    description: 'Wizards and spells',
+    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
+    genre: 'Novels'
   },
   {
-  isbn: 1234567,
-  author: 'J.K. Rowling',
-  title: 'Harry Potter: Philosopher\'s Stone',
-  description: 'Wizards and spells',
-  imageUrl: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-  genre: 'Novels'
+    isbn: 1234567,
+    author: 'J.K. Rowling',
+    title: 'Harry Potter: Philosopher\'s Stone',
+    description: 'Wizards and spells',
+    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
+    genre: 'Novels'
   }
 ];
 var myFriends = [
@@ -51,60 +51,60 @@ var myFriends = [
 ];
 var booksLent = [
   {
-  isbn: 1234567,
-  author: 'J.K. Rowling',
-  title: 'Harry Potter: Philosopher\'s Stone',
-  description: 'Wizards and spells',
-  imageUrl: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-  genre: 'Novels',
-  borrower: 'Hamzah Chaudhary'
+    isbn: 1234567,
+    author: 'J.K. Rowling',
+    title: 'Harry Potter: Philosopher\'s Stone',
+    description: 'Wizards and spells',
+    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
+    genre: 'Novels',
+    borrower: 'Hamzah Chaudhary'
   },
   {
-  isbn: 1234567,
-  author: 'J.K. Rowling',
-  title: 'Harry Potter: Philosopher\'s Stone',
-  description: 'Wizards and spells',
-  imageUrl: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-  genre: 'Novels',
-  borrower: 'Hamzah Chaudhary'
+    isbn: 1234567,
+    author: 'J.K. Rowling',
+    title: 'Harry Potter: Philosopher\'s Stone',
+    description: 'Wizards and spells',
+    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
+    genre: 'Novels',
+    borrower: 'Hamzah Chaudhary'
   },
   {
-  isbn: 1234567,
-  author: 'J.K. Rowling',
-  title: 'Harry Potter: Philosopher\'s Stone',
-  description: 'Wizards and spells',
-  imageUrl: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-  genre: 'Novels',
-  borrower: 'Hamzah Chaudhary'
+    isbn: 1234567,
+    author: 'J.K. Rowling',
+    title: 'Harry Potter: Philosopher\'s Stone',
+    description: 'Wizards and spells',
+    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
+    genre: 'Novels',
+    borrower: 'Hamzah Chaudhary'
   }
 ];
 var booksBorrowed = [
   {
-  isbn: 1234567,
-  author: 'J.K. Rowling',
-  title: 'Harry Potter: Philosopher\'s Stone',
-  description: 'Wizards and spells',
-  imageUrl: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-  genre: 'Novels',
-  owner: 'Jonathan Blaising'
+    isbn: 1234567,
+    author: 'J.K. Rowling',
+    title: 'Harry Potter: Philosopher\'s Stone',
+    description: 'Wizards and spells',
+    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
+    genre: 'Novels',
+    owner: 'Jonathan Blaising'
   },
   {
-  isbn: 1234567,
-  author: 'J.K. Rowling',
-  title: 'Harry Potter: Philosopher\'s Stone',
-  description: 'Wizards and spells',
-  imageUrl: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-  genre: 'Novels',
-  owner: 'Jonathan Blaising'
+    isbn: 1234567,
+    author: 'J.K. Rowling',
+    title: 'Harry Potter: Philosopher\'s Stone',
+    description: 'Wizards and spells',
+    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
+    genre: 'Novels',
+    owner: 'Jonathan Blaising'
   },
   {
-  isbn: 1234567,
-  author: 'J.K. Rowling',
-  title: 'Harry Potter: Philosopher\'s Stone',
-  description: 'Wizards and spells',
-  imageUrl: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-  genre: 'Novels',
-  owner: 'Jonathan Blaising'
+    isbn: 1234567,
+    author: 'J.K. Rowling',
+    title: 'Harry Potter: Philosopher\'s Stone',
+    description: 'Wizards and spells',
+    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
+    genre: 'Novels',
+    owner: 'Jonathan Blaising'
   }
 ];
 

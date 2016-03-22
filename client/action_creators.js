@@ -1,5 +1,5 @@
 import {searchGoogleBooksAJAX} from './searchBooks';
-import {asyncSignIn} from './helpers/serverCalls';
+import {asyncSignIn, getMyBooksAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -8,7 +8,7 @@ export function setState(state){
   };
 }
 
-/* -------- Authorization Actions -------- */
+/* -------- AUTHORIZATION ACTIONS -------- */
 
 export function setPassword(password){
   return {
@@ -87,7 +87,7 @@ export function facebookLogin(){
   }
 }
 
-/* -------- Dashboard Actions  -------- */
+/* -------- DASHBOARD ACTIONS  -------- */
 
 export function setFoundBooks(foundBooks){
   return {
@@ -103,6 +103,29 @@ export function searchBooks(query){
   }
 }
 
+/* Get books that I own action*/
+export function getMyBooks(){
+  return function (dispatch){
+    dispatch(startGettingMyBooks());
+    return getMyBooksAJAX((response)=> {
+      dispatch(finishGettingMyBooks(response));
+    })
+  }
+}
+export function startGettingMyBooks(){
+  return {
+    type: 'START_GET_MY_BOOKS'
+  }
+}
+
+export function finishGettingMyBooks(books){
+  return {
+    type: 'FINISH_GET_MY_BOOKS',
+    books: books
+  }
+}
+
+/* Search for books async actions  */
 export function addBookToMyShelf(book){
   return {
     type: 'ADD_BOOK_TO_SHELF',
