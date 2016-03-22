@@ -39,21 +39,21 @@ module.exports.signIn = function(req, res){
   });
 };
 
+var reject = function(err) {res.status(500).json(err);};
+
 module.exports.addFriend = function(req, res){
   // TODO: after-update hook for when friend request is accepted
   // TODO: Sequelize obj - assoc methods
-  User.findAll({where: {email: req.body.email}}).then(function(users){
-    req.currentUser.addFriend(users[0], { accepted: true }).then(function() {
-      res.status(201).end();
-    }).catch(function(err) {
-      console.log('eff', err);
-      res.status(500).json(err);
-    });
-  })
-  .catch(function(err) {
-    console.log('err here', err);
-    res.status(500).json(err);
-  });
+User.findAll({where: {email: req.body.email}})
+    .then(function(users){
+      req.currentUser.addFriend(users[0], { accepted: true })
+      .then(function() {
+        users[0].addFriend(req.currentUser)
+        .then(function(){
+          res.status(201).end();
+        }).catch(reject);
+      }).catch(reject);
+    }).catch(reject);
 };
 
 module.exports.viewAllFriends = function(req, res){
@@ -66,9 +66,7 @@ module.exports.viewAllFriends = function(req, res){
       };
     });
     res.status(200).json(friends);
-  }).catch(function(err) {
-    res.status(500).json(err);
-  });
+  }).catch(reject);
 };
 
 module.exports.viewFriend = function(req, res){
@@ -87,16 +85,12 @@ module.exports.viewFriend = function(req, res){
     } else {
       res.status(404).end();
     }
-  }).catch(function(err) {
-    console.log(err);
-    res.status(500).json(err);
-  });
+  }).catch(reject);
 };
 
 module.exports.deleteUser = function(req, res){
   User.destroy({where: {id: req.params.id}}).then(function() {
     res.status(204).end();
-  }).catch(function(err) {
-    res.status(500).json(err);
-  });
+  }).catch(reject);
 };
+
