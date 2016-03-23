@@ -4,6 +4,8 @@ import * as actionCreators from '../action_creators';
 import DebounceInput from 'react-debounce-input';
 import PeopleList from './PeopleList';
 
+import Preloader from './Preloader';
+
 export const MyFriends = class MyFriends extends React.Component{
   constructor(props){
     super(props);
@@ -21,7 +23,7 @@ export const MyFriends = class MyFriends extends React.Component{
       }) : null}
       <p>Search people and add them to your friends list:</p>
       <DebounceInput debounceTimeout={200} type="text" placeholder="Type an email or username.." onChange={(event) => this.props.searchUsers(event.target.value)}/>
-      <img className="preloader" src="assets/preloader.gif"/>
+      { this.props.loading ? <Preloader/> : null}
       <PeopleList peopleList={this.props.foundUsers}/>
     </div>
   }
@@ -29,7 +31,8 @@ export const MyFriends = class MyFriends extends React.Component{
 function mapStateToProps(state){
   return {
     friends: state.dashboard.get('friends'),
-    foundUsers: state.dashboard.get('foundUsers')
+    foundUsers: state.dashboard.get('foundUsers'),
+    loading: state.dashboard.getIn(['loading', 'foundUsers'])
   }
 }
 
