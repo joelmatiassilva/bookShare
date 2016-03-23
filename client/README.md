@@ -29,6 +29,15 @@ _List means the immutable List Class_
     * password (String)
     * passwordConfirmation (String)
     * accessToken
+    * displayValidationMessage
+      * signIn
+        * usernameOrEmail
+        * password
+      * signUp
+        * username
+        * email
+        * password
+        * passwordConfirmation
   * dashboard
     * myBooks (List)
     * myFriends (List)
