@@ -6,20 +6,23 @@ var User = models.User;
 var FriendRequest = models.FriendRequest;
 var helper = require('../config/helpers.js');
 var bcrypt = require('bcrypt');
-// var salt = bcrypt.genSaltSync(10);
 
 //Sign In
 module.exports.addUser = function(req, res){
   //TODO: check if user already exists
   User.create(req.body, {fields: ['username', 'email', 'password']})
   .then(function(user) {
-    var token = helper.encode(user);
-    res.status(201).json({token: token});
+    user.generateSalt();
+    user.save()
+    .then(function(){
+      user.hashPassword(user.password);
+      user.save();
+    }).then(function(){
+      var token = helper.encode(user);
+      res.status(201).json({token: token});
+    });
   })
-  .catch(function(err) {
-    console.log('err here', err);
-    res.status(500).json(err);
-  });
+  .catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.facebookSignIn = function(req, res){
