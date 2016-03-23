@@ -45,15 +45,17 @@ input{
 
 nav li{
   display: inline-block;
+  padding: 0 20px;
 }
 nav ul{
-  float: right;
+  float: left;
 }
 
 nav{
   background-color: rgba(0, 0, 0, 0.3);
   padding: 10px;
   color: $primary-font-color;
+  height: 20px;
 }
 nav a{
  color: $primary-font-color; 
@@ -80,13 +82,20 @@ nav a{
 }
 .book-entry{
   width: 250px;
-  border: 1px solid black;
+  box-shadow: 5px 5px 5px #888888;
+  background: #F7F7F7;
   padding: 5px;
-  margin: 5px;
+  margin: 7px;
   border-radius: 5px;
+}
+.book-entry img{
+  box-shadow: 5px 5px 5px #888888;
 }
 .book-list{
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+.my-books preloader{
+  width: 40px;
 }
