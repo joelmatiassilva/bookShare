@@ -17,9 +17,10 @@ export const MyBooks = class MyBooks extends React.Component{
     this.props.getMyBooks();
   }
   render(){
-    return <div>
+    return <div className="my-books">
       <h2>My Books</h2>
       <DebounceInput debounceTimeout={200} type="text" placeholder="Search for a book" onChange={(event) =>{this.props.fetchBooks(event.target.value)}}/>
+      <img className="preloader" src="assets/preloader.gif"/>
       <h3>Found books from search: </h3>
       {this.getBooks().length > 0 ? <BookList books={this.getBooks()}/> : null}
       <h3>Books that I own: </h3>
