@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     classMethods: {
       associate: function(models){
-        Book.belongsToMany(models.User, {through:'UserBook', foreignKey: 'bookId', constraints: false});
+        Book.belongsToMany(models.User, { through:'UserBook', foreignKey: 'bookId', constraints: false });
         Book.hasMany(models.UserBook, {foreignKey: 'bookId', constraints: false});
       }
     }
