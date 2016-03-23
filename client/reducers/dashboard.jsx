@@ -7,6 +7,7 @@ function setState(state = Map(), newState){
 
 function startGettingMyFriends(state){
   //TODO start spinner
+  state.setIn(['loading','myFriends'])
   return state;
 }
 
@@ -15,10 +16,11 @@ function finishGettingMyFriends(state, friends){
 }
 
 function getMyBooks(state){
-  return state;
+  return state.setIn(['loading', 'myBooks'], true);
 }
 
 function finishGetMyBooks(state, books){
+  state.setIn(['loading', 'myBooks'], false);
   return state.set('myBooks', books);
 }
 
@@ -95,13 +97,16 @@ function addBookToMyShelf(state, book){
 
 function requestBooks(state, query){
   //TODO set message or spinner to show user that we are fetching the books
-  return state;
+  state = state.set('foundBooks', []);
+  return state.setIn(['loading', 'foundBooks'], true);
 }
 
 function receiveBooks(state, books){
   //TODO stop spinner or hide fetching message
+  console.log('FINISHED LOADING');
+  var newState = state.setIn(['loading', 'foundBooks'], false);
   var formattedBooks = formatBooksResponse(books);
-  return state.set('foundBooks', formattedBooks);
+  return newState.set('foundBooks', formattedBooks);
 }
 
 function setFoundBooks(state, foundBooks){
@@ -110,13 +115,11 @@ function setFoundBooks(state, foundBooks){
 
 
 function startSearchUsers(state){
-  //TODO start spinner for user search
-  
-  return state;
+  return state.setIn(['loading', 'foundUsers'], true);
 }
 
 function finishSearchUsers(state, users){
-  //TODO stop spinner for user search
+  state = state.setIn(['loading', 'foundUsers'], false);
   return state.set('foundUsers', users);
 }
 
