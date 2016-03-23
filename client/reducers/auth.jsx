@@ -21,8 +21,24 @@ function setEmail(state, email){
   return state.setIn(['userInfo','email'], email);
 }
 
-function startSignIn(state){
+function startSignIn(state, username, password){
   //TODO activate Spinner for better UX
+  console.log('is there a username error? :');
+  console.log('Username: ' + username);
+  if(username === undefined || username === null){
+    state = state.setIn(['displayValidationMessage', 'signIn', 'username'], true);
+  } else if(username.length === 0){
+    state = state.setIn(['displayValidationMessage', 'signIn', 'username'], true);
+  } else {
+    state = state.setIn(['displayValidationMessage', 'signIn', 'username'], false);
+  }
+  if(password === undefined || password === null){
+    state = state.setIn(['displayValidationMessage', 'signIn', 'password'], true);
+  } else if(password.length === 0){
+    state = state.setIn(['displayValidationMessage', 'signIn', 'password'], true);
+  } else {
+    state = state.setIn(['displayValidationMessage', 'signIn', 'password'], false);
+  }
   return state;
 }
 
@@ -31,30 +47,6 @@ function endSignIn(state, token){
   localStorage.setItem('token', token);
   hashHistory.push('/explore');
   return state.setIn(['userInfo', 'token'], token);
-}
-
-function regularLogin(state){
-  //TODO make login GET request
-  var email = state.getIn(['userInfo', 'email']);
-  var password = state.getIn(['userInfo','password']);
-  console.log('email: ' + email);
-  console.log('PASSWORD: ' + password);
-  $.ajax({
-    url: '/api/signIn',
-    method: 'POST', //TODO change EMAIL to something generic when we allow users to login with either username or email
-    data: {email: email, password: password},
-    success: function(res){
-      if(res.token){
-        setToken(state, res.token);
-        hashHistory.push('/explore');
-      }
-    },
-    error: function(err){
-      console.log('ERROR, USER NOT LOGGED IN')
-      console.error(err);
-    }
-  });
-  return state;
 }
 
 function regularSignUp(state, info){
@@ -97,7 +89,7 @@ export default function(state = Map(), action){
     case 'REGULAR_SIGNUP':
       return regularSignUp(state);
     case 'START_SIGNIN':
-      return startSignIn(state);
+      return startSignIn(state, action.username, action.password);
     case 'END_SIGNIN':
       return endSignIn(state, action.token);
     default:

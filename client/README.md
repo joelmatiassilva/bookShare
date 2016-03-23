@@ -22,19 +22,32 @@ Our state uses the [immutable](https://facebook.github.io/immutable-js/) library
 _Map means the immutable Map Class_
 _List means the immutable List Class_
 
-* state (Map)
-  * userInfo (Map)
+* State (Map)
+  * auth
     * username (String)
     * email (String)
     * password (String)
     * passwordConfirmation (String)
     * accessToken
-  * dashboard (Map)
+    * displayValidationMessage
+      * signIn
+        * usernameOrEmail
+        * password
+      * signUp
+        * username
+        * email
+        * password
+        * passwordConfirmation
+  * dashboard
     * myBooks (List)
+    * myFriends (List)
+    * foundBooks (List)
+    * loading
+      * myBook (bool)
+      * myFriends (bool)
+      * foundBooks (bool)
   * explore
     * myFriendsBooks
-  * dashboard (List)
-    * foundBooks
 
 How Redux Works in this project
 

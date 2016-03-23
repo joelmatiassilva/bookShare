@@ -7,6 +7,7 @@ function setState(state = Map(), newState){
 
 function startGettingMyFriends(state){
   //TODO start spinner
+  state.setIn(['loading','myFriends'])
   return state;
 }
 
@@ -15,10 +16,11 @@ function finishGettingMyFriends(state, friends){
 }
 
 function getMyBooks(state){
-  return state;
+  return state.setIn(['loading', 'myBooks'], true);
 }
 
 function finishGetMyBooks(state, books){
+  state.setIn(['loading', 'myBooks'], false);
   return state.set('myBooks', books);
 }
 
@@ -95,17 +97,30 @@ function addBookToMyShelf(state, book){
 
 function requestBooks(state, query){
   //TODO set message or spinner to show user that we are fetching the books
-  return state;
+  state = state.set('foundBooks', []);
+  return state.setIn(['loading', 'foundBooks'], true);
 }
 
 function receiveBooks(state, books){
   //TODO stop spinner or hide fetching message
+  console.log('FINISHED LOADING');
+  var newState = state.setIn(['loading', 'foundBooks'], false);
   var formattedBooks = formatBooksResponse(books);
-  return state.set('foundBooks', formattedBooks);
+  return newState.set('foundBooks', formattedBooks);
 }
 
 function setFoundBooks(state, foundBooks){
   return state.set('foundBooks', foundBooks);
+}
+
+
+function startSearchUsers(state){
+  return state.setIn(['loading', 'foundUsers'], true);
+}
+
+function finishSearchUsers(state, users){
+  state = state.setIn(['loading', 'foundUsers'], false);
+  return state.set('foundUsers', users);
 }
 
 export default function(state = Map(), action){
@@ -125,11 +140,13 @@ export default function(state = Map(), action){
     case 'FINISH_GET_MY_BOOKS':
       return finishGetMyBooks(state, action.books);
     case 'FINISH_GET_MY_FRIENDS':
-      return finishGettingMyFriends(state, action.friends)
+      return finishGettingMyFriends(state, action.friends);
+    case 'START_SEARCH_USERS':
+      return startSearchUsers(state);
+    case 'FINISH_SEARCH_USERS':
+      return finishSearchUsers(state, action.users);
     default:
       return setState(state);
   }
 }
-
-
 
