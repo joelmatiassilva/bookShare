@@ -57,9 +57,11 @@ export function regularSignUp(){
   }
 }
 
-export function startSignIn(){
+export function startSignIn(username, password){
   return {
-    type: 'START_SIGNIN'
+    type: 'START_SIGNIN',
+    username: username,
+    password: password
   }
 }
 
