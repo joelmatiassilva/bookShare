@@ -1,4 +1,5 @@
-import SignIn from './SignIn.jsx';
+import SignIn from './SignIn';
+import NavBar from './NavBar';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -11,10 +12,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="hero">
-        <h1>Bookshare</h1>
-        <h3>Start sharing books with your friends!</h3>
-        {this.props.children}
+      <div>
+        <NavBar/>
+        <div className="hero">
+          <h1>Bookshare</h1>
+          <h2>Start sharing books with your friends!</h2>
+          {this.props.children}
+        </div>
       </div>
     )
   }

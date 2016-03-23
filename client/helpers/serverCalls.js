@@ -26,3 +26,19 @@ export function getMyBooksAJAX(callback){
     }
   });
 }
+
+
+export function getMyFriendsAJAX(callback){
+  $.ajax({
+    url: '/api/friends',
+    method: 'GET',
+    headers: {
+      authorization: localStorage.token
+    },
+    success: callback,
+    error: function(err){
+      console.log('ERROR, USER NOT LOGGED IN');
+      console.error(err);
+    }
+  });
+}

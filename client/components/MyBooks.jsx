@@ -30,8 +30,8 @@ export const MyBooks = class MyBooks extends React.Component{
 
 function mapStateToProps(state){
   return {
-    foundBooks: state.dashboard.getIn(['dashboard', 'foundBooks']),
-    myBooks: state.dashboard.getIn(['dashboard','myBooks'])
+    foundBooks: state.dashboard.get('foundBooks'),
+    myBooks: state.dashboard.get('myBooks')
   }
 }
 

@@ -1,37 +1,11 @@
 import React from 'react';
 import NavBar from './NavBar';
 import {MyBooksContainer} from './MyBooks';
-import MyFriends from './MyFriends';
+import {MyFriendsContainer} from './MyFriends';
 import BooksLent from './BooksLent';
 import BooksBorrowed from './BooksBorrowed';
 import {hashHistory} from 'react-router';
 
-var myBooks = [
-  {
-    isbn: 1234567,
-    author: 'J.K. Rowling',
-    title: 'Harry Potter: Philosopher\'s Stone',
-    description: 'Wizards and spells',
-    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-    genre: 'Novels'
-  },
-  {
-    isbn: 1234567,
-    author: 'J.K. Rowling',
-    title: 'Harry Potter: Philosopher\'s Stone',
-    description: 'Wizards and spells',
-    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-    genre: 'Novels'
-  },
-  {
-    isbn: 1234567,
-    author: 'J.K. Rowling',
-    title: 'Harry Potter: Philosopher\'s Stone',
-    description: 'Wizards and spells',
-    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-    genre: 'Novels'
-  }
-];
 var myFriends = [
   {
     id: 2,
@@ -121,8 +95,8 @@ class Dashboard extends React.Component{
     return <div>
         <NavBar/>
         <h1>Welcome to dashboard!</h1>
-        <MyBooksContainer myBooks={myBooks}/>
-        <MyFriends friends={myFriends}/>
+        <MyBooksContainer/>
+        <MyFriendsContainer friends={myFriends}/>
         <BooksLent booksLent={booksLent}/>
         <BooksBorrowed booksBorrowed={booksBorrowed}/>
       </div>
