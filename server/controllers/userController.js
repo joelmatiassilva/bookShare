@@ -29,6 +29,9 @@ module.exports.facebookSignIn = function(req, res){
 module.exports.findFriends = function(req, res){
   console.log("findFriends" + req.params);
   User.findAll({where: {
+    id: {
+      $ne: req.currentUser.id
+    },
     $or: [
       {
         username: req.params.query
@@ -38,6 +41,13 @@ module.exports.findFriends = function(req, res){
       }
     ]
   }}).then(function(users){
+    users = users.map(function(user) {
+      return {
+        id: user.id,
+        name: user.username,
+        email: user.email
+      };
+    });
     res.status(200).json(users);
   }).catch(function(err) {
     res.status(500).json(err);
@@ -45,9 +55,11 @@ module.exports.findFriends = function(req, res){
 };
 
 module.exports.getFriendRequests = function(req, res) {
-  FriendRequest.findAll({ where: { accepted: false} }).then(function(requests) {
-    res.status(200).json(err);
+  FriendRequest.findAll({ where: { accepted: false , friendId: req.currentUser.id} }).then(function(requests) {
+    console.log(requests);
+    res.status(200).json(requests);
   }).catch(function(err) {
+    console.error(err);
     res.status(500).json(err);
   });
 };
@@ -70,16 +82,17 @@ var reject = function(err) {res.status(500).json(err);};
 module.exports.addFriend = function(req, res){
   // TODO: after-update hook for when friend request is accepted
   // TODO: Sequelize obj - assoc methods
-User.findAll({where: {email: req.body.email}})
+  User.findAll({where: {email: req.body.email}})
     .then(function(users){
-      req.currentUser.addFriend(users[0], { accepted: true })
-      .then(function() {
-        users[0].addFriend(req.currentUser)
-        .then(function(){
-          res.status(201).end();
-        }).catch(reject);
+      req.currentUser.addFriend(users[0], { accepted: false })
+      .then(function(){
+        res.status(201).end();
       }).catch(reject);
     }).catch(reject);
+};
+
+module.exports.acceptFriendRequests = function(req, res) {
+
 };
 
 module.exports.viewAllFriends = function(req, res){
@@ -87,7 +100,7 @@ module.exports.viewAllFriends = function(req, res){
     friends = friends.map(function(friend) {
       return {
         id: friend.id,
-        name: friend.name,
+        name: friend.username,
         email: friend.email
       };
     });
