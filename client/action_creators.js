@@ -1,5 +1,5 @@
 import {searchGoogleBooksAJAX} from './searchBooks';
-import {asyncSignIn, getMyBooksAJAX, getMyFriendsAJAX} from './helpers/serverCalls';
+import {asyncSignIn, getMyBooksAJAX, getMyFriendsAJAX, searchUsersAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -152,6 +152,31 @@ export function finishGettingMyFriends(friends){
     friends: friends
   }
 }
+/* Search for friends async actions */
+
+export function searchUsers(query){
+  return function(dispatch){
+    console.log('Searching friends with query: ' + query);
+    dispatch(startSearchUsers());
+    return searchUsersAJAX(query,(response) => {
+      console.log('FOUND THIS USERS: ');
+      console.log(response);
+      dispatch(finishSearchUsers(response));
+    })
+  }
+}
+export function startSearchUsers(){
+  return {
+    type: 'START_SEARCH_USERS'
+  }
+}
+
+export function finishSearchUsers(users){
+  return {
+    type: 'FINISH_SEARCH_USERS',
+    users: users
+  }
+}
 
 /* Search for books async actions  */
 export function addBookToMyShelf(book){
@@ -160,7 +185,6 @@ export function addBookToMyShelf(book){
     book: book
   }
 }
-
 export function requestBooks(query){
   console.log('REQUESTING BOOKS for query: ' + query);
   return {
@@ -186,4 +210,6 @@ export function fetchBooks(query){
     });
   }
 }
+
+
 
