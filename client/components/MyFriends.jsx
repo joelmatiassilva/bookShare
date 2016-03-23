@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
+import DebounceInput from 'react-debounce-input';
+import PeopleList from './PeopleList';
 
 export const MyFriends = class MyFriends extends React.Component{
   constructor(props){
@@ -17,15 +19,17 @@ export const MyFriends = class MyFriends extends React.Component{
           ID: {friend.id}  EMAIL: {friend.email}
         </li>
       }) : null}
-
       <p>Search people and add them to your friends list:</p>
-      <input type="text" placeholder="Type an email or username.."/>
+      <DebounceInput debounceTimeout={200} type="text" placeholder="Type an email or username.." onChange={(event) => this.props.searchUsers(event.target.value)}/>
+      <img className="preloader" src="assets/preloader.gif"/>
+      <PeopleList peopleList={this.props.foundUsers}/>
     </div>
   }
 }
 function mapStateToProps(state){
   return {
-    friends: state.dashboard.get('friends')
+    friends: state.dashboard.get('friends'),
+    foundUsers: state.dashboard.get('foundUsers')
   }
 }
 
