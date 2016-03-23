@@ -108,6 +108,18 @@ function setFoundBooks(state, foundBooks){
   return state.set('foundBooks', foundBooks);
 }
 
+
+function startSearchUsers(state){
+  //TODO start spinner for user search
+  
+  return state;
+}
+
+function finishSearchUsers(state, users){
+  //TODO stop spinner for user search
+  return state.set('foundUsers', users);
+}
+
 export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
@@ -125,7 +137,11 @@ export default function(state = Map(), action){
     case 'FINISH_GET_MY_BOOKS':
       return finishGetMyBooks(state, action.books);
     case 'FINISH_GET_MY_FRIENDS':
-      return finishGettingMyFriends(state, action.friends)
+      return finishGettingMyFriends(state, action.friends);
+    case 'START_SEARCH_USERS':
+      return startSearchUsers(state);
+    case 'FINISH_SEARCH_USERS':
+      return finishSearchUsers(state, action.users);
     default:
       return setState(state);
   }
