@@ -12,9 +12,15 @@ export const SignIn = class SignIn extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
   changeUsername(username){
+    this.setState({
+      username: username
+    })
     this.props.setEmail(username);
   }
   changePassword(password){
+    this.setState({
+      password: password
+    });
     this.props.setPassword(password);
   }
   render() {
@@ -39,8 +45,9 @@ export const SignIn = class SignIn extends React.Component {
             <input onClick={(event) =>{event.preventDefault();this.props.regularSignIn(this.state.username, this.state.password)} }type="submit" value="Log in"/>
           </td>
         </tr>
+        <img className="preloader" src="assets/preloader.gif"/>
         <tr><td><a href="login/facebook">Login with facebook</a></td></tr>
-        <Link to="/signUp">Sign Up</Link> 
+        <Link to="/signUp">Go to SignUp</Link> 
       </table>
     </form>
   </div>;
