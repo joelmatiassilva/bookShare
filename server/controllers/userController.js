@@ -17,7 +17,7 @@ module.exports.addUser = function(req, res){
     user.save()
     .then(function(){
       user.password = user.hashPassword(user.password);
-      user.save();
+      return user.save();
     }).then(function(){
       var token = helper.encode(user);
       res.status(201).json({token: token});
