@@ -17,7 +17,7 @@ module.exports.addUser = function(req, res){
     user.save()
     .then(function(){
       user.password = user.hashPassword(user.password);
-      user.save();
+      return user.save();
     }).then(function(){
       var token = helper.encode(user);
       res.status(201).json({token: token});
@@ -66,17 +66,19 @@ module.exports.getFriendRequests = function(req, res) {
 };
 
 module.exports.signIn = function(req, res){
-  User.findOne({where: {email: req.body.email}})
+  //TODO: change client-side key from email to usernameOrEmail
+  User.findOne({where: {$or: [{email: req.body.usernameOrEmail}, {username: req.body.usernameOrEmail}]}} )
     .then(function(user){
+      if (!user){ res.status(404).end(); return;}
       var userInput = user.hashPassword(req.body.password);
       user.comparePassword(userInput)
       .then(function() {
         var token = helper.encode(user);
-        res.status(200).json({token: token});
+        res.status(200).json({token: token, username: user.username} );
       })
-      .catch(function(err) {res.status(500).json(err);});
+      .catch(function(err) {console.log("ERROR1", err); res.status(500).json(err);});
     })
-    .catch(function(err) {res.status(500).json(err);});
+    .catch(function(err) {console.log("ERROR2", err); res.status(500).json(err);});
 };
 
 module.exports.addFriend = function(req, res){
