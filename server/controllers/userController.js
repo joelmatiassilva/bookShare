@@ -103,10 +103,10 @@ module.exports.acceptFriendRequest = function(req, res) {
         friendrequest.destroy()
         .then(function () {
           res.status(201).end();
-        }).catch(reject);
-      }).catch(reject);
-    }).catch(reject);
-  }).catch(reject);
+        }).catch(function(err) {res.status(500).json(err);});
+      }).catch(function(err) {res.status(500).json(err);});
+    }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.deleteFriendRequest = function(req, res) {
@@ -116,8 +116,8 @@ module.exports.deleteFriendRequest = function(req, res) {
     friendrequest.destroy()
     .then(function () {
       res.status(201).end();
-    }).catch(reject);
-  }).catch(reject);
+    }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});
 }
 
 module.exports.viewAllFriends = function(req, res){
