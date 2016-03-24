@@ -18,11 +18,12 @@ module.exports = function(sequelize, DataTypes) {
         this.salt = bcrypt.genSaltSync(10);
       },
       hashPassword: function(password) {
-        this.password = bcrypt.hashSync(password, this.salt);
+        return bcrypt.hashSync(password, this.salt);
       },
 
       comparePassword: function(password){
-        return bcrypt.compareSync(password, this.password);
+        var compare = Promise.promisify(bcrypt.compare);
+          return compare(password, this.password);
       }
 
      },
