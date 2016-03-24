@@ -1,6 +1,20 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Friends = sequelize.define('Friends', {}, {
+
+        id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      userId: {
+        type: DataTypes.INTEGER
+      },
+      friendId: {
+        type: DataTypes.INTEGER
+      }
+    },
     /*hooks: {
       afterCreate: function(friends, options) {
         console.log("afterCreate", friends);
@@ -16,12 +30,14 @@ module.exports = function(sequelize, DataTypes) {
           });
       }
     },*/
-    classMethods: {
-      associate: function(models) {
-        Friends.belongsTo(models.User, {as: 'User', foreignKey: 'userId', constraints: false});
-        Friends.belongsTo(models.User, {as: 'Friend', foreignKey: 'friendId', constraints: false});
+    {
+      classMethods: {
+        associate: function(models) {
+          Friends.belongsTo(models.User, {as: 'User', foreignKey: 'userId', constraints: false});
+          Friends.belongsTo(models.User, {as: 'Friend', foreignKey: 'friendId', constraints: false});
+        }
       }
-    }
+
   });
   return Friends;
 };
