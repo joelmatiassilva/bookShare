@@ -4,6 +4,7 @@
 var models = require('../models');
 var User = models.User;
 var FriendRequest = models.FriendRequest;
+var Friends = models.Friends;
 var helper = require('../config/helpers.js');
 var bcrypt = require('bcrypt');
 
@@ -81,7 +82,7 @@ module.exports.signIn = function(req, res){
 module.exports.addFriend = function(req, res){
   User.findAll({where: {email: req.body.email}})
     .then(function(users){
-      req.currentUser.addFriend(users[0], { accepted: false })
+      FriendRequest.create({ userId: req.currentUser.id, friendId: users[0].id, accepted: false })
       .then(function(){
         res.status(201).end();
       })
@@ -90,12 +91,38 @@ module.exports.addFriend = function(req, res){
     .catch(function(err) {res.status(500).json(err);});
 };
 
-module.exports.acceptFriendRequests = function(req, res) {
-
+module.exports.acceptFriendRequest = function(req, res) {
+  var id = req.body.id;
+  FriendRequest.findById(id)
+  .then(function (friendrequest) {
+    //req.currentUser.addFriend()
+    Friends.create({userId: friendrequest.userId, friendId: friendrequest.friendId})
+    .then(function () {
+      Friends.create({userId: friendrequest.friendId, friendId: friendrequest.userId})
+      .then(function () {
+        friendrequest.destroy()
+        .then(function () {
+          res.status(201).end();
+        }).catch(function(err) {res.status(500).json(err);});
+      }).catch(function(err) {res.status(500).json(err);});
+    }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});
 };
+
+module.exports.deleteFriendRequest = function(req, res) {
+  var id = req.body.id;
+  FriendRequest.findById(id)
+  .then(function (friendrequest) {
+    friendrequest.destroy()
+    .then(function () {
+      res.status(201).end();
+    }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});
+}
 
 module.exports.viewAllFriends = function(req, res){
   req.currentUser.getFriends().then(function(friends) {
+    console.log("====> ",  friends);
     friends = friends.map(function(friend) {
       return {
         id: friend.id,
@@ -109,7 +136,7 @@ module.exports.viewAllFriends = function(req, res){
 
 module.exports.viewFriend = function(req, res){
 // tables involved:  friendrequests & users
- req.currentUser.getFriendRequests({
+ req.currentUser.getFriends({
     where: {friendId: req.params.id},
     include: {model: User, as: 'Friend'} // references "belongsTo" in FriendRequest
   }).then(function(friendRequests) {
@@ -126,6 +153,7 @@ module.exports.viewFriend = function(req, res){
   }).catch(function(err) {res.status(500).json(err);});
 };
 
+//need to delete friend relationships
 module.exports.deleteUser = function(req, res){
   User.destroy({where: {id: req.params.id}}).then(function() {
     res.status(204).end();

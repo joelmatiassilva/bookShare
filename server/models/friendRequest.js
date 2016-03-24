@@ -7,33 +7,17 @@ module.exports = function(sequelize, DataTypes) {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-    accepted: DataTypes.BOOLEAN
-  }, {
-    hooks: {
-      afterCreate: function(friendRequest, options) {
-        console.log("afterCreate", friendRequest);
-        if (friendRequest.accepted === true) {
-          return FriendRequest.create({
-            friendId: friendRequest.userId,
-            userId: friendRequest.friendId,
-            accepted: true,
-          });
-        }
-      },
-      afterUpdate: function(friendRequest, options) {
-        if (friendRequest.accepted === true && !friendRequest.previous('accepted')) {
-          return FriendRequest.create({
-            friendId: friendRequest.userId,
-            userId: friendRequest.friendId,
-            accepted: true,
-          });
-        }
-      }
+    accepted: DataTypes.BOOLEAN,
+    userId: {
+      type: DataTypes.INTEGER
     },
+    friendId: {
+      type: DataTypes.INTEGER
+    }
+  }, {
     classMethods: {
       associate: function(models){
-        FriendRequest.belongsTo(models.User, {as: 'User', foreignKey: 'userId', constraints: false});
-        FriendRequest.belongsTo(models.User, {as: 'Friend', foreignKey: 'friendId', constraints: false});
+
       }
     }
   });
