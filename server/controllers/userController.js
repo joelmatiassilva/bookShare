@@ -65,12 +65,10 @@ module.exports.getFriendRequests = function(req, res) {
 };
 
 module.exports.signIn = function(req, res){
-  User.findAll({where: {email: req.body.email}})
-    .then(function(users){
-      var user = users[0];
+  User.findOne({where: {email: req.body.email}})
+    .then(function(user){
       var userInput = user.hashPassword(req.body.password);
       user.comparePassword(userInput)
-      // user.comparePassword(req.body.password, user.password)
       .then(function() {
         var token = helper.encode(user);
         res.status(200).json({token: token});

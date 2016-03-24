@@ -5,14 +5,14 @@ var bcrypt = require('bcrypt-nodejs');
 module.exports = function(sequelize, DataTypes) {
 
   var User = sequelize.define('User',
-  { //Obj1
+  {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     salt: DataTypes.STRING
   },
 
-  { //Obj2: INSTANCE and CLASS Methods
+  {
     instanceMethods: {
       generateSalt: function(){
         this.salt = bcrypt.genSaltSync(10);
@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
         User.belongsToMany(models.User, {through: 'FriendRequest', as: 'Users', foreignKey: 'friendId', constraints: false});
         User.hasMany(models.FriendRequest, {foreignKey: 'userId', constraints: false});
       }
-    } //end classMethods;
+    }
   }
 
   );
