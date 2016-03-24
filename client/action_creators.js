@@ -51,6 +51,19 @@ export function setToken(token){
   }
 }
 
+export function startRegularSignUp(){
+  return {
+    type: 'START_REGULAR_SIGNUP'
+  }
+}
+
+export function finishRegularSignUp(token){
+  return {
+    type: 'FINISH_REGULAR_SIGNUP',
+    token: token
+  }
+}
+
 export function regularSignUp(){
   return {
     type: 'REGULAR_SIGNUP'
@@ -159,7 +172,7 @@ export function finishGettingMyFriends(friends){
 export function searchUsers(query){
   return function(dispatch){
     console.log('Searching friends with query: ' + query);
-    dispatch(startSearchUsers());
+    dispatch(startSearchUsers(query));
     return searchUsersAJAX(query,(response) => {
       console.log('FOUND THIS USERS: ');
       console.log(response);
@@ -167,9 +180,10 @@ export function searchUsers(query){
     })
   }
 }
-export function startSearchUsers(){
+export function startSearchUsers(query){
   return {
-    type: 'START_SEARCH_USERS'
+    type: 'START_SEARCH_USERS',
+    query: query
   }
 }
 
