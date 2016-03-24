@@ -122,7 +122,6 @@ module.exports.deleteFriendRequest = function(req, res) {
 
 module.exports.viewAllFriends = function(req, res){
   req.currentUser.getFriends().then(function(friends) {
-    console.log("====> ",  friends);
     friends = friends.map(function(friend) {
       return {
         id: friend.id,
@@ -134,23 +133,12 @@ module.exports.viewAllFriends = function(req, res){
   }).catch(function(err) {res.status(500).json(err);});
 };
 
-module.exports.viewFriend = function(req, res){
-// tables involved:  friendrequests & users
- req.currentUser.getFriends({
-    where: {friendId: req.params.id},
-    include: {model: User, as: 'Friend'} // references "belongsTo" in FriendRequest
-  }).then(function(friendRequests) {
-    if (friendRequests.length !== 0) {
-      var friend = {
-        id: friendRequests[0].Friend.id,
-        name: friendRequests[0].Friend.name,
-        email: friendRequests[0].Friend.email
-      };
-      res.status(200).json(friend);
-    } else {
-      res.status(404).end();
-    }
-  }).catch(function(err) {res.status(500).json(err);});
+module.exports.getUser = function(req, res){
+  User.findById(req.params.id)
+  .then(function(user) {
+    res.status(200).json(user);
+  })
+  .catch(function(err) {res.status(500).json(err);});
 };
 
 //need to delete friend relationships

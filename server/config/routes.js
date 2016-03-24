@@ -27,7 +27,7 @@ module.exports = function (app, express) {
   /*Friend Routes*/
   app.post('/api/friendRequests', userController.addFriend); //creates a friendRequest
   app.get('/api/friends', userController.viewAllFriends);
-  app.get('/api/friends/:id', userController.viewFriend);
+  app.get('/api/user/:id', userController.getUser);
   app.get('/api/findFriends/:query', userController.findFriends);
   app.get('/api/friendRequests', userController.getFriendRequests);
   app.post('/api/acceptFriendRequest', userController.acceptFriendRequest);
