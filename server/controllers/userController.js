@@ -66,8 +66,8 @@ module.exports.getFriendRequests = function(req, res) {
 };
 
 module.exports.signIn = function(req, res){
-
-  User.findOne({where: {$or: [{email: req.body.email}, {username: req.body.username}]}} )
+  //TODO: change client-side key from email to usernameOrEmail
+  User.findOne({where: {$or: [{email: req.body.usernameOrEmail}, {username: req.body.usernameOrEmail}]}} )
     .then(function(user){
       if (!user){ res.status(404).end(); return;}
       var userInput = user.hashPassword(req.body.password);
