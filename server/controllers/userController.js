@@ -6,20 +6,23 @@ var User = models.User;
 var FriendRequest = models.FriendRequest;
 var helper = require('../config/helpers.js');
 var bcrypt = require('bcrypt');
-// var salt = bcrypt.genSaltSync(10);
 
 //Sign In
 module.exports.addUser = function(req, res){
   //TODO: check if user already exists
   User.create(req.body, {fields: ['username', 'email', 'password']})
   .then(function(user) {
-    var token = helper.encode(user);
-    res.status(201).json({token: token});
+    user.generateSalt();
+    user.save()
+    .then(function(){
+      user.password = user.hashPassword(user.password);
+      user.save();
+    }).then(function(){
+      var token = helper.encode(user);
+      res.status(201).json({token: token});
+    });
   })
-  .catch(function(err) {
-    console.log('err here', err);
-    res.status(500).json(err);
-  });
+  .catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.facebookSignIn = function(req, res){
@@ -49,46 +52,42 @@ module.exports.findFriends = function(req, res){
       };
     });
     res.status(200).json(users);
-  }).catch(function(err) {
-    res.status(500).json(err);
-  });
+  })
+  .catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.getFriendRequests = function(req, res) {
-  FriendRequest.findAll({ where: { accepted: false , friendId: req.currentUser.id} }).then(function(requests) {
-    console.log(requests);
-    res.status(200).json(requests);
-  }).catch(function(err) {
-    console.error(err);
-    res.status(500).json(err);
-  });
+  FriendRequest.findAll({ where: { accepted: false , friendId: req.currentUser.id} })
+    .then(function(requests) {
+      res.status(200).json(requests);
+    })
+    .catch(function(err) {res.status(500).json(err);});
 };
 
-//Log In / Sign In
 module.exports.signIn = function(req, res){
-  User.signIn(req.body.email, req.body.password)
-  .then(function(user){
-    var token = helper.encode(user);
-    res.status(200).json({token: token});
-  })
-  .catch(function(err) {
-    console.log('err here', err);
-    res.status(500).json(err);
-  });
+  User.findOne({where: {email: req.body.email}})
+    .then(function(user){
+      var userInput = user.hashPassword(req.body.password);
+      user.comparePassword(userInput)
+      .then(function() {
+        var token = helper.encode(user);
+        res.status(200).json({token: token});
+      })
+      .catch(function(err) {res.status(500).json(err);});
+    })
+    .catch(function(err) {res.status(500).json(err);});
 };
-
-var reject = function(err) {res.status(500).json(err);};
 
 module.exports.addFriend = function(req, res){
-  // TODO: after-update hook for when friend request is accepted
-  // TODO: Sequelize obj - assoc methods
   User.findAll({where: {email: req.body.email}})
     .then(function(users){
       req.currentUser.addFriend(users[0], { accepted: false })
       .then(function(){
         res.status(201).end();
-      }).catch(reject);
-    }).catch(reject);
+      })
+      .catch(function(err) {res.status(500).json(err);});
+    })
+    .catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.acceptFriendRequests = function(req, res) {
@@ -105,7 +104,7 @@ module.exports.viewAllFriends = function(req, res){
       };
     });
     res.status(200).json(friends);
-  }).catch(reject);
+  }).catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.viewFriend = function(req, res){
@@ -124,12 +123,12 @@ module.exports.viewFriend = function(req, res){
     } else {
       res.status(404).end();
     }
-  }).catch(reject);
+  }).catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.deleteUser = function(req, res){
   User.destroy({where: {id: req.params.id}}).then(function() {
     res.status(204).end();
-  }).catch(reject);
+  }).catch(function(err) {res.status(500).json(err);});
 };
 
