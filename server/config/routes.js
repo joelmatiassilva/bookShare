@@ -30,6 +30,8 @@ module.exports = function (app, express) {
   app.get('/api/friends/:id', userController.viewFriend);
   app.get('/api/findFriends/:query', userController.findFriends);
   app.get('/api/friendRequests', userController.getFriendRequests);
+  app.post('/api/acceptFriendRequest', userController.acceptFriendRequest);
+  app.post('/api/deleteFriendRequest', userController.deleteFriendRequest);
 
   /*Book Routes*/
   app.get('/api/friends/:id/books', bookController.viewFriendBooks); // all books belonging to one friend
