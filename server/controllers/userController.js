@@ -58,11 +58,26 @@ module.exports.findFriends = function(req, res){
 };
 
 module.exports.getFriendRequests = function(req, res) {
-  FriendRequest.findAll({ where: { accepted: false , friendId: req.currentUser.id} })
-    .then(function(requests) {
-      res.status(200).json(requests);
-    })
-    .catch(function(err) {res.status(500).json(err);});
+  FriendRequest.findAll({
+    where: { accepted: false , friendId: req.currentUser.id}
+    }).then(function(requests) {
+      requests = requests.map(function(request) {
+        return request.userId;
+      });
+      console.log("+++++++=====RRR ", requests);
+      User.findAll({ where: { id: requests }})
+      .then(function(users) {
+        users = users.map(function(user) {
+          return {
+            id: user.id,
+            name: user.username,
+            email: user.email
+          };
+        });
+        console.log("+++++++=====UUU ", users);
+        res.status(200).json(users);
+      }).catch(function(err) {res.status(500).json(err);});
+    }).catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.signIn = function(req, res){

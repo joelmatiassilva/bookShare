@@ -40,18 +40,39 @@ module.exports.viewMyShelf = function(req, res){
 
 };
 
-module.exports.bookRequest = function(req, res) {
-  BookRequest.create({ bookId: req.body.bookId, ownerId: req.body.ownerId, borrowerId: req.body.borrowerId})
-  .then(function(request) {
-    console.log(BookRequest.get({
-      plain: true
-    }));
-    res.status(200);
+module.exports.makeBookRequest = function(req, res) {
+  BookRequest.create({
+    bookId: req.body.bookId,
+    ownerId: req.body.ownerId,
+    borrowerId: req.body.borrowerId,
+    accepted: false})
+  .then(function() {
+    res.status(201).end();
   })
   .catch(function(err) {
     res.status(500).json(err);
   });
-}
+};
+
+module.exports.deleteBookRequest = function(req, res){
+  BookRequest.findById(req.body.id)
+  .then(function (request) {
+    request.destroy();
+    res.status(201).end();
+  })
+  .catch(function(err) {res.status(500).json(err);});
+};
+
+//pass due date in format YYYY/MM/DD
+module.exports.acceptBookRequest = function(req, res){
+  BookRequest.findById(req.body.id)
+  .then(function (request) {
+    request.update({accepted: true, dueDate: req.body.dueDate})
+    .then(function () {
+      res.status(201).end();
+    }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});
+};
 
 module.exports.viewMyBook= function(req, res){
 // TODO
