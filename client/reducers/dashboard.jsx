@@ -8,7 +8,7 @@ function setState(state = Map(), newState){
 
 function startGettingMyFriends(state){
   //TODO start spinner
-  state.setIn(['loading','myFriends'])
+  state.setIn(['loading','myFriends']);
   return state;
 }
 
@@ -132,6 +132,10 @@ function finishSearchUsers(state, users){
   return state.set('foundUsers', users);
 }
 
+function finishGettingFriendRequestToMe(state, friendRequests){
+  return state.set('friendRequests', friendRequests);
+}
+
 export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
@@ -154,6 +158,8 @@ export default function(state = Map(), action){
       return startSearchUsers(state, action.query);
     case 'FINISH_SEARCH_USERS':
       return finishSearchUsers(state, action.users);
+    case 'FINISH_GETTING_FRIEND_REQUESTS_TO_ME':
+      return finishGettingFriendRequestToMe(state, action.friendRequests);
     default:
       return setState(state);
   }
