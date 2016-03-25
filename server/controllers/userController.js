@@ -60,9 +60,9 @@ module.exports.findFriends = function(req, res){
 };
 
 module.exports.getFriendRequests = function(req, res) {
-  models.sequelize.query('select u.id, u.username, u.email, accepted,\
-  fr.id as FriendRequestId from friendrequests as fr inner\
-  join users as u on fr.userId = u.id where fr.friendId = ?',
+  models.sequelize.query('SELECT u.id, u.username, u.email, fr.accepted,\
+  fr.id AS FriendRequestId FROM friendrequests as fr INNER\
+  JOIN users AS u ON fr.userId = u.id WHERE fr.friendId = ?',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
@@ -104,14 +104,15 @@ module.exports.addFriend = function(req, res){
 
 module.exports.acceptFriendRequest = function(req, res) {
   var id = req.body.id;
+  console.log('ACCEPTING REQUEST WITH ID: ' + id);
   FriendRequest.findById(id)
-  .then(function (friendrequest) {
+  .then(function (friendRequest) {
     //req.currentUser.addFriend()
-    Friends.create({userId: friendrequest.userId, friendId: friendrequest.friendId})
+    Friends.create({userId: friendRequest.userId, friendId: friendRequest.friendId})
     .then(function () {
-      Friends.create({userId: friendrequest.friendId, friendId: friendrequest.userId})
+      Friends.create({userId: friendRequest.friendId, friendId: friendRequest.userId})
       .then(function () {
-        friendrequest.destroy()
+        friendRequest.destroy()
         .then(function () {
           res.status(201).end();
         }).catch(function(err) {res.status(500).json(err);});

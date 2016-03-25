@@ -19,6 +19,10 @@ function setState(state = Map(), newState){
   return state.merge(newState);
 }
 
+function clearState(state){
+  return Map();
+}
+
 function setPassword(state, password){
   return state.setIn(['userInfo','password'], password);
 }
@@ -50,9 +54,11 @@ function startSignIn(state, username, password){
   return state;
 }
 
-function endSignIn(state, token){
+function endSignIn(state, token, username){
   localStorage.setItem('token', token);
+  localStorage.setItem('displayName', username);
   hashHistory.push('/explore');
+  state = state.setIn(['userInfo', 'displayName'], username);
   return state.setIn(['userInfo', 'token'], token);
 }
 
@@ -101,6 +107,8 @@ export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
       return setState(state, action.state);
+    case 'CLEAR_STATE':
+      return clearState(state);
     case 'SET_USERNAME':
       return setUsername(state, action.username);
     case 'SET_PASSWORD':
@@ -120,7 +128,7 @@ export default function(state = Map(), action){
     case 'START_SIGNIN':
       return startSignIn(state, action.username, action.password);
     case 'END_SIGNIN':
-      return endSignIn(state, action.token);
+      return endSignIn(state, action.token, action.username);
     default:
       return setState(state);
   }

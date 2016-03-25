@@ -1,28 +1,13 @@
 import React from 'react';
-import NavBar from './NavBar';
+import {NavBarContainer} from './NavBar';
 import {MyBooksContainer} from './MyBooks';
 import {MyFriendsContainer} from './MyFriends';
 import BooksLent from './BooksLent';
 import BooksBorrowed from './BooksBorrowed';
 import {hashHistory} from 'react-router';
+import {connect} from 'react-redux';
+import * as actionCreators from '../action_creators';
 
-var myFriends = [
-  {
-    id: 2,
-    username: 'Jonathan Blaising',
-    email: 'j@blaze.com'
-  },
-  {
-    id: 3,
-    username: 'Leo BayBay',
-    email: 'leo@baybay.com'
-  },
-  {
-    id: 4,
-    username: 'Hamzah Chaudhary',
-    email: 'hamzah@Chaudhary'
-  }
-];
 var booksLent = [
   {
     isbn: 1234567,
@@ -82,7 +67,7 @@ var booksBorrowed = [
   }
 ];
 
-class Dashboard extends React.Component{
+export const Dashboard = class Dashboard extends React.Component{
   constructor(props){
     super(props);
   }
@@ -90,17 +75,35 @@ class Dashboard extends React.Component{
     if(!localStorage.token){
       hashHistory.push('/signIn');
     }
+    console.log('Mounting Dashboard');
+  }
+  componentWillUpdate(){
+    console.log('Updating Dashboard');
   }
   render(){
     return <div>
-        <NavBar/>
-        <h1>Welcome to dashboard!</h1>
+        <NavBarContainer/>
+        <h1>Dashboard</h1>
         <MyBooksContainer/>
-        <MyFriendsContainer friends={myFriends}/>
+        <MyFriendsContainer/>
         <BooksLent booksLent={booksLent}/>
         <BooksBorrowed booksBorrowed={booksBorrowed}/>
       </div>
   }
 }
-export default Dashboard;
+
+function mapStateToProps(state){
+  return {
+    friends: state.dashboard.get('friends'),
+    foundUsers: state.dashboard.get('foundUsers'),
+    loading: state.dashboard.getIn(['loading', 'foundUsers'])
+  }
+}
+
+export const DashboardContainer = connect(
+  mapStateToProps,
+  actionCreators
+)(Dashboard);
+
+
 
