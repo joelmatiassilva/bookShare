@@ -2,6 +2,7 @@ var models = require('../models');
 var Book = models.Book;
 var UserBook = models.UserBook;
 var BookRequest = models.BookRequest;
+var sequelize = require('sequelize');
 
 module.exports.addBook = function(req, res){
   Book.create(req.body)
@@ -85,22 +86,18 @@ module.exports.getMyBookRequests = function(req, res) {
     console.log(requests);
     res.status(200).json(requests);
   }).catch(function(err) {res.status(500).json(err);});
-/*
-  BookRequest.findAll({
-    where: { accepted: false, borrowerId: req.currentUser.id}
-  }).then(function (requests) {
-    requests = requests.map(function (request) {
-      return request.bookId;
-    });
-    Book.findAll({ where: { id: requests }})
-    .then(function(books) {
-      res.status(200).json(books);
-    }).catch(function(err) {res.status(500).json(err);});
-  }).catch(function(err) {res.status(500).json(err);});*/
 };
 
 module.exports.getMyRequestedBooks = function(req, res) {
-
+  models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
+    b.description, b.image, b.categories, br.accepted, \
+    br.id as BookRequestId from bookrequests as br inner\
+  join books as b on br.bookId = b.id where br.ownerId = ? and br.accepted = 0',
+  { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
+  .then(function (requests) {
+    console.log(requests);
+    res.status(200).json(requests);
+  }).catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.viewMyBook= function(req, res){
