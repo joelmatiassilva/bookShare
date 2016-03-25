@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
 import DebounceInput from 'react-debounce-input';
 import PeopleList from './PeopleList';
-import FriendRequests from './FriendRequests';
+import {FriendRequestsContainer} from './FriendRequests';
 
 import Preloader from './Preloader';
 
@@ -26,7 +26,7 @@ export const MyFriends = class MyFriends extends React.Component{
       <DebounceInput debounceTimeout={200} type="text" placeholder="Type an email or username.." onChange={(event) => this.props.searchUsers(event.target.value)}/>
       { this.props.loading ? <Preloader/> : null}
       <PeopleList peopleList={this.props.foundUsers}/>
-      <FriendRequests/>
+      <FriendRequestsContainer/>
     </div>
   }
 }
