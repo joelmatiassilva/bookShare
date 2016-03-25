@@ -48,6 +48,7 @@ module.exports = function (app, express) {
   app.get('/api/myRequestedBooks', bookController.getMyRequestedBooks);
   app.get('/api/lentBooks', bookController.getLentBooks);
   app.get('/api/borrowedBooks', bookController.getBorrowedBooks);
+  app.get('/api/getAllBooksFromFriends', bookController.getAllBooksFromFriends);
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
