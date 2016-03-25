@@ -27,7 +27,7 @@ export const BookListEntry = class BooksListEntry extends React.Component{
         : null}
       {this.props.ownerId ? <div>
           <p>Owner: {this.props.ownerName}</p>
-          <button onClick={this.props.borrowBook}>Borrow book</button>
+          <button onClick={() => this.props.borrowBook({bookId: this.props.})}>Borrow book</button>
         </div> : null}
     </div>;
   }
@@ -35,7 +35,7 @@ export const BookListEntry = class BooksListEntry extends React.Component{
 function mapStateToProps(){
   return {};
 }
-
+ 
 export const BookListEntryContainer = connect(
   mapStateToProps,
   actionCreators
