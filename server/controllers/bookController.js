@@ -74,7 +74,18 @@ module.exports.acceptBookRequest = function(req, res){
   }).catch(function(err) {res.status(500).json(err);});
 };
 
+//get book requests where the user is borrowing from another person
 module.exports.getMyBookRequests = function(req, res) {
+  models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
+    b.description, b.image, b.categories, br.accepted, \
+    br.id as BookRequestId from bookrequests as br inner\
+  join books as b on br.bookId = b.id where br.borrowerId = ? and br.accepted = 0',
+  { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
+  .then(function (requests) {
+    console.log(requests);
+    res.status(200).json(requests);
+  }).catch(function(err) {res.status(500).json(err);});
+/*
   BookRequest.findAll({
     where: { accepted: false, borrowerId: req.currentUser.id}
   }).then(function (requests) {
@@ -85,7 +96,7 @@ module.exports.getMyBookRequests = function(req, res) {
     .then(function(books) {
       res.status(200).json(books);
     }).catch(function(err) {res.status(500).json(err);});
-  }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});*/
 };
 
 module.exports.getMyRequestedBooks = function(req, res) {

@@ -67,7 +67,7 @@ module.exports.getFriendRequests = function(req, res) {
   .then(function (requests) {
     console.log(requests);
     res.status(200).json(requests);
-  }).catch(function(err) {console.log("ERROR2", err); res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.signIn = function(req, res){
