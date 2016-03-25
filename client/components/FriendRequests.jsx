@@ -14,6 +14,7 @@ export const FriendRequests = class FriendRequests extends React.Component{
       <h1>FriendRequests done to me:</h1>
       { this.props.friendRequests ? this.props.friendRequests.map((friendRequest) => {
         return <p>{friendRequest.name} wants to be your friend</p>
+        <button>Accept friend request</button>
       }) : null}
     </div>;
   }
