@@ -14,6 +14,9 @@ export const MyFriends = class MyFriends extends React.Component{
   componentWillMount(){
     this.props.getMyFriends();
   }
+  componentWillUpdate(){
+    console.log('UPDATING MyFriends');
+  }
   render(){
     return <div>
       Your friends:

@@ -30,7 +30,6 @@ export function getMyBooksAJAX(callback){
   });
 }
 
-
 export function getMyFriendsAJAX(callback){
   $.ajax({
     url: '/api/friends/',
@@ -88,7 +87,6 @@ export function searchUsersAJAX(query, callback){
   });
 }
 
-
 export function regularSignUpAJAX(data, callback){
   if(data.invalidData === true){
     callback(null, 'Form data is not valid');
@@ -101,6 +99,36 @@ export function regularSignUpAJAX(data, callback){
     error: function(err){
       console.log('ERROR, USER NOT SIGNED UP')
       console.error(err);
+    }
+  });
+}
+
+export function acceptFriendRequestAJAX(friendRequestID, callback){
+  $.ajax({
+    url: '/api/acceptFriendRequest',
+    method: 'POST',
+    data: { id: friendRequestID },
+    headers: headers,
+    success: callback,
+    error: function(err){
+      console.log('Error while accepting friendRequest');
+      console.error(err);
+    }
+  });
+}
+
+export function createBookRequestAJAX(data, callback){
+  $.ajax({
+    url: '/api/bookRequest',
+    method: 'POST',
+    data: {
+      bookId: data.bookId,
+      ownerId: data.ownerId
+    },
+    success: callback,
+    error: function(error){
+      console.error('serverCalls AJAX: Error while creating a book request');
+      console.error(error);
     }
   });
 }

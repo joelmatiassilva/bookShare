@@ -45,7 +45,7 @@ module.exports.makeBookRequest = function(req, res) {
   BookRequest.create({
     bookId: req.body.bookId,
     ownerId: req.body.ownerId,
-    borrowerId: req.body.borrowerId,
+    borrowerId: req.currentUser.id,
     accepted: false})
   .then(function() {
     res.status(201).end();

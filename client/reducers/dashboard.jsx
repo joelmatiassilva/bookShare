@@ -6,6 +6,10 @@ function setState(state = Map(), newState){
   return state.merge(newState);
 }
 
+function clearState(state){
+  return Map();
+}
+
 function startGettingMyFriends(state){
   //TODO start spinner
   state.setIn(['loading','myFriends']);
@@ -136,10 +140,24 @@ function finishGettingFriendRequestToMe(state, friendRequests){
   return state.set('friendRequests', friendRequests);
 }
 
+
+/* Make book request reducers  */
+function startBookRequest(state){
+  //TODO Start spinner
+  return state;
+}
+
+function finishBookRequest(state){
+  //TODO Stop spinner
+  return state;
+}
+
 export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
       return setState(state, action.state);
+    case 'CLEAR_STATE':
+      return clearState(state);
     case 'ADD_BOOK_TO_SHELF':
       return addBookToMyShelf(state, action.book);
     case 'SET_FOUND_BOOKS':
@@ -160,6 +178,10 @@ export default function(state = Map(), action){
       return finishSearchUsers(state, action.users);
     case 'FINISH_GETTING_FRIEND_REQUESTS_TO_ME':
       return finishGettingFriendRequestToMe(state, action.friendRequests);
+    case 'START_BOOK_REQUEST':
+      return startBookRequest(state);
+    case 'FINISH_BOOK_REQUEST':
+      return finishBookRequest(state);
     default:
       return setState(state);
   }

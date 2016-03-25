@@ -5,13 +5,20 @@ import {
   getMyFriendsAJAX, 
   searchUsersAJAX, 
   makeFriendRequestAsync,
-  getMyFriendRequests} from './helpers/serverCalls';
+  getMyFriendRequests,
+  acceptFriendRequestAJAX,
+  createBookRequestAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
     type: 'SET_STATE',
     state
   };
+}
+export function clearState(){
+  return {
+    type: 'CLEAR_STATE'
+  }
 }
 
 /* -------- AUTHORIZATION ACTIONS -------- */
@@ -84,20 +91,19 @@ export function startSignIn(username, password){
   }
 }
 
-export function endSignIn(token){
+export function endSignIn(token, username){
   return {
     type: 'END_SIGNIN',
-    token: token
+    token: token,
+    username: username
   }
 }
 
 export function regularSignIn(username, password){
-  console.log('Username: ' + username + ' Password: ' + password );
   return function(dispatch){
     dispatch(startSignIn(username, password));
     return asyncSignIn(username, password, (res) => {
-      console.log('TOKEN:',res.token);
-      dispatch(endSignIn(res.token));
+      dispatch(endSignIn(res.token, res.username));
     });
   }
 }
@@ -152,8 +158,6 @@ export function getFriendRequestsDoneToMe(){
   return dispatch => {
     dispatch(startGettingFriendRequestToMe());
     return getMyFriendRequests((friendRequests) => {
-      console.log('GOT THE FRIEND REQUESTS');
-      console.log(friendRequests);
       dispatch(finishGettingFriendRequestToMe(friendRequests));
     });
   }
@@ -168,6 +172,7 @@ export function getMyBooks(){
     })
   }
 }
+
 export function startGettingMyBooks(){
   return {
     type: 'START_GET_MY_BOOKS'
@@ -186,8 +191,6 @@ export function getMyFriends(){
   return function(dispatch){
     dispatch(startGettingMyFriends());
     return getMyFriendsAJAX((response) => {
-      console.log('GOT FRIENDS');
-      console.log(response);
       dispatch(finishGettingMyFriends(response));
     });
   }
@@ -212,8 +215,6 @@ export function searchUsers(query){
     console.log('Searching friends with query: ' + query);
     dispatch(startSearchUsers(query));
     return searchUsersAJAX(query,(response) => {
-      console.log('FOUND THIS USERS: ');
-      console.log(response);
       dispatch(finishSearchUsers(response));
     })
   }
@@ -266,5 +267,52 @@ export function fetchBooks(query){
   }
 }
 
+/* Accept friend request Async */
+export function acceptFriendRequest(friendRequestID){
+  console.log('Accepting friend request ID:', friendRequestID);
+  return function(dispatch){
+    dispatch(startAcceptFriendRequest());
+    return acceptFriendRequestAJAX(friendRequestID, (response) => {
+      console.log('Accepted friend request');
+      console.log(response);
+      dispatch(finishAcceptFriendRequest());
+    });
+  }
+}
 
+export function startAcceptFriendRequest(){
+  return {
+    type: 'START_ACCEPT_FRIEND_REQUEST'
+  }
+}
 
+export function finishAcceptFriendRequest(){
+  return {
+    type: 'FINISH_ACCEPT_FRIEND_REQUEST'
+  }
+}
+
+/* Borrow book / Create Book Request async */
+export function startBookRequest(){
+  return {
+    type: 'START_BOOK_REQUEST'
+  }
+}
+
+export function finishBookRequest(){
+  return {
+    type: 'FINISH_BOOK_REQUEST'
+  }
+}
+
+export function borrowBook(bookId){
+  return function(dispatch){
+    dispatch(startBookRequest(bookId));
+    return createBookRequestAJAX(bookID, (response) => {
+      console.log('MADE BOOK REQUEST');
+      console.log(response);
+      dispatch(finishBookRequest());
+    });
+  }
+
+}

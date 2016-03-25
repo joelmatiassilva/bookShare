@@ -14,7 +14,7 @@ import {SignUpContainer} from './components/SignUp';
 import {SignInContainer} from './components/SignIn';
 import App from './components/App';
 import Explore from './components/Explore';
-import Dashboard from './components/Dashboard';
+import {DashboardContainer} from './components/Dashboard';
 import {setState} from './action_creators';
 import {Map} from 'immutable';
 
@@ -40,7 +40,7 @@ var Main = () => (
         <Route path="/signUp" component={SignUpContainer} />
       </Route>
       <Route path="/explore" component={Explore} />
-      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/dashboard" component={DashboardContainer} />
     </Router>
   </Provider>
 );

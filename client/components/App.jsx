@@ -1,5 +1,5 @@
 import SignIn from './SignIn';
-import NavBar from './NavBar';
+import {NavBarContainer} from './NavBar';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <NavBar/>
+        <NavBarContainer/>
         <div className="hero">
           <h1>Bookshare</h1>
           <h2>Start sharing books with your friends!</h2>
