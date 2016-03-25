@@ -42,10 +42,12 @@ _List means the immutable List Class_
     * myBooks (List)
     * myFriends (List)
     * foundBooks (List)
+    * foundUsers (List)
     * loading
       * myBook (bool)
       * myFriends (bool)
       * foundBooks (bool)
+      * foundUsers (bool)
   * explore
     * myFriendsBooks
 

@@ -97,6 +97,8 @@ module.exports.signIn = function(req, res){
 };
 
 module.exports.addFriend = function(req, res){
+  console.log('REQ BODY IN ADD FRIEND:');
+  console.log(req.body);
   User.findAll({where: {email: req.body.email}})
     .then(function(users){
       FriendRequest.create({ userId: req.currentUser.id, friendId: users[0].id, accepted: false })

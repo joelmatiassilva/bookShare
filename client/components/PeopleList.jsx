@@ -1,5 +1,5 @@
 import React from 'react';
-import PeopleListEntry from './PeopleListEntry';
+import {PeopleListEntryContainer} from './PeopleListEntry';
 class PeopleList extends React.Component{
   constructor(props){
     super(props);
@@ -9,7 +9,7 @@ class PeopleList extends React.Component{
     <h1>Found users with that query: </h1>
     <li>
     {this.props.peopleList ? 
-      this.props.peopleList.map((person) => <PeopleListEntry {...person}/>) : 
+      this.props.peopleList.map((person) => <PeopleListEntryContainer {...person}/>) : 
       null}
     </li>
   </div>  

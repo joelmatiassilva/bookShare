@@ -1,5 +1,6 @@
 import {searchGoogleBooksAJAX} from '../searchBooks';
 import {Map} from 'immutable'
+import {isNullUndefinedOrEmpty} from '../helpers/util';
 
 function setState(state = Map(), newState){
   return state.merge(newState);
@@ -7,7 +8,7 @@ function setState(state = Map(), newState){
 
 function startGettingMyFriends(state){
   //TODO start spinner
-  state.setIn(['loading','myFriends'])
+  state.setIn(['loading','myFriends']);
   return state;
 }
 
@@ -75,7 +76,6 @@ function addBookToMyShelf(state, book){
     image: book.image,
     title: book.title,
   }
-  console.log(bookToSave);
   $.ajax({
     url: '/api/books',
     method: 'POST',
@@ -97,8 +97,12 @@ function addBookToMyShelf(state, book){
 
 function requestBooks(state, query){
   //TODO set message or spinner to show user that we are fetching the books
-  state = state.set('foundBooks', []);
-  return state.setIn(['loading', 'foundBooks'], true);
+  if(isNullUndefinedOrEmpty(query)){
+    state = state.setIn(['loading', 'foundBooks'], false)
+  } else {
+    state = state.setIn(['loading', 'foundBooks'], true)
+  }
+  return state;
 }
 
 function receiveBooks(state, books){
@@ -114,13 +118,22 @@ function setFoundBooks(state, foundBooks){
 }
 
 
-function startSearchUsers(state){
-  return state.setIn(['loading', 'foundUsers'], true);
+function startSearchUsers(state, query){
+  if(isNullUndefinedOrEmpty(query)){
+    state = state.setIn(['loading', 'foundUsers'], false); 
+  } else {
+    state = state.setIn(['loading', 'foundUsers'], true); 
+  }
+  return state;
 }
 
 function finishSearchUsers(state, users){
   state = state.setIn(['loading', 'foundUsers'], false);
   return state.set('foundUsers', users);
+}
+
+function finishGettingFriendRequestToMe(state, friendRequests){
+  return state.set('friendRequests', friendRequests);
 }
 
 export default function(state = Map(), action){
@@ -142,9 +155,11 @@ export default function(state = Map(), action){
     case 'FINISH_GET_MY_FRIENDS':
       return finishGettingMyFriends(state, action.friends);
     case 'START_SEARCH_USERS':
-      return startSearchUsers(state);
+      return startSearchUsers(state, action.query);
     case 'FINISH_SEARCH_USERS':
       return finishSearchUsers(state, action.users);
+    case 'FINISH_GETTING_FRIEND_REQUESTS_TO_ME':
+      return finishGettingFriendRequestToMe(state, action.friendRequests);
     default:
       return setState(state);
   }

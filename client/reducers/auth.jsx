@@ -1,5 +1,19 @@
 import {hashHistory} from 'react-router';
 import {Map} from 'immutable';
+import {isNullUndefinedOrEmpty} from '../helpers/util';
+
+function getUserData(state){
+  var username = state.getIn(['userInfo', 'username']);
+  var email = state.getIn(['userInfo','email']);
+  var password = state.getIn(['userInfo','password']);
+  var passwordConfirmation = state.getIn(['userInfo','passwordConfirmation']);
+  return {
+    username: username,
+    email: email,
+    password: password,
+    passwordConfirmation: passwordConfirmation,
+  }
+}
 
 function setState(state = Map(), newState){
   return state.merge(newState);
@@ -23,18 +37,12 @@ function setEmail(state, email){
 
 function startSignIn(state, username, password){
   //TODO activate Spinner for better UX
-  console.log('is there a username error? :');
-  console.log('Username: ' + username);
-  if(username === undefined || username === null){
-    state = state.setIn(['displayValidationMessage', 'signIn', 'username'], true);
-  } else if(username.length === 0){
+  if(isNullUndefinedOrEmpty(username)){
     state = state.setIn(['displayValidationMessage', 'signIn', 'username'], true);
   } else {
     state = state.setIn(['displayValidationMessage', 'signIn', 'username'], false);
   }
-  if(password === undefined || password === null){
-    state = state.setIn(['displayValidationMessage', 'signIn', 'password'], true);
-  } else if(password.length === 0){
+  if(isNullUndefinedOrEmpty(password)){
     state = state.setIn(['displayValidationMessage', 'signIn', 'password'], true);
   } else {
     state = state.setIn(['displayValidationMessage', 'signIn', 'password'], false);
@@ -43,13 +51,30 @@ function startSignIn(state, username, password){
 }
 
 function endSignIn(state, token){
-  console.log('SET TOKEN TO :' + token);
   localStorage.setItem('token', token);
   hashHistory.push('/explore');
   return state.setIn(['userInfo', 'token'], token);
 }
 
-function regularSignUp(state, info){
+function startRegularSignUp(state){
+  var username = state.getIn(['userInfo', 'username']);
+  var email = state.getIn(['userInfo','email']);
+  var password = state.getIn(['userInfo','password']);
+  var passwordConfirmation = state.getIn(['userInfo','passwordConfirmation']);
+  if(isNullUndefinedOrEmpty(username)){
+    state = state.setIn(['displayValidationMessage', 'signIn', 'username'], true);
+  }
+  //TODO all the validations for email, password and passwordConfirmation
+  return state;
+}
+
+function finishRegularSignUp(state, token){
+  localStorage.setItem('token', res.token);
+  hashHistory.push('/explore');
+  console.log('GOT RESPONSE, USER SIGNED UP')
+}
+
+function regularSignUp(state){
   var username = state.getIn(['userInfo', 'username']);
   var email = state.getIn(['userInfo','email']);
   var password = state.getIn(['userInfo','password']);
@@ -86,6 +111,10 @@ export default function(state = Map(), action){
       return setEmail(state, action.email);
     case 'REGULAR_LOGIN':
       return regularLogin(state);
+    case 'START_REGULAR_SIGNUP':
+      return startRegularSignUp(state);
+    case 'FINISH_REGULAR_SIGNUP':
+      return finishRegularSignUp(state, action.token);
     case 'REGULAR_SIGNUP':
       return regularSignUp(state);
     case 'START_SIGNIN':
