@@ -7,6 +7,8 @@ var FriendRequest = models.FriendRequest;
 var Friends = models.Friends;
 var helper = require('../config/helpers.js');
 var bcrypt = require('bcrypt');
+var _ = require('underscore');
+var sequelize = require('sequelize');
 
 //Sign In
 module.exports.addUser = function(req, res){
@@ -58,26 +60,14 @@ module.exports.findFriends = function(req, res){
 };
 
 module.exports.getFriendRequests = function(req, res) {
-  FriendRequest.findAll({
-    where: { accepted: false , friendId: req.currentUser.id}
-    }).then(function(requests) {
-      requests = requests.map(function(request) {
-        return request.userId;
-      });
-      console.log("+++++++=====RRR ", requests);
-      User.findAll({ where: { id: requests }})
-      .then(function(users) {
-        users = users.map(function(user) {
-          return {
-            id: user.id,
-            name: user.username,
-            email: user.email
-          };
-        });
-        console.log("+++++++=====UUU ", users);
-        res.status(200).json(users);
-      }).catch(function(err) {res.status(500).json(err);});
-    }).catch(function(err) {res.status(500).json(err);});
+  models.sequelize.query('select u.id, u.username, u.email, accepted,\
+  fr.id as FriendRequestId from friendrequests as fr inner\
+  join users as u on fr.userId = u.id where fr.friendId = ?',
+  { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
+  .then(function (requests) {
+    console.log(requests);
+    res.status(200).json(requests);
+  }).catch(function(err) {console.log("ERROR2", err); res.status(500).json(err);});
 };
 
 module.exports.signIn = function(req, res){
