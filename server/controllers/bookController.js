@@ -88,11 +88,36 @@ module.exports.getMyBookRequests = function(req, res) {
   }).catch(function(err) {res.status(500).json(err);});
 };
 
+//get books requested from the user
 module.exports.getMyRequestedBooks = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
     b.description, b.image, b.categories, br.accepted, \
     br.id as BookRequestId from bookrequests as br inner\
   join books as b on br.bookId = b.id where br.ownerId = ? and br.accepted = 0',
+  { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
+  .then(function (requests) {
+    console.log(requests);
+    res.status(200).json(requests);
+  }).catch(function(err) {res.status(500).json(err);});
+};
+
+module.exports.getBorrowedBooks = function(req, res) {
+  models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
+    b.description, b.image, b.categories, br.accepted, \
+    br.id as BookRequestId from bookrequests as br inner\
+  join books as b on br.bookId = b.id where br.borrowerId = ? and br.accepted = 1',
+  { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
+  .then(function (requests) {
+    console.log(requests);
+    res.status(200).json(requests);
+  }).catch(function(err) {res.status(500).json(err);});
+};
+
+module.exports.getLentBooks = function(req, res) {
+  models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
+    b.description, b.image, b.categories, br.accepted, \
+    br.id as BookRequestId from bookrequests as br inner\
+  join books as b on br.bookId = b.id where br.ownerId = ? and br.accepted = 1',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
