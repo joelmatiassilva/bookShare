@@ -1,13 +1,14 @@
+import fetch from 'isomorphic-fetch'
 
 var headers = {
   authorization: localStorage.token
 }
 
-export function asyncSignIn(email, password, callback){
+export function asyncSignIn(usernameOrEmail, password, callback){
   $.ajax({
     url: '/api/signIn',
     method: 'POST',
-    data: {email: email, password: password},
+    data: {usernameOrEmail: usernameOrEmail, password: password},
     success: callback,
     error: function(err){
       console.log('ERROR, USER NOT LOGGED IN');
@@ -41,6 +42,37 @@ export function getMyFriendsAJAX(callback){
       console.error(err);
     }
   });
+}
+
+export function getMyFriendRequests(callback){
+  $.ajax({
+    url:'/api/friendRequests', 
+    method: 'GET',
+    headers: headers,
+    success: callback,
+    error: function(err){
+      console.log('ERROR while fetching user\'s friend Requests');
+      console.error(err);
+    }
+  });
+}
+
+export function makeFriendRequestAsync(email, callback){
+  $.ajax({
+    url: '/api/friendRequests',
+    method: 'POST',
+    headers: headers,
+    data: {
+      email: email 
+    },
+    success: function(res){
+      console.log('makeFriendRequest Response: '); 
+      console.log(res);
+    },
+    error: function(){
+      console.log('makeFriendRequest Error: ');
+    } 
+  })
 }
 
 export function searchUsersAJAX(query, callback){
