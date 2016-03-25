@@ -74,6 +74,24 @@ module.exports.acceptBookRequest = function(req, res){
   }).catch(function(err) {res.status(500).json(err);});
 };
 
+module.exports.getMyBookRequests = function(req, res) {
+  BookRequest.findAll({
+    where: { accepted: false, borrowerId: req.currentUser.id}
+  }).then(function (requests) {
+    requests = requests.map(function (request) {
+      return request.bookId;
+    });
+    Book.findAll({ where: { id: requests }})
+    .then(function(books) {
+      res.status(200).json(books);
+    }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});
+};
+
+module.exports.getMyRequestedBooks = function(req, res) {
+
+};
+
 module.exports.viewMyBook= function(req, res){
 // TODO
 };
