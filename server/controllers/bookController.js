@@ -133,6 +133,25 @@ module.exports.viewFriendBooks= function(req, res){
 // TODO
 };
 
+module.exports.returnBook = function (req, res){
+
+};
+
+module.exports.getAllBooksFromFriends = function (req, res) {
+    models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
+    b.description, b.image, b.categories, u.id as userId, u.username \
+    from users as u \
+    inner join friends as f on f.friendId = u.id \
+    inner join userbooks as ub on ub.userId = f.friendId\
+    inner join books as b on b.id = ub.bookId \
+    where f.userId = ?',
+  { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
+  .then(function (requests) {
+    console.log(requests);
+    res.status(200).json(requests);
+  }).catch(function(err) {res.status(500).json(err);});
+};
+
 module.exports.viewFriendsBooks= function(req, res){
   req.currentUser.getFriends().then(function(friends) {
     var friendIds = friends.map(function(friend) { return friend.id; });
