@@ -1,5 +1,11 @@
 import {searchGoogleBooksAJAX} from './searchBooks';
-import {asyncSignIn, getMyBooksAJAX, getMyFriendsAJAX, searchUsersAJAX} from './helpers/serverCalls';
+import {
+  asyncSignIn, 
+  getMyBooksAJAX, 
+  getMyFriendsAJAX, 
+  searchUsersAJAX, 
+  makeFriendRequestAsync,
+  getMyFriendRequests} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -104,8 +110,6 @@ export function facebookLogin(){
 
 /* -------- DASHBOARD ACTIONS  -------- */
 
-
-
 export function setFoundBooks(foundBooks){
   return {
     type: 'SET_FOUND_BOOKS',
@@ -117,6 +121,41 @@ export function searchBooks(query){
   return {
     type: 'SEARCH_BOOKS',
     query: query
+  }
+}
+
+/* Make friend request */
+export function makeFriendRequest(email){
+  return dispatch => {
+    return makeFriendRequestAsync(email, (response) => {
+      console.log(response);
+    });
+  }
+}
+
+/* Get friendRequests done to me */
+export function startGettingFriendRequestToMe(){
+  return {
+    type: 'START_GETTING_FRIEND_REQUESTS_TO_ME',
+  }
+}
+
+export function finishGettingFriendRequestToMe(friendRequests){
+  return {
+    type: 'FINISH_GETTING_FRIEND_REQUESTS_TO_ME',
+    friendRequests: friendRequests
+  }
+}
+
+export function getFriendRequestsDoneToMe(){
+  console.log('STARTING TO FETCH FRIEND REQUESTS DONE TO ME');
+  return dispatch => {
+    dispatch(startGettingFriendRequestToMe());
+    return getMyFriendRequests((friendRequests) => {
+      console.log('GOT THE FRIEND REQUESTS');
+      console.log(friendRequests);
+      dispatch(finishGettingFriendRequestToMe(friendRequests));
+    });
   }
 }
 
@@ -142,8 +181,7 @@ export function finishGettingMyBooks(books){
   }
 }
 
-/* Get my friend async actions */
-
+/* Get my friends async actions */
 export function getMyFriends(){
   return function(dispatch){
     dispatch(startGettingMyFriends());
@@ -167,8 +205,8 @@ export function finishGettingMyFriends(friends){
     friends: friends
   }
 }
-/* Search for friends async actions */
 
+/* Search for friends async actions */
 export function searchUsers(query){
   return function(dispatch){
     console.log('Searching friends with query: ' + query);
@@ -194,13 +232,14 @@ export function finishSearchUsers(users){
   }
 }
 
-/* Search for books async actions  */
+/* addBookToMySheklf action */
 export function addBookToMyShelf(book){
   return {
     type: 'ADD_BOOK_TO_SHELF',
     book: book
   }
 }
+/* Search for books async actions  */
 export function requestBooks(query){
   console.log('REQUESTING BOOKS for query: ' + query);
   return {
