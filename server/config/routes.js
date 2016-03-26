@@ -49,6 +49,10 @@ module.exports = function (app, express) {
   app.get('/api/lentBooks', bookController.getLentBooks);
   app.get('/api/borrowedBooks', bookController.getBorrowedBooks);
   app.get('/api/getAllBooksFromFriends', bookController.getAllBooksFromFriends);
+  app.post('/api/tradeRequests', bookController.makeTradeRequest);
+  app.post('/api/deleteTradeRequest', bookController.deleteTradeRequest);
+  app.post('/api/acceptTradeRequest', bookController.acceptTradeRequest);
+  app.post('/api/completeTradeRequest', bookController.completeTradeRequest);
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);

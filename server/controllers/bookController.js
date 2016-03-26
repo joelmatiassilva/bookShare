@@ -2,6 +2,7 @@ var models = require('../models');
 var Book = models.Book;
 var UserBook = models.UserBook;
 var BookRequest = models.BookRequest;
+var TradeRequest = models.TradeRequest;
 var sequelize = require('sequelize');
 
 module.exports.addBook = function(req, res){
@@ -125,16 +126,60 @@ module.exports.getLentBooks = function(req, res) {
   }).catch(function(err) {res.status(500).json(err);});
 };
 
+module.exports.makeTradeRequest = function(req, res){
+  TradeRequest.create({
+    bookId: req.body.bookId,
+    ownerId: req.body.ownerId,
+    requesterId: req.currentUser.id,
+    accepted: false})
+  .then(function() {
+    res.status(201).end();
+  })
+  .catch(function(err) {
+    res.status(500).json(err);
+  });
+};
+
+module.exports.deleteTradeRequest = function(req, res){
+  TradeRequest.findById(req.body.id)
+  .then(function (request) {
+    request.destroy();
+    res.status(201).end();
+  })
+  .catch(function(err) {res.status(500).json(err);});
+};
+
+module.exports.acceptTradeRequest = function(req, res){
+  TradeRequest.findById(req.body.id)
+  .then(function (request) {
+    request.update({accepted: true, otherBookId: req.body.otherBook})
+    .then(function () {
+      res.status(201).end();
+    }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});
+};
+
+module.exports.completeTradeRequest = function(req, res){
+  TradeRequest.findById(req.body.id)
+  .then(function (request) {
+    //switch books and delete request
+  })
+};
+
+module.exports.getTradeRequestsToFriends = function(req, res){
+
+};
+
+module.exports.getTradeRequestsToMe = function(req, res){
+
+};
+
 module.exports.viewMyBook= function(req, res){
 // TODO
 };
 
 module.exports.viewFriendBooks= function(req, res){
 // TODO
-};
-
-module.exports.returnBook = function (req, res){
-
 };
 
 module.exports.getAllBooksFromFriends = function (req, res) {
