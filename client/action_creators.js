@@ -9,7 +9,8 @@ import {
   acceptFriendRequestAJAX,
   createBookRequestAJAX,
   getExploreBooksAJAX,
-  getBookRequestsToUserAJAX} from './helpers/serverCalls';
+  getBookRequestsToUserAJAX,
+  acceptBookRequestAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -367,6 +368,32 @@ export function getBookRequestsToUser(){
       console.log('GOT REQUESTS');
       console.log(bookRequests);
       dispatch(finishGettingBookRequestsToUser(bookRequests));
+    });
+  }
+}
+
+/* Actions to accept book requests */
+export function startAcceptingBookRequest(){
+  return {
+    type: 'START_ACCEPTING_BOOK_REQUEST'
+  } 
+}
+
+
+export function finishAcceptingBookRequest(){
+  return {
+    type: 'FINISH_ACCEPTING_BOOK_REQUEST'
+  }
+}
+
+export function acceptBookRequest(requestId){
+  return function(dispatch){
+    console.log('Starting to ACCEPT bookRequests');
+    dispatch(startAcceptingBookRequest());
+    return acceptBookRequestAJAX(requestId, (bookRequests) => {
+      console.log('ACCEPTED BOOK REQUEST');
+      console.log(bookRequests);
+      dispatch(finishAcceptingBookRequest(bookRequests));
     });
   }
 }
