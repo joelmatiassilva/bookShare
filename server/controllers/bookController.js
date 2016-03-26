@@ -1,6 +1,7 @@
 var models = require('../models');
 var Book = models.Book;
 var UserBook = models.UserBook;
+var User = models.User;
 var BookRequest = models.BookRequest;
 var TradeRequest = models.TradeRequest;
 var sequelize = require('sequelize');
@@ -79,9 +80,10 @@ module.exports.acceptBookRequest = function(req, res){
 //get book requests where the user is borrowing from another person
 module.exports.getMyBookRequests = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
-    b.description, b.image, b.categories, br.accepted, \
+    b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
     br.id as BookRequestId from bookrequests as br inner\
-  join books as b on br.bookId = b.id where br.borrowerId = ? and br.accepted = 0',
+  join books as b on br.bookId = b.id\
+  inner join users as u on u.id = br.ownerId where br.borrowerId = ? and br.accepted = 0',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
@@ -92,9 +94,10 @@ module.exports.getMyBookRequests = function(req, res) {
 //get books requested from the user
 module.exports.getMyRequestedBooks = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
-    b.description, b.image, b.categories, br.accepted, \
+    b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
     br.id as BookRequestId from bookrequests as br inner\
-  join books as b on br.bookId = b.id where br.ownerId = ? and br.accepted = 0',
+  join books as b on br.bookId = b.id\
+  inner join users as u on u.id = br.borrowerId where br.ownerId = ? and br.accepted = 0',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
@@ -104,9 +107,10 @@ module.exports.getMyRequestedBooks = function(req, res) {
 
 module.exports.getBorrowedBooks = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
-    b.description, b.image, b.categories, br.accepted, \
+    b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
     br.id as BookRequestId from bookrequests as br inner\
-  join books as b on br.bookId = b.id where br.borrowerId = ? and br.accepted = 1',
+  join books as b on br.bookId = b.id\
+  inner join users as u on u.id = br.ownerId where br.borrowerId = ? and br.accepted = 1',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
@@ -116,9 +120,10 @@ module.exports.getBorrowedBooks = function(req, res) {
 
 module.exports.getLentBooks = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
-    b.description, b.image, b.categories, br.accepted, \
+    b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
     br.id as BookRequestId from bookrequests as br inner\
-  join books as b on br.bookId = b.id where br.ownerId = ? and br.accepted = 1',
+  join books as b on br.bookId = b.id\
+  inner join users as u on u.id = br.borrowerId where br.ownerId = ? and br.accepted = 1',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
@@ -160,10 +165,27 @@ module.exports.acceptTradeRequest = function(req, res){
 };
 
 module.exports.completeTradeRequest = function(req, res){
+
   TradeRequest.findById(req.body.id)
   .then(function (request) {
     //switch books and delete request
+    Book.findById(request.bookId)
+    .then(function(ownerBook) {
+      User.findById(request.requesterId)
+      .then(function (requestUser) {
+        requestUser.addBook(ownerBook);
+        Book.findById(request.otherBookId)
+        .then(function (tradeBook) {
+          User.findById(request.ownerId)
+          .then(function (ownerUser) {
+            ownerUser.addBook(tradeBook);
+            UserBook.findOne({ where : {}})
+          })
+        })
+      })
+    })
   })
+res.status(201).end();
 };
 
 module.exports.getTradeRequestsToFriends = function(req, res){
