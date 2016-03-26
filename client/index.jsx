@@ -13,7 +13,7 @@ import reducer from './reducers/index.jsx';
 import {SignUpContainer} from './components/SignUp';
 import {SignInContainer} from './components/SignIn';
 import App from './components/App';
-import Explore from './components/Explore';
+import {ExploreContainer} from './components/Explore';
 import {DashboardContainer} from './components/Dashboard';
 import {setState} from './action_creators';
 import {Map} from 'immutable';
@@ -39,7 +39,7 @@ var Main = () => (
         <Route path="/signIn" component={SignInContainer} />
         <Route path="/signUp" component={SignUpContainer} />
       </Route>
-      <Route path="/explore" component={Explore} />
+      <Route path="/explore" component={ExploreContainer} />
       <Route path="/dashboard" component={DashboardContainer} />
     </Router>
   </Provider>

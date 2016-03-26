@@ -44,8 +44,8 @@ module.exports = function (app, express) {
   app.post('/api/bookRequest', bookController.makeBookRequest);
   app.post('/api/deleteBookRequest', bookController.deleteBookRequest);
   app.post('/api/acceptBookRequest', bookController.acceptBookRequest);
-  app.get('/api/myBookRequests', bookController.getMyBookRequests);
-  app.get('/api/myRequestedBooks', bookController.getMyRequestedBooks);
+  app.get('/api/myBookRequests', bookController.getRequestedBooksToFriends);
+  app.get('/api/myRequestedBooks', bookController.getRequestedBooksToMe);
   app.get('/api/lentBooks', bookController.getLentBooks);
   app.get('/api/borrowedBooks', bookController.getBorrowedBooks);
   app.get('/api/getAllBooksFromFriends', bookController.getAllBooksFromFriends);

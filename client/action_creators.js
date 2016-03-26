@@ -7,7 +7,9 @@ import {
   makeFriendRequestAsync,
   getMyFriendRequests,
   acceptFriendRequestAJAX,
-  createBookRequestAJAX} from './helpers/serverCalls';
+  createBookRequestAJAX,
+  getExploreBooksAJAX,
+  getBookRequestsToUserAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -305,14 +307,66 @@ export function finishBookRequest(){
   }
 }
 
-export function borrowBook(bookId){
+export function borrowBook(data){
   return function(dispatch){
-    dispatch(startBookRequest(bookId));
-    return createBookRequestAJAX(bookID, (response) => {
+    dispatch(startBookRequest(data));
+    return createBookRequestAJAX(data, (response) => {
       console.log('MADE BOOK REQUEST');
       console.log(response);
       dispatch(finishBookRequest());
     });
   }
+}
 
+/* Get all books from my friends functions async */
+export function startGettingExploreBooks(){
+  return {
+    type: 'START_GETTING_EXPLORE_BOOKS'
+  } 
+}
+
+
+export function finishGettingExploreBooks(books){
+  return {
+    type: 'FINISH_GETTING_EXPLORE_BOOKS',
+    books: books
+  }
+}
+
+export function getExploreBooks(){
+  return function(dispatch){
+    // dispatch(startGettingExploreBooks());
+    return getExploreBooksAJAX((books) => {
+      console.log('GOT BOOKS');
+      console.log(books);
+      dispatch(finishGettingExploreBooks(books));
+    });
+  }
+}
+
+/* Actions to get book requests done to me */
+export function startGettingBookRequestsToUser(){
+  return {
+    type: 'START_GETTING_BOOK_REQUESTS_TO_USER'
+  } 
+}
+
+
+export function finishGettingBookRequestsToUser(bookRequests){
+  return {
+    type: 'FINISH_GETTING_BOOK_REQUESTS_TO_USER',
+    bookRequests: bookRequests
+  }
+}
+
+export function getBookRequestsToUser(){
+  return function(dispatch){
+    console.log('Starting to get bookRequestsToUser');
+    dispatch(startGettingBookRequestsToUser());
+    return getBookRequestsToUserAJAX((bookRequests) => {
+      console.log('GOT REQUESTS');
+      console.log(bookRequests);
+      dispatch(finishGettingBookRequestsToUser(bookRequests));
+    });
+  }
 }

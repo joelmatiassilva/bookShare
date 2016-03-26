@@ -152,6 +152,15 @@ function finishBookRequest(state){
   return state;
 }
 
+function startGettingBookRequestsToUser(state){
+  //TODO start spinner
+  return state;
+}
+
+function finishGettingBookRequestsToUser(state, bookRequests){
+  return state.setIn(['bookRequests','toUser'], bookRequests);
+}
+
 export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
@@ -182,6 +191,10 @@ export default function(state = Map(), action){
       return startBookRequest(state);
     case 'FINISH_BOOK_REQUEST':
       return finishBookRequest(state);
+    case 'START_GETTING_BOOK_REQUESTS_TO_USER':
+      return startGettingBookRequestsToUser(state);
+    case 'FINISH_GETTING_BOOK_REQUESTS_TO_USER':
+      return finishGettingBookRequestsToUser(state, action.bookRequests);
     default:
       return setState(state);
   }
