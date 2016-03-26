@@ -27,12 +27,14 @@ module.exports.viewMyShelf = function(req, res){
   req.currentUser.getBooks().then(function(books) {
     books = books.map(function(book) {
       return {
-        isbn: book.id,
-        author: book.authorm,
+        id: book.id,
+        isbn10: book.isbn10,
+        isbn13: book.isbn13,
+        authors: book.authors,
         title: book.title,
         description: book.description,
         image: book.image,
-        genre: book.genre
+        categories: book.categories
       };
     });
     res.status(200).json(books);
@@ -77,8 +79,8 @@ module.exports.acceptBookRequest = function(req, res){
   }).catch(function(err) {res.status(500).json(err);});
 };
 
-//get book requests where the user is borrowing from another person
-module.exports.getMyBookRequests = function(req, res) {
+//(USER requests from-> FRIEND)
+module.exports.getRequestedBooksToFriends = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
     b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
     br.id as BookRequestId from bookrequests as br inner\
@@ -91,8 +93,8 @@ module.exports.getMyBookRequests = function(req, res) {
   }).catch(function(err) {res.status(500).json(err);});
 };
 
-//get books requested from the user
-module.exports.getMyRequestedBooks = function(req, res) {
+//(FRIEND requests from -> USER)
+module.exports.getRequestedBooksToMe = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
     b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
     br.id as BookRequestId from bookrequests as br inner\

@@ -4,6 +4,8 @@ import {MyBooksContainer} from './MyBooks';
 import {MyFriendsContainer} from './MyFriends';
 import BooksLent from './BooksLent';
 import BooksBorrowed from './BooksBorrowed';
+import {BookRequestsToUser} from './BookRequestsToUser';
+
 import {hashHistory} from 'react-router';
 import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
@@ -67,6 +69,16 @@ var booksBorrowed = [
   }
 ];
 
+var bookRequests = [
+  {
+    id: 1
+  },{
+    id: 2
+  },{
+    id: 3
+  }
+];
+
 export const Dashboard = class Dashboard extends React.Component{
   constructor(props){
     super(props);
@@ -75,6 +87,7 @@ export const Dashboard = class Dashboard extends React.Component{
     if(!localStorage.token){
       hashHistory.push('/signIn');
     }
+    this.props.getBookRequestsToUser();
     console.log('Mounting Dashboard');
   }
   componentWillUpdate(){
@@ -88,6 +101,7 @@ export const Dashboard = class Dashboard extends React.Component{
         <MyFriendsContainer/>
         <BooksLent booksLent={booksLent}/>
         <BooksBorrowed booksBorrowed={booksBorrowed}/>
+        <BookRequestsToUser bookRequests={this.props.bookRequestsToUser}/>
       </div>
   }
 }
@@ -96,7 +110,8 @@ function mapStateToProps(state){
   return {
     friends: state.dashboard.get('friends'),
     foundUsers: state.dashboard.get('foundUsers'),
-    loading: state.dashboard.getIn(['loading', 'foundUsers'])
+    loading: state.dashboard.getIn(['loading', 'foundUsers']),
+    bookRequestsToUser: state.dashboard.getIn(['bookRequests', 'toUser'])
   }
 }
 

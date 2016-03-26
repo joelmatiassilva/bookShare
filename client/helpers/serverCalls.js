@@ -118,9 +118,12 @@ export function acceptFriendRequestAJAX(friendRequestID, callback){
 }
 
 export function createBookRequestAJAX(data, callback){
+  console.log('creating book request with data:');
+  console.log(data);
   $.ajax({
     url: '/api/bookRequest',
     method: 'POST',
+    headers: headers,
     data: {
       bookId: data.bookId,
       ownerId: data.ownerId
@@ -128,6 +131,34 @@ export function createBookRequestAJAX(data, callback){
     success: callback,
     error: function(error){
       console.error('serverCalls AJAX: Error while creating a book request');
+      console.error(error);
+    }
+  });
+}
+
+export function getExploreBooksAJAX(callback){
+  console.log('GETTING EXPLORE BOOKS');
+  $.ajax({
+    url: '/api/getAllBooksFromFriends',
+    method: 'GET',
+    headers: headers,
+    success: callback,
+    error: function(error){
+      console.error('serverCalls AJAX: Error while creating a book request');
+      console.error(error);
+    }
+  });
+}
+
+export function getBookRequestsToUserAJAX(callback){
+  console.log('BOOK REQUEST DONE TO ME');
+  $.ajax({
+    url: '/api/myRequestedBooks',
+    method: 'GET',
+    headers: headers,
+    success: callback,
+    error: function(error){
+      console.error('serverCalls AJAX: Error while fetching book requests done to user');
       console.error(error);
     }
   });

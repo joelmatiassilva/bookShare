@@ -25,10 +25,10 @@ export const BookListEntry = class BooksListEntry extends React.Component{
       {this.props.searchedBook ?
         <button onClick={() => {this.props.addBookToMyShelf(this.props); }}>Add to my Library</button>
         : null}
-      {this.props.ownerId ? <div>
-          <p>Owner: {this.props.ownerName}</p>
-          <button onClick={() => this.props.borrowBook({})}>Borrow book</button>
-        </div> : null}
+      { this.props.userId ? <div>
+          <p>Owner: {this.props.username}</p>
+          <button onClick={() => this.props.borrowBook({bookId: this.props.id, ownerId: this.props.userId})}>Borrow book</button>
+        </div> : null }
     </div>;
   }
 }
