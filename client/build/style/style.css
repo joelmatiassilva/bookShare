@@ -12,28 +12,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat; }
 
-input {
-  width: 400px;
-  padding: 5px;
-  font-size: 16px; }
-
-.tab {
-  display: inline-block; }
-
-.message, .error, .success, .alert {
-  font-size: 14px;
-  margin: 0px;
-  padding: 0px; }
-
-.error {
-  color: red; }
-
-.success {
-  color: green; }
-
-.alert {
-  color: yellow; }
-
+/*Navigation Bar*/
 nav li {
   display: inline-block;
   padding: 0 20px; }
@@ -49,6 +28,31 @@ nav {
 
 nav a {
   color: #29293d; }
+
+/*FIXME: input goes to?*/
+input {
+  width: 400px;
+  padding: 5px;
+  font-size: 16px; }
+
+/*Landing Page*/
+.tab {
+  display: inline-block;
+  padding: 2px; }
+
+.message, .error, .success, .alert {
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px; }
+
+.error {
+  color: red; }
+
+.success {
+  color: green; }
+
+.alert {
+  color: yellow; }
 
 .signin, .signin table {
   width: 400px;
@@ -68,8 +72,6 @@ nav a {
 
 .hero h1 {
   font-size: 40px; }
-  .hero h1 .signin h1 {
-    font-size: 15px; }
 
 .book-entry {
   width: 250px;

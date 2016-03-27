@@ -28,7 +28,7 @@ export const SignIn = class SignIn extends React.Component {
   }
   render() {
     return <div className="signin">
-    <h3>Sign In</h3>
+    <h3>Sign In Page</h3>
     <TabBar></TabBar>
     <form>
       <table>

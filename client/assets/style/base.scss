@@ -17,16 +17,42 @@ body {
   background-repeat: no-repeat;
 }
 
+/*Navigation Bar*/
+nav li{
+  display: inline-block;
+  padding: 0 20px;
+}
+nav ul{
+  float: left;
+}
 
+nav{
+  // background-color: #F0F8FF;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  color: $primary-font-color;
+  height: 20px;
+}
+nav a{
+ color: $primary-font-color;
+}
+
+/*FIXME: input goes to?*/
 input{
   width: 400px;
   padding: 5px;
   font-size: 16px;
 }
 
+/*Landing Page*/
+
+
+
 .tab {
   display: inline-block;
+  padding: 2px;
 }
+
 .message{
   font-size: 14px;
   margin: 0px;
@@ -48,24 +74,6 @@ input{
   color: $alert-color;
 }
 
-nav li{
-  display: inline-block;
-  padding: 0 20px;
-}
-nav ul{
-  float: left;
-}
-
-nav{
-  // background-color: #F0F8FF;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 10px;
-  color: $primary-font-color;
-  height: 20px;
-}
-nav a{
- color: $primary-font-color;
-}
 .signin, .signin table{
   width: 400px;
   margin: 0 auto;
@@ -83,14 +91,11 @@ nav a{
 .hero h3, .hero h2{
   margin: 10px;
 }
+
 .hero h1{
   font-size: 40px;
-
-.signin h1{
-  font-size: 15px;
 }
 
-}
 .book-entry{
   width: 250px;
   box-shadow: 5px 5px 5px #888888;
@@ -99,20 +104,25 @@ nav a{
   margin: 7px;
   border-radius: 5px;
 }
+
 .book-entry img{
   box-shadow: 5px 5px 5px #888888;
 }
+
 .book-list{
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
 .my-books preloader{
   width: 40px;
 }
+
 .requests-list li{
   width: 250px;
 }
+
 .requests-list{
   display: flex;
   flex-wrap: wrap;
