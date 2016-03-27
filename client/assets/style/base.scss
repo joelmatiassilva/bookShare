@@ -11,7 +11,7 @@ $alert-color: yellow;
 }
 body {
   // background-image: url('/assets/redHeart.jpg');
-  background-size: cover;
+  background-size: cover; //affects view on dashboard
   // min-width: 100%;
   // min-height: 120%;
   background-repeat: no-repeat;
@@ -24,6 +24,9 @@ input{
   font-size: 16px;
 }
 
+.tab {
+  display: inline-block;
+}
 .message{
   font-size: 14px;
   margin: 0px;

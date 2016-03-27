@@ -16,9 +16,9 @@ export const NavBar = class NavBar extends React.Component{
   }
   render(){
     return <nav>
-      {this.checkIfLoggedIn() ? 
+      {this.checkIfLoggedIn() ?
     <ul>
-      <span>Welcome, {localStorage.displayName}</span>
+      <span>Welcome, {localStorage.displayName}</span> //uppercase 1st char
       <li><Link to="/explore">Explore</Link></li>
       <li><Link to="/dashboard">Dashboard</Link></li>
       <li><a onClick={this.logout}>Logout</a></li>

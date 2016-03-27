@@ -17,6 +17,9 @@ input {
   padding: 5px;
   font-size: 16px; }
 
+.tab {
+  display: inline-block; }
+
 .message, .error, .success, .alert {
   font-size: 14px;
   margin: 0px;

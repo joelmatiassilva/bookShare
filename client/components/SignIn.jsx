@@ -2,9 +2,9 @@ import React from 'react';
 import {Link} from 'react-router'
 import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
-
 import NavBar from './NavBar';
 import Preloader from './Preloader';
+import {TabBar} from './TabBar';
 
 export const SignIn = class SignIn extends React.Component {
   constructor(props) {
@@ -29,6 +29,7 @@ export const SignIn = class SignIn extends React.Component {
   render() {
     return <div className="signin">
     <h3>Sign In</h3>
+    <TabBar></TabBar>
     <form>
       <table>
         <tr><td>User Name or Email</td></tr>
@@ -51,12 +52,11 @@ export const SignIn = class SignIn extends React.Component {
           </td>
         </tr>
         <tr><td><a href="login/facebook">Login with facebook</a></td></tr>
-        <Link to="/signUp">Go to SignUp</Link> 
       </table>
     </form>
   </div>;
-  }  
-} 
+  }
+}
 function mapStateToProps(state){
   return {
     usernameValidationMessage: state.auth.getIn(['displayValidationMessage', 'signIn', 'username']),
@@ -65,7 +65,7 @@ function mapStateToProps(state){
 }
 
 export const SignInContainer = connect(
-  mapStateToProps, 
+  mapStateToProps,
   actionCreators
 )(SignIn);
 

@@ -2,6 +2,7 @@ import {Link} from 'react-router';
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
+import {TabBar} from './TabBar';
 
 export const SignUp = class SignUp extends React.Component{
   constructor(props){
@@ -9,7 +10,8 @@ export const SignUp = class SignUp extends React.Component{
   }
   render(){
     return <div className="signup">
-    <h1>Sign Up Page</h1>
+    <h3>Sign Up Page</h3>
+    <TabBar></TabBar>
     <form>
       <fieldset>
         <p>
@@ -37,7 +39,6 @@ export const SignUp = class SignUp extends React.Component{
         </p>
       </fieldset>
     </form>
-    <Link to="/signIn">Go to Sign In</Link>
   </div>;
   }
 }
