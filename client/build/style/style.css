@@ -31,11 +31,33 @@ nav a {
 
 /*FIXME: input goes to?*/
 input {
-  width: 400px;
+  width: 300px;
   padding: 5px;
   font-size: 16px; }
 
 /*Landing Page*/
+.signin form,
+.signup form {
+  width: 415px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto; }
+  .signin form div,
+  .signup form div {
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  .signin form label,
+  .signup form label {
+    display: inline-block;
+    width: 100px; }
+  .signin form .submitBtn,
+  .signup form .submitBtn {
+    text-align: center; }
+    .signin form .submitBtn input,
+    .signup form .submitBtn input {
+      display: inline-block;
+      width: 125px; }
+
 .tab {
   display: inline-block;
   padding: 2px; }

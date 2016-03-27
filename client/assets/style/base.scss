@@ -1,10 +1,11 @@
 @import 'reset';
-
 $primary-color: #333;
 $primary-font-color: #29293d;
 $error-color: red;
 $success-color: green;
 $alert-color: yellow;
+$input-width: 300px;
+$label-width: 100px;
 
 *{
   font-family: Tahoma;
@@ -39,14 +40,41 @@ nav a{
 
 /*FIXME: input goes to?*/
 input{
-  width: 400px;
+  width: 300px;
   padding: 5px;
   font-size: 16px;
 }
 
 /*Landing Page*/
+.signin,
+.signup {
+  form {
+    width: $input-width+$label-width+15px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+
+    div{
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    label{
+      display: inline-block;
+      width: 100px;
+    }
+    .submitBtn {
+      text-align: center;
+      input{
+        display: inline-block;
+        width: 125px;
 
 
+      }
+    }
+  }
+
+}
 
 .tab {
   display: inline-block;
