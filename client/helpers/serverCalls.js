@@ -21,7 +21,9 @@ export function getMyBooksAJAX(callback){
   $.ajax({
     url: '/api/books',
     method: 'GET',
-    headers: headers,
+    headers: {
+      authorization: localStorage.token
+    },
     success: callback,
     error: function(err){
       console.log('ERROR while fetching my books');
@@ -34,7 +36,9 @@ export function getMyFriendsAJAX(callback){
   $.ajax({
     url: '/api/friends/',
     method: 'GET',
-    headers: headers,
+    headers: {
+      authorization: localStorage.token
+    },
     success: callback,
     error: function(err){
       console.log('ERROR while fetching user\'s friends');
@@ -47,7 +51,9 @@ export function getMyFriendRequests(callback){
   $.ajax({
     url:'/api/friendRequests', 
     method: 'GET',
-    headers: headers,
+    headers: {
+      authorization: localStorage.token
+    },
     success: callback,
     error: function(err){
       console.log('ERROR while fetching user\'s friend Requests');
@@ -60,7 +66,9 @@ export function makeFriendRequestAsync(email, callback){
   $.ajax({
     url: '/api/friendRequests',
     method: 'POST',
-    headers: headers,
+    headers: {
+      authorization: localStorage.token
+    },
     data: {
       email: email 
     },
@@ -78,7 +86,9 @@ export function searchUsersAJAX(query, callback){
   $.ajax({
     url: '/api/findFriends/' + query,
     method: 'GET',
-    headers: headers,
+    headers: {
+      authorization: localStorage.token
+    },
     success: callback,
     error: function(err){
       console.log('ERROR FINDING USERS WITH QUERY', query);
@@ -108,7 +118,9 @@ export function acceptFriendRequestAJAX(friendRequestID, callback){
     url: '/api/acceptFriendRequest',
     method: 'POST',
     data: { id: friendRequestID },
-    headers: headers,
+    headers: {
+      authorization: localStorage.token
+    },
     success: callback,
     error: function(err){
       console.log('Error while accepting friendRequest');
@@ -123,7 +135,9 @@ export function createBookRequestAJAX(data, callback){
   $.ajax({
     url: '/api/bookRequest',
     method: 'POST',
-    headers: headers,
+    headers: {
+      authorization: localStorage.token
+    },
     data: {
       bookId: data.bookId,
       ownerId: data.ownerId
@@ -138,10 +152,14 @@ export function createBookRequestAJAX(data, callback){
 
 export function getExploreBooksAJAX(callback){
   console.log('GETTING EXPLORE BOOKS');
+  console.log('Token' + localStorage.token);
+  console.log('Headers token' + headers.token);
   $.ajax({
     url: '/api/getAllBooksFromFriends',
     method: 'GET',
-    headers: headers,
+    headers: {
+      authorization: localStorage.token
+    },
     success: callback,
     error: function(error){
       console.error('serverCalls AJAX: Error while creating a book request');
@@ -155,10 +173,31 @@ export function getBookRequestsToUserAJAX(callback){
   $.ajax({
     url: '/api/myRequestedBooks',
     method: 'GET',
-    headers: headers,
+    headers: {
+      authorization: localStorage.token
+    },
     success: callback,
     error: function(error){
       console.error('serverCalls AJAX: Error while fetching book requests done to user');
+      console.error(error);
+    }
+  });
+}
+
+export function acceptBookRequestAJAX(requestId, callback){
+  console.log('ACCEPTING REQUESTID: '+ requestId);
+  $.ajax({
+    url: '/api/acceptBookRequest',
+    method: 'POST',
+    headers: {
+      authorization: localStorage.token
+    },
+    data: {
+      id: requestId
+    },
+    success: callback,
+    error: function(error){
+      console.error('serverCalls AJAX: Error while accepting book request done to user');
       console.error(error);
     }
   });

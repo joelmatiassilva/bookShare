@@ -1,5 +1,4 @@
 import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {Link} from 'react-router'
 import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
@@ -10,7 +9,6 @@ import Preloader from './Preloader';
 export const SignIn = class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
       username: '',
       password: ''
@@ -38,11 +36,13 @@ export const SignIn = class SignIn extends React.Component {
           <input onChange={(event) => this.changeUsername(event.target.value)} type="text" name="username" placeholder="Please enter your username"/>
           { this.props.usernameValidationMessage ? <label className="message error">Please enter a username</label> : null }
         </td></tr>
-        <tr><td>Password</td></tr>
+        <tr>
+          <td>Password</td>
+        </tr>
         <tr>
           <td>
             <input onChange={(event)=>this.changePassword(event.target.value)} type="password" placeholder="Please enter your password"/>
-            { this.props.passwordValidationMessage ?<label className="message error">Please enter a password</label> : null }
+            { this.props.passwordValidationMessage ? <label className="message error">Please enter a password</label> : null }
           </td>
         </tr>
         <tr>
@@ -50,7 +50,6 @@ export const SignIn = class SignIn extends React.Component {
             <input onClick={(event) =>{event.preventDefault();this.props.regularSignIn(this.state.username, this.state.password)} }type="submit" value="Log in"/>
           </td>
         </tr>
-        <Preloader/>
         <tr><td><a href="login/facebook">Login with facebook</a></td></tr>
         <Link to="/signUp">Go to SignUp</Link> 
       </table>

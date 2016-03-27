@@ -84,4 +84,12 @@ nav a {
 .my-books preloader {
   width: 40px; }
 
+.requests-list li {
+  width: 250px; }
+
+.requests-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; }
+
 /*# sourceMappingURL=style.css.map */

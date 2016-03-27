@@ -1,16 +1,16 @@
 import React from 'react';
 
-import {BookRequestListEntry} from './BookRequestListEntry';
+import {BookRequestListEntryContainer} from './BookRequestListEntry';
 
 export const BookRequestsToUser = class BookRequestsToUser extends React.Component{
   render(){
-    return <div>
+    return <div className="book-requests">
       <h2>Books your friends want to borrow</h2>
-      <ul class="request-list">
+      <ul className="requests-list">
       { 
         this.props.bookRequests ? 
         this.props.bookRequests.map((bookRequest) => {
-          return <BookRequestListEntry {...bookRequest}/>
+          return <BookRequestListEntryContainer {...bookRequest}/>
       }) : null}
       </ul>
     </div>
