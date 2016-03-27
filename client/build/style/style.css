@@ -6,7 +6,7 @@ ol {
   padding: 0; }
 
 * {
-  font-family: Tahoma; }
+  font-family: "Courier New"; }
 
 body {
   background-size: cover;
@@ -23,11 +23,11 @@ nav ul {
 nav {
   background-color: rgba(0, 0, 0, 0.7);
   padding: 10px;
-  color: #29293d;
+  color: #ffffff;
   height: 20px; }
 
 nav a {
-  color: #29293d; }
+  color: #ffffff; }
 
 /*FIXME: input goes to?*/
 input {
@@ -56,11 +56,18 @@ input {
     .signin form .submitBtn input,
     .signup form .submitBtn input {
       display: inline-block;
-      width: 125px; }
+      width: 125px;
+      font-family: "Courier New"; }
+
+.tabBar {
+  width: 415px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto; }
 
 .tab {
   display: inline-block;
-  padding: 2px; }
+  padding-right: 5px; }
 
 .message, .error, .success, .alert {
   font-size: 14px;
@@ -76,10 +83,6 @@ input {
 .alert {
   color: yellow; }
 
-.signin, .signin table {
-  width: 400px;
-  margin: 0 auto; }
-
 .hero {
   text-align: center;
   color: #29293d;
@@ -88,9 +91,6 @@ input {
   padding-left: 50px auto;
   margin: 50px auto;
   padding: 20px; }
-
-.hero h3, .hero h2 {
-  margin: 10px; }
 
 .hero h1 {
   font-size: 40px; }

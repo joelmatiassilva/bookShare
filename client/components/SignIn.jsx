@@ -2,9 +2,9 @@ import React from 'react';
 import {Link} from 'react-router'
 import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
+import {TabBar} from './TabBar';
 import NavBar from './NavBar';
 import Preloader from './Preloader';
-import {TabBar} from './TabBar';
 
 export const SignIn = class SignIn extends React.Component {
   constructor(props) {
@@ -30,28 +30,25 @@ export const SignIn = class SignIn extends React.Component {
     return <div className="signin">
     <TabBar></TabBar>
     <form>
-      <table>
-        <tr><td>User Name or Email</td></tr>
-        <tr><td>
-          <input onChange={(event) => this.changeUsername(event.target.value)} type="text" name="username" placeholder="Please enter your username"/>
-          { this.props.usernameValidationMessage ? <label className="message error">Please enter a username</label> : null }
-        </td></tr>
-        <tr>
-          <td>Password</td>
-        </tr>
-        <tr>
-          <td>
-            <input onChange={(event)=>this.changePassword(event.target.value)} type="password" placeholder="Please enter your password"/>
-            { this.props.passwordValidationMessage ? <label className="message error">Please enter a password</label> : null }
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input onClick={(event) =>{event.preventDefault();this.props.regularSignIn(this.state.username, this.state.password)} }type="submit" value="Log in"/>
-          </td>
-        </tr>
-        <tr><td><a href="login/facebook">Login with facebook</a></td></tr>
-      </table>
+      <div>
+        <label htmlFor="user">Username</label>
+        <input onChange={(event) => this.changeUsername(event.target.value)} type="text" name="user" id="user" placeholder="Enter a username or email"/>
+        { this.props.usernameValidationMessage ? <label className="message error">Please enter a username</label> : null }
+      </div>
+
+      <div>
+        <label htmlFor="signInPassword">Password</label>
+        <input onChange={(event)=>this.changePassword(event.target.value)} type="password" id="signInPassword" placeholder="Enter your password"/>
+        { this.props.passwordValidationMessage ? <label className="message error">Please enter a password</label> : null }
+      </div>
+
+      <div className="submitBtn">
+        <input onClick={(event) =>{event.preventDefault();this.props.regularSignIn(this.state.username, this.state.password)} }type="submit" value="Log in"/>
+      </div>
+
+      {/*<div className="submitBtn">
+        <a href="login/facebook">Login with facebook</a>
+      </div>*/}
     </form>
   </div>;
   }

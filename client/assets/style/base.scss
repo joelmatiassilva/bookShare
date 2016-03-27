@@ -6,9 +6,11 @@ $success-color: green;
 $alert-color: yellow;
 $input-width: 300px;
 $label-width: 100px;
+$segment: $input-width+$label-width+15px;
+
 
 *{
-  font-family: Tahoma;
+  font-family: "Courier New";
 }
 body {
   // background-image: url('/assets/redHeart.jpg');
@@ -31,11 +33,11 @@ nav{
   // background-color: #F0F8FF;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 10px;
-  color: $primary-font-color;
+  color: #ffffff;
   height: 20px;
 }
 nav a{
- color: $primary-font-color;
+ color: #ffffff;
 }
 
 /*FIXME: input goes to?*/
@@ -49,7 +51,7 @@ input{
 .signin,
 .signup {
   form {
-    width: $input-width+$label-width+15px;
+    width: $segment;
     text-align: left;
     margin-left: auto;
     margin-right: auto;
@@ -68,18 +70,25 @@ input{
       input{
         display: inline-block;
         width: 125px;
-
+        font-family: "Courier New";
 
       }
     }
   }
+}
 
+.tabBar{
+  width: $segment;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tab {
   display: inline-block;
-  padding: 2px;
+  padding-right: 5px;
 }
+
 
 .message{
   font-size: 14px;
@@ -102,11 +111,6 @@ input{
   color: $alert-color;
 }
 
-.signin, .signin table{
-  width: 400px;
-  margin: 0 auto;
-}
-
 .hero{
   text-align: center;
   color: $primary-font-color;
@@ -115,9 +119,6 @@ input{
   padding-left: 50px auto;
   margin: 50px auto;
   padding: 20px;
-}
-.hero h3, .hero h2{
-  margin: 10px;
 }
 
 .hero h1{
