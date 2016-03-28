@@ -23,9 +23,8 @@ module.exports.addUser = function(req, res){
     }).then(function(){
       var token = helper.encode(user);
       res.status(201).json({token: token});
-    });
-  })
-  .catch(function(err) {res.status(500).json(err);});
+    }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json({message: "User/Email already exists"});});
 };
 
 module.exports.facebookSignIn = function(req, res){
@@ -78,14 +77,14 @@ module.exports.getFriendRequests = function(req, res) {
 module.exports.signIn = function(req, res){
   User.findOne({where: {$or: [{email: req.body.usernameOrEmail}, {username: req.body.usernameOrEmail}]}} )
     .then(function(user){
-      if (!user){ res.status(404).end(); return;}
+      if (!user){ res.status(400).json({message: "Invalid username of email"}); return;}
       user.comparePassword(req.body.password)
       .then(function(isMatch) {
         if(isMatch){
           var token = helper.encode(user);
           res.status(200).json({token: token, username: user.username} );
         } else{
-          res.status(401).end(); return;
+          res.status(401).json({message: "Invaild password"}); return;
         }
       })
       .catch(function(err) {res.status(500).json(err);});
