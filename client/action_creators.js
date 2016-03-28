@@ -464,10 +464,8 @@ export function getBooksBorrowed(){
 export function declineFriendRequest(friendRequestID){
   return function(dispatch){
     return declineFriendRequestAJAX(friendRequestID, (response) => {
-      console.log('SUCCESSFULLY DECLINED FRIEND REQUEST');
-      console.log(response);
-      var friendRequestId = response.id;
-      dispatch(finishDeclineFriendRequest(response.id));
+      console.log('SUCCESSFULLY DECLINED FRIEND REQUEST', friendRequestID);
+      dispatch(finishDeclineFriendRequest(friendRequestID));
     });
   }
 }
