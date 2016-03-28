@@ -6,8 +6,8 @@ import * as actionCreators from '../action_creators';
 export const BookListEntry = class BooksListEntry extends React.Component{
   formatDescription(){
     var description = this.props.description;
-    if(description && description.length > 150){
-      return description.slice(0, 150) + '...more';
+    if(description && description.length > 400){
+      return description.slice(0, 400) + ' ...more';
     }
     return description;
   }

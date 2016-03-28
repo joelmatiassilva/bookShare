@@ -40,12 +40,12 @@ export const MyLibrary = class MyLibrary extends React.Component{
 
 function mapStateToProps(state){
   return {
-    friends: state.dashboard.get('friends'),
-    foundUsers: state.dashboard.get('foundUsers'),
-    loading: state.dashboard.getIn(['loading', 'foundUsers']),
-    bookRequestsToUser: state.dashboard.getIn(['bookRequests', 'toUser']),
-    booksLent: state.dashboard.get('booksLent'),
-    booksBorrowed: state.dashboard.get('booksBorrowed'),
+    friends: state.myLibrary.get('friends'),
+    foundUsers: state.myLibrary.get('foundUsers'),
+    loading: state.myLibrary.getIn(['loading', 'foundUsers']),
+    bookRequestsToUser: state.myLibrary.getIn(['bookRequests', 'toUser']),
+    booksLent: state.myLibrary.get('booksLent'),
+    booksBorrowed: state.myLibrary.get('booksBorrowed')
   }
 }
 
