@@ -93,18 +93,27 @@ module.exports.signIn = function(req, res){
     .catch(function(err) {res.status(500).json(err);});
 };
 
+//responds with a 201 when successfully added and a 400 when request already exists
 module.exports.addFriend = function(req, res){
   console.log('REQ BODY IN ADD FRIEND:');
   console.log(req.body);
   User.findAll({where: {email: req.body.email}})
     .then(function(users){
-      FriendRequest.create({ userId: req.currentUser.id, friendId: users[0].id, accepted: false })
-      .then(function(){
-        res.status(201).end();
+      FriendRequest.findOrCreate({where: {userId: req.currentUser.id, friendId: users[0].id},
+        defaults: {
+          userId: req.currentUser.id,
+          friendId: users[0].id,
+          accepted: false
+        }
       })
-      .catch(function(err) {res.status(500).json(err);});
-    })
-    .catch(function(err) {res.status(500).json(err);});
+      .then(function (result) {
+        console.log("result[1] ", result[1]);
+        if (result[1]){
+          res.status(201).end();
+        }
+        res.status(400).end();
+      }).catch(function(err) {res.status(500).json(err);});
+    }).catch(function(err) {res.status(500).json(err);});
 };
 
 module.exports.acceptFriendRequest = function(req, res) {
