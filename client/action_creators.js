@@ -1,9 +1,9 @@
 import {searchGoogleBooksAJAX} from './searchBooks';
 import {
-  asyncSignIn, 
-  getMyBooksAJAX, 
-  getMyFriendsAJAX, 
-  searchUsersAJAX, 
+  asyncSignIn,
+  getMyBooksAJAX,
+  getMyFriendsAJAX,
+  searchUsersAJAX,
   makeFriendRequestAsync,
   getMyFriendRequests,
   acceptFriendRequestAJAX,
@@ -117,8 +117,7 @@ export function facebookLogin(){
   }
 }
 
-/* -------- DASHBOARD ACTIONS  -------- */
-
+/*------------MyLIBARY AND FRIENDS ACTIONS------------*/
 export function setFoundBooks(foundBooks){
   return {
     type: 'SET_FOUND_BOOKS',
@@ -214,7 +213,12 @@ export function finishGettingMyFriends(friends){
 
 /* Search for friends async actions */
 export function searchUsers(query){
+
   return function(dispatch){
+    if (query.length === 0) {
+      dispatch(finishSearchUsers(undefined));
+      return;
+    }
     console.log('Searching friends with query: ' + query);
     dispatch(startSearchUsers(query));
     return searchUsersAJAX(query,(response) => {
@@ -236,7 +240,7 @@ export function finishSearchUsers(users){
   }
 }
 
-/* addBookToMySheklf action */
+/* addBookToMyShelf action */
 export function addBookToMyShelf(book){
   return {
     type: 'ADD_BOOK_TO_SHELF',
@@ -263,6 +267,10 @@ export function receiveBooks(books){
 
 export function fetchBooks(query){
   return function(dispatch){
+    if (query.length === 0) {
+      dispatch(receiveBooks([]));
+      return;
+    }
     dispatch(requestBooks(query));
     return searchGoogleBooksAJAX(query, (res) => {
       dispatch(receiveBooks(res));
@@ -323,7 +331,7 @@ export function borrowBook(data){
 export function startGettingExploreBooks(){
   return {
     type: 'START_GETTING_EXPLORE_BOOKS'
-  } 
+  }
 }
 
 
@@ -349,7 +357,7 @@ export function getExploreBooks(){
 export function startGettingBookRequestsToUser(){
   return {
     type: 'START_GETTING_BOOK_REQUESTS_TO_USER'
-  } 
+  }
 }
 
 
@@ -376,7 +384,7 @@ export function getBookRequestsToUser(){
 export function startAcceptingBookRequest(){
   return {
     type: 'START_ACCEPTING_BOOK_REQUEST'
-  } 
+  }
 }
 
 
