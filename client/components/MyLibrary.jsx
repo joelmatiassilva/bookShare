@@ -20,6 +20,7 @@ export const MyLibrary = class MyLibrary extends React.Component{
     this.props.getBookRequestsToUser();
     this.props.getBooksLent();
     this.props.getBooksBorrowed();
+    this.props.getMyBooks();
   }
   componentWillUpdate(){
     console.log('Updating MyLibrary');
@@ -29,7 +30,7 @@ export const MyLibrary = class MyLibrary extends React.Component{
         <NavBarContainer/>
         <div className="innerDiv">
           <BookRequestsToUser bookRequests={this.props.bookRequestsToUser}/>
-          <MyBooksContainer/>
+          <MyBooksContainer myBooks={this.props.myBooks}/>
           <BooksBorrowed booksBorrowed={this.props.booksBorrowed}/>
           <BooksLent booksLent={this.props.booksLent}/>
         </div>
@@ -40,12 +41,10 @@ export const MyLibrary = class MyLibrary extends React.Component{
 
 function mapStateToProps(state){
   return {
-    friends: state.myLibrary.get('friends'),
-    foundUsers: state.myLibrary.get('foundUsers'),
-    loading: state.myLibrary.getIn(['loading', 'foundUsers']),
     bookRequestsToUser: state.myLibrary.getIn(['bookRequests', 'toUser']),
     booksLent: state.myLibrary.get('booksLent'),
-    booksBorrowed: state.myLibrary.get('booksBorrowed')
+    booksBorrowed: state.myLibrary.get('booksBorrowed'),
+    myBooks: state.myLibrary.get('myBooks')
   }
 }
 
