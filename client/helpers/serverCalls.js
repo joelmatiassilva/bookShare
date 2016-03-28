@@ -202,3 +202,33 @@ export function acceptBookRequestAJAX(requestId, callback){
     }
   });
 }
+
+export function getBooksLentAJAX(callback){
+  $.ajax({
+    url: '/api/lentBooks',
+    method: 'GET',
+    headers: {
+      authorization: localStorage.token
+    },
+    success: callback,
+    error: function(error){
+      console.error('serverCalls AJAX: Error while fetching books lent');
+      console.error(error);
+    }
+  });
+}
+
+export function getBooksBorrowedAJAX(callback){
+  $.ajax({
+    url: '/api/borrowedBooks',
+    method: 'GET',
+    headers: {
+      authorization: localStorage.token
+    },
+    success: callback,
+    error: function(error){
+      console.error('serverCalls AJAX: Error while fetching books borrowed');
+      console.error(error);
+    }
+  });
+}
