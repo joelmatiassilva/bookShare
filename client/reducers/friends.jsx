@@ -38,6 +38,28 @@ function finishGettingFriendRequestToMe(state, friendRequests){
   return state.set('friendRequests', friendRequests);
 }
 
+function finishDeclineFriendRequest(state, friendRequestId){
+  var friendRequests = state.get('friendRequests');
+  var newFriendRequests = [];
+  for(var i=0; i < friendRequests.length; i++){
+    if(friendRequests[i].FriendRequestId !== friendRequestId){
+      newFriendRequests.push(friendRequests[i]);
+    }
+  }
+  return state.set('friendRequests', newFriendRequests);
+}
+
+function finishAcceptFriendRequest(state, friendRequestId){
+  var friendRequests = state.get('friendRequests');
+  var newFriendRequests = [];
+  for(var i=0; i < friendRequests.length; i++){
+    if(friendRequests[i].FriendRequestId !== friendRequestId){
+      newFriendRequests.push(friendRequests[i]);
+    }
+  }
+  return state.set('friendRequests', newFriendRequests); 
+}
+
 export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
@@ -52,6 +74,10 @@ export default function(state = Map(), action){
       return finishSearchUsers(state, action.users);
     case 'FINISH_GETTING_FRIEND_REQUESTS_TO_ME':
       return finishGettingFriendRequestToMe(state, action.friendRequests);
+    case 'FINISH_DECLINE_FRIEND_REQUEST':
+      return finishDeclineFriendRequest(state, action.friendRequestId);
+    case 'FINISH_ACCEPT_FRIEND_REQUEST':
+      return finishAcceptFriendRequest(state, action.friendRequestId);
     default:
       return setState(state);
   }
