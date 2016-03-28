@@ -10,7 +10,9 @@ import {
   createBookRequestAJAX,
   getExploreBooksAJAX,
   getBookRequestsToUserAJAX,
-  acceptBookRequestAJAX} from './helpers/serverCalls';
+  acceptBookRequestAJAX,
+  getBooksLentAJAX,
+  getBooksBorrowedAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -402,6 +404,56 @@ export function acceptBookRequest(requestId){
       console.log('ACCEPTED BOOK REQUEST');
       console.log(bookRequests);
       dispatch(finishAcceptingBookRequest(bookRequests));
+    });
+  }
+}
+
+/* Action to get books lent */
+export function startGettingBooksLent(){
+  return {
+    type: 'START_GETTING_BOOKS_LENT'
+  }
+}
+
+export function finishGettingBooksLent(books){
+  return {
+    type: 'FINISH_GETTING_BOOKS_LENT',
+    books: books
+  }
+}
+
+export function getBooksLent(){
+  return function(dispatch){
+    dispatch(startGettingBooksLent());
+    return getBooksLentAJAX((books) => {
+      console.log('GOT BOOKS LENT: ');
+      console.log(books);
+      dispatch(finishGettingBooksLent(books));
+    });
+  }
+}
+
+/* Action to get books borrowed */
+export function startGettingBooksBorrowed(){
+  return {
+    type: 'START_GETTING_BOOKS_BORROWED'
+  }
+}
+
+export function finishGettingBooksBorrowed(books){
+  return {
+    type: 'FINISH_GETTING_BOOKS_BORROWED',
+    books: books
+  }
+}
+
+export function getBooksBorrowed(){
+  return function(dispatch){
+    dispatch(startGettingBooksBorrowed());
+    return getBooksBorrowedAJAX((books) => {
+      console.log('GOT BOOKS BORROWED: ');
+      console.log(books);
+      dispatch(finishGettingBooksBorrowed(books));
     });
   }
 }
