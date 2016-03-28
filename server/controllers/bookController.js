@@ -159,7 +159,7 @@ module.exports.deleteTradeRequest = function(req, res){
 module.exports.acceptTradeRequest = function(req, res){
   TradeRequest.findById(req.body.id)
   .then(function (request) {
-    request.update({accepted: true, otherBookId: req.body.otherBook})
+    request.update({accepted: true, otherBookId: req.body.otherBookId})
     .then(function () {
       res.status(201).end();
     }).catch(function(err) {res.status(500).json(err);});
@@ -181,12 +181,20 @@ module.exports.completeTradeRequest = function(req, res){
           User.findById(request.ownerId)
           .then(function (ownerUser) {
             ownerUser.addBook(tradeBook);
-            UserBook.findOne({ where : {}})
-          })
-        })
-      })
-    })
-  })
+            UserBook.findOne({ where : {userId: ownerUser.id, bookId: ownerBook.id}})
+            .then(function (userbook) {
+              userbook.destroy();
+              UserBook.findOne({ where : {userId: requestUser.id, bookId: tradeBook.id}})
+              .then(function (userbookTwo) {
+                userbookTwo.destroy();
+                request.destroy();
+              }).catch(function(err) {res.status(500).json(err);});
+            }).catch(function(err) {res.status(500).json(err);});
+          }).catch(function(err) {res.status(500).json(err);});
+        }).catch(function(err) {res.status(500).json(err);});
+      }).catch(function(err) {res.status(500).json(err);});
+    }).catch(function(err) {res.status(500).json(err);});
+  }).catch(function(err) {res.status(500).json(err);});
 res.status(201).end();
 };
 

@@ -71,7 +71,6 @@ module.exports.getFriendRequests = function(req, res) {
 };
 
 module.exports.signIn = function(req, res){
-  console.log("right here ====> ", req.body.usernameOrEmail);
   User.findOne({where: {$or: [{email: req.body.usernameOrEmail}, {username: req.body.usernameOrEmail}]}} )
     .then(function(user){
       if (!user){ res.status(404).end(); return;}
