@@ -94,11 +94,14 @@ export const MyLibrary = class MyLibrary extends React.Component{
   render(){
     return <div>
         <NavBarContainer/>
-        <MyBooksContainer/>
-        <BooksLent booksLent={booksLent}/>
-        <BooksBorrowed booksBorrowed={booksBorrowed}/>
-        <BookRequestsToUser bookRequests={this.props.bookRequestsToUser}/>
+        <div className="innerDiv">
+          <BookRequestsToUser bookRequests={this.props.bookRequestsToUser}/>
+          <MyBooksContainer/>
+          <BooksBorrowed booksBorrowed={booksBorrowed}/>
+          <BooksLent booksLent={booksLent}/>
+        </div>
       </div>
+
   }
 }
 

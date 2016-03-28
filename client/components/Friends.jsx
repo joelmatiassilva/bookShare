@@ -24,9 +24,10 @@ export const Friends = class Friends extends React.Component{
   render(){
     return <div>
         <NavBarContainer/>
-        <FriendRequestsContainer/>
-        <h1>Friends</h1>
-        <MyFriendsContainer/>
+        <div className="innerDiv">
+          <FriendRequestsContainer/>
+          <MyFriendsContainer/>
+        </div>
       </div>
   }
 }

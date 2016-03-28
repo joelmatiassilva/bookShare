@@ -28,7 +28,8 @@ nav {
 
 nav a {
   color: #ffffff;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
 
 /*FIXME: input goes to?*/
 input {
@@ -64,8 +65,9 @@ input {
 a {
   text-decoration: none; }
 
-.explore {
+.innerDiv {
   padding: 30px;
+  padding-top: 15px;
   text-align: center; }
 
 .tabBar {

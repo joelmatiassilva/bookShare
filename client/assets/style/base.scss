@@ -37,6 +37,7 @@ nav{
 nav a{
  color: #ffffff;
  text-decoration: none;
+ cursor: pointer;
 }
 
 /*FIXME: input goes to?*/
@@ -81,8 +82,9 @@ a {
   text-decoration: none;
 }
 
-.explore{
+.innerDiv{
   padding: 30px;
+  padding-top: 15px;
   text-align: center;
 }
 

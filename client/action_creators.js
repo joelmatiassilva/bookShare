@@ -213,7 +213,12 @@ export function finishGettingMyFriends(friends){
 
 /* Search for friends async actions */
 export function searchUsers(query){
+
   return function(dispatch){
+    if (query.length === 0) {
+      dispatch(finishSearchUsers(undefined));
+      return;
+    }
     console.log('Searching friends with query: ' + query);
     dispatch(startSearchUsers(query));
     return searchUsersAJAX(query,(response) => {

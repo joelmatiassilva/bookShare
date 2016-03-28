@@ -18,14 +18,14 @@ export const MyFriends = class MyFriends extends React.Component{
   }
   render(){
     return <div>
-      Your friends:
+      <h3>Friends</h3>
       {this.props.friends ? this.props.friends.map((friend) => {
         return <li>
           ID: {friend.id}  EMAIL: {friend.email}
         </li>
       }) : null}
-      <p>Search people and add them to your friends list:</p>
-      <DebounceInput debounceTimeout={200} type="text" placeholder="Type an email or username.." onChange={(event) => this.props.searchUsers(event.target.value)}/>
+      <h4>Find and add friends</h4>
+      <DebounceInput debounceTimeout={200} type="text" placeholder="Enter an email or username" onChange={(event) => this.props.searchUsers(event.target.value)}/>
       { this.props.loading ? <Preloader/> : null}
       <PeopleList peopleList={this.props.foundUsers}/>
     </div>
