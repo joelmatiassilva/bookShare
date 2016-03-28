@@ -16,13 +16,11 @@ export const FriendRequests = class FriendRequests extends React.Component{
         { this.props.friendRequests ? this.props.friendRequests.map((friendRequest) => {
           return <p>{friendRequest.username} wants to be your friend
           <button onClick={(event) =>
-            { console.log('Accepting request from: ' +
-              friendRequest.username +
-              'with FriendRequestID of ' +
-              friendRequest.FriendRequestId);
-              this.props.acceptFriendRequest(friendRequest.FriendRequestId);
-          } }>Accept
-            </button></p>;
+            { this.props.acceptFriendRequest(friendRequest.FriendRequestId);} 
+            }>Accept
+            </button><button onClick={(event) =>
+            { this.props.declineFriendRequest(friendRequest.FriendRequestId);}
+            }>Decline</button></p>;
         }) : null}
       </div>;
     } else {
