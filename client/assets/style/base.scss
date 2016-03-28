@@ -38,6 +38,7 @@ nav{
 }
 nav a{
  color: #ffffff;
+ text-decoration: none;
 }
 
 /*FIXME: input goes to?*/
@@ -63,6 +64,7 @@ input{
 
     label{
       display: inline-block;
+      font-weight: bold;
       width: 100px;
     }
     .submitBtn {
@@ -77,6 +79,10 @@ input{
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 .tabBar{
   width: $segment;
   text-align: left;
@@ -87,6 +93,10 @@ input{
 .tab {
   display: inline-block;
   padding-right: 5px;
+}
+.tab .active {
+  font-weight: bold;
+  text-decoration: none;
 }
 
 

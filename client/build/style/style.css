@@ -27,7 +27,8 @@ nav {
   height: 20px; }
 
 nav a {
-  color: #ffffff; }
+  color: #ffffff;
+  text-decoration: none; }
 
 /*FIXME: input goes to?*/
 input {
@@ -49,6 +50,7 @@ input {
   .signin form label,
   .signup form label {
     display: inline-block;
+    font-weight: bold;
     width: 100px; }
   .signin form .submitBtn,
   .signup form .submitBtn {
@@ -59,6 +61,9 @@ input {
       width: 125px;
       font-family: "Courier New"; }
 
+a {
+  text-decoration: none; }
+
 .tabBar {
   width: 415px;
   text-align: left;
@@ -68,6 +73,10 @@ input {
 .tab {
   display: inline-block;
   padding-right: 5px; }
+
+.tab .active {
+  font-weight: bold;
+  text-decoration: none; }
 
 .message, .error, .success, .alert {
   font-size: 14px;

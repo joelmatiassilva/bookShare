@@ -8,11 +8,11 @@ export const TabBar = class TabBar extends React.Component{
   render(){
     return <div className="tabBar">
       <div className="signUp tab">
-        <Link to="/signUp">Sign Up</Link>
+        <Link activeClassName="active" to="/signUp">Sign Up</Link>
       </div>
 
       <div className="signIn tab">
-        <Link to="/signIn">Sign In</Link>
+        <Link activeClassName="active" to="/signIn">Sign In</Link>
       </div>
     </div>
   }
