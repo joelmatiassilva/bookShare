@@ -8,74 +8,6 @@ import {hashHistory} from 'react-router';
 import {connect} from 'react-redux';
 import * as actionCreators from '../action_creators';
 
-var booksLent = [
-  {
-    isbn: 1234567,
-    author: 'J.K. Rowling',
-    title: 'Harry Potter: Philosopher\'s Stone',
-    description: 'Wizards and spells',
-    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-    genre: 'Novels',
-    borrower: 'Stephan B.'
-  },
-  {
-    isbn: 1234567,
-    author: 'J.K. Rowling',
-    title: 'Harry Potter: Philosopher\'s Stone',
-    description: 'Wizards and spells',
-    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-    genre: 'Novels',
-    borrower: 'Hamzah Chaudhary'
-  },
-  {
-    isbn: 1234567,
-    author: 'J.K. Rowling',
-    title: 'Harry Potter: Philosopher\'s Stone',
-    description: 'Wizards and spells',
-    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-    genre: 'Novels',
-    borrower: 'Michael C.'
-  }
-];
-var booksBorrowed = [
-  {
-    isbn: 1234567,
-    author: 'J.K. Rowling',
-    title: 'Harry Potter: Philosopher\'s Stone',
-    description: 'Wizards and spells',
-    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-    genre: 'Novels',
-    owner: 'Yasu F.'
-  },
-  {
-    isbn: 1234567,
-    author: 'J.K. Rowling',
-    title: 'Harry Potter: Philosopher\'s Stone',
-    description: 'Wizards and spells',
-    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-    genre: 'Novels',
-    owner: 'Jonathan Blaising'
-  },
-  {
-    isbn: 1234567,
-    author: 'J.K. Rowling',
-    title: 'Harry Potter: Philosopher\'s Stone',
-    description: 'Wizards and spells',
-    image: `http://vignette3.wikia.nocookie.net/harrypotter/images/8/86/Sorcerer's_stone_cover.jpg/revision/latest?cb=20060726180434`,
-    genre: 'Novels',
-    owner: 'Yasu F.'
-  }
-];
-
-var bookRequests = [
-  {
-    id: 1
-  },{
-    id: 2
-  },{
-    id: 3
-  }
-];
 
 export const MyLibrary = class MyLibrary extends React.Component{
   constructor(props){
@@ -86,7 +18,8 @@ export const MyLibrary = class MyLibrary extends React.Component{
       hashHistory.push('/signIn');
     }
     this.props.getBookRequestsToUser();
-    console.log('Mounting MyLibrary');
+    this.props.getBooksLent();
+    this.props.getBooksBorrowed();
   }
   componentWillUpdate(){
     console.log('Updating MyLibrary');
@@ -97,8 +30,8 @@ export const MyLibrary = class MyLibrary extends React.Component{
         <div className="innerDiv">
           <BookRequestsToUser bookRequests={this.props.bookRequestsToUser}/>
           <MyBooksContainer/>
-          <BooksBorrowed booksBorrowed={booksBorrowed}/>
-          <BooksLent booksLent={booksLent}/>
+          <BooksBorrowed booksBorrowed={this.props.booksBorrowed}/>
+          <BooksLent booksLent={this.props.booksLent}/>
         </div>
       </div>
 
@@ -107,7 +40,12 @@ export const MyLibrary = class MyLibrary extends React.Component{
 
 function mapStateToProps(state){
   return {
-    bookRequestsToUser: state.myLibrary.getIn(['bookRequests', 'toUser'])
+    friends: state.dashboard.get('friends'),
+    foundUsers: state.dashboard.get('foundUsers'),
+    loading: state.dashboard.getIn(['loading', 'foundUsers']),
+    bookRequestsToUser: state.dashboard.getIn(['bookRequests', 'toUser']),
+    booksLent: state.dashboard.get('booksLent'),
+    booksBorrowed: state.dashboard.get('booksBorrowed'),
   }
 }
 
