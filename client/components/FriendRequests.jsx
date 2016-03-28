@@ -17,11 +17,11 @@ export const FriendRequests = class FriendRequests extends React.Component{
     return <div>
       <h1>FriendRequests done to me:</h1>
       { this.props.friendRequests ? this.props.friendRequests.map((friendRequest) => {
-        return <p>{friendRequest.username} wants to be your friend 
-        <button onClick={(event) => 
-          { console.log('Accepting request from: ' + 
-            friendRequest.username + 
-            'with FriendRequestID of ' + 
+        return <p>{friendRequest.username} wants to be your friend
+        <button onClick={(event) =>
+          { console.log('Accepting request from: ' +
+            friendRequest.username +
+            'with FriendRequestID of ' +
             friendRequest.FriendRequestId);
             this.props.acceptFriendRequest(friendRequest.FriendRequestId);
         } }>Accept
@@ -33,7 +33,7 @@ export const FriendRequests = class FriendRequests extends React.Component{
 
 function mapStateToProps(state){
   return {
-    friendRequests: state.dashboard.get('friendRequests')
+    friendRequests: state.friends.get('friendRequests')
   }
 }
 
