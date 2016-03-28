@@ -26,7 +26,7 @@ export const MyBooks = class MyBooks extends React.Component{
         <div><h4>Found books from search: </h4><BookList books={this.getBooks()}/></div> :
         null}
 
-      <h3>Books that I own: </h3>
+      <h3>My books </h3>
       {this.props.myBooks ? <BookList books={this.props.myBooks}/> : null}
     </div>
   }

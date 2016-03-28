@@ -11,11 +11,12 @@ $segment: $input-width+$label-width+15px;
 
 *{
   font-family: "Courier New";
+  // font-family: Tahoma;
 }
 body {
-  // background-image: url('/assets/redHeart.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: url('/assets/shattered.png');
+  // background-size: cover;
+  // background-repeat: no-repeat;
 }
 
 /*Navigation Bar*/
@@ -142,7 +143,7 @@ a {
 
 .book-entry{
   width: 250px;
-  box-shadow: 5px 5px 5px #888888;
+  box-shadow: 0px 3px 5px #888888;
   background: #F7F7F7;
   padding: 5px;
   margin: 7px;
@@ -150,7 +151,7 @@ a {
 }
 
 .book-entry img{
-  box-shadow: 5px 5px 5px #888888;
+  box-shadow: 0px 3px 5px #888888;
 }
 
 .book-list{
