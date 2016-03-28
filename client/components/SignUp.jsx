@@ -15,7 +15,7 @@ export const SignUp = class SignUp extends React.Component{
       <div>
         <label htmlFor="username">Username</label>
         <input onChange={(event) => this.props.setUsername(event.target.value)} type='text' id='username' name='username' placeholder="Type a username"/>
-        { this.props.usernameValidationMessage ?<label className="message error">Please enter a username</label> : null }
+        { this.props.usernameValidationMessage ? <label className="message error">Please enter a username</label> : null }
       </div>
 
       <div>

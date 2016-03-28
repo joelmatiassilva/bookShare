@@ -136,4 +136,8 @@ a {
   flex-wrap: wrap;
   justify-content: flex-start; }
 
+.__react_component_tooltip > div {
+  max-width: 300px;
+  text-align: left; }
+
 /*# sourceMappingURL=style.css.map */

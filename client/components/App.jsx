@@ -1,5 +1,6 @@
 import SignIn from './SignIn';
 import {NavBarContainer} from './NavBar';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
