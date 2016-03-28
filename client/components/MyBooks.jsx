@@ -13,9 +13,6 @@ export const MyBooks = class MyBooks extends React.Component{
   getBooks(){
     return this.props.foundBooks || [];
   }
-  componentWillMount(){
-    this.props.getMyBooks();
-  }
   render(){
     return <div className="my-books">
       <h3>Add Books</h3>
