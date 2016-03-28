@@ -43,7 +43,13 @@ export const SignIn = class SignIn extends React.Component {
       </div>
 
       <div className="submitBtn">
-        <input onClick={(event) =>{event.preventDefault();this.props.regularSignIn(this.state.username, this.state.password)} }type="submit" value="Log in"/>
+        <input onClick={(event) =>{
+          event.preventDefault();
+          this.props.regularSignIn(this.state.username, this.state.password);
+          $('#user').val('');
+          $('#signInPassword').val('');
+          this.setState({username: '', password: ''});
+        } }type="submit" value="Log in"/>
       </div>
 
       {/*<div className="submitBtn">

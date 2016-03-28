@@ -15,7 +15,6 @@ export const Friends = class Friends extends React.Component{
     if(!localStorage.token){
       hashHistory.push('/signIn');
     }
-    this.props.getBookRequestsToUser();
     console.log('Mounting Friends');
   }
   componentWillUpdate(){

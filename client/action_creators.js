@@ -12,7 +12,8 @@ import {
   getBookRequestsToUserAJAX,
   acceptBookRequestAJAX,
   getBooksLentAJAX,
-  getBooksBorrowedAJAX} from './helpers/serverCalls';
+  getBooksBorrowedAJAX,
+  declineFriendRequestAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -288,7 +289,7 @@ export function acceptFriendRequest(friendRequestID){
     return acceptFriendRequestAJAX(friendRequestID, (response) => {
       console.log('Accepted friend request');
       console.log(response);
-      dispatch(finishAcceptFriendRequest());
+      dispatch(finishAcceptFriendRequest(friendRequestID));
     });
   }
 }
@@ -299,9 +300,10 @@ export function startAcceptFriendRequest(){
   }
 }
 
-export function finishAcceptFriendRequest(){
+export function finishAcceptFriendRequest(friendRequestId){
   return {
-    type: 'FINISH_ACCEPT_FRIEND_REQUEST'
+    type: 'FINISH_ACCEPT_FRIEND_REQUEST',
+    friendRequestId: friendRequestId
   }
 }
 
@@ -457,3 +459,21 @@ export function getBooksBorrowed(){
     });
   }
 }
+
+/* Decline friend requests async functions */
+export function declineFriendRequest(friendRequestID){
+  return function(dispatch){
+    return declineFriendRequestAJAX(friendRequestID, (response) => {
+      console.log('SUCCESSFULLY DECLINED FRIEND REQUEST', friendRequestID);
+      dispatch(finishDeclineFriendRequest(friendRequestID));
+    });
+  }
+}
+
+export function finishDeclineFriendRequest(friendRequestId){
+  return {
+    type: 'FINISH_DECLINE_FRIEND_REQUEST',
+    friendRequestId: friendRequestId
+  }
+}
+
