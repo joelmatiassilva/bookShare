@@ -93,7 +93,6 @@ module.exports.signIn = function(req, res){
     .catch(function(err) {res.status(500).json(err);});
 };
 
-//responds with a 201 when successfully added and a 400 when request already exists
 module.exports.addFriend = function(req, res){
   console.log('REQ BODY IN ADD FRIEND:');
   console.log(req.body);
@@ -107,11 +106,10 @@ module.exports.addFriend = function(req, res){
         }
       })
       .then(function (result) {
-        console.log("result[1] ", result[1]);
         if (result[1]){
-          res.status(201).end();
+          res.status(201).json({message: "Friend request sent!"});
         }
-        res.status(400).end();
+        res.status(400).json({message: "Friend request already exists"});
       }).catch(function(err) {res.status(500).json(err);});
     }).catch(function(err) {res.status(500).json(err);});
 };

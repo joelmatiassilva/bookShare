@@ -46,13 +46,21 @@ module.exports.viewMyShelf = function(req, res){
 };
 
 module.exports.makeBookRequest = function(req, res) {
-  BookRequest.create({
-    bookId: req.body.bookId,
-    ownerId: req.body.ownerId,
-    borrowerId: req.currentUser.id,
-    accepted: false})
-  .then(function() {
-    res.status(201).end();
+  BookRequest.findOrCreate({
+    where: {
+      bookId: req.body.bookId,
+      ownerId: req.body.ownerId,
+      borrowerId: req.currentUser.id },
+    defaults: {
+      bookId: req.body.bookId,
+      ownerId: req.body.ownerId,
+      borrowerId: req.currentUser.id,
+      accepted: false }})
+  .then(function(result) {
+    if (result[1]){
+      res.status(201).json({message: "Book request sent"});
+    }
+    res.status(400).json({message: "Book request already exists"})
   })
   .catch(function(err) {
     res.status(500).json(err);
