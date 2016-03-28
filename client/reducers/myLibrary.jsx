@@ -128,7 +128,28 @@ function startGettingBookRequestsToUser(state){
 }
 
 function finishGettingBookRequestsToUser(state, bookRequests){
-  return state.setIn(['bookRequests','toUser'], bookRequests);
+  //TODO stop spinner
+  return state.setIn(['bookRequests', 'toUser'], bookRequests);
+}
+
+function startGettingBooksLent(state){
+  //TODO start spinner
+  return state;
+}
+
+function finishGettingBooksLent(state, books){
+  //TODO stop spinner
+  return state.set('booksLent', books);
+}
+
+function startGettingBooksBorrowed(state){
+  //TODO start spinner
+  return state;
+}
+
+function finishGettingBooksBorrowed(state, books){
+  //TODO stop spinner
+  return state.set('booksBorrowed', books);
 }
 
 export default function(state = Map(), action){
@@ -157,6 +178,14 @@ export default function(state = Map(), action){
       return startGettingBookRequestsToUser(state);
     case 'FINISH_GETTING_BOOK_REQUESTS_TO_USER':
       return finishGettingBookRequestsToUser(state, action.bookRequests);
+    case 'START_GETTING_BOOKS_LENT':
+      return startGettingBooksLent(state);
+    case 'FINISH_GETTING_BOOKS_LENT':
+      return finishGettingBooksLent(state, action.books);
+    case 'START_GETTING_BOOKS_BORROWED':
+      return startGettingBooksBorrowed(state);
+    case 'FINISH_GETTING_BOOKS_BORROWED':
+      return finishGettingBooksBorrowed(state, action.books);
     default:
       return setState(state);
   }
