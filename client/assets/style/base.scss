@@ -14,9 +14,7 @@ $segment: $input-width+$label-width+15px;
 }
 body {
   // background-image: url('/assets/redHeart.jpg');
-  background-size: cover; //affects view on dashboard
-  // min-width: 100%;
-  // min-height: 120%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -81,6 +79,11 @@ input{
 
 a {
   text-decoration: none;
+}
+
+.explore{
+  padding: 30px;
+  text-align: center;
 }
 
 .tabBar{

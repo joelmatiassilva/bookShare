@@ -117,8 +117,7 @@ export function facebookLogin(){
   }
 }
 
-/* -------- DASHBOARD ACTIONS  -------- */
-
+/*------------MyLIBARY AND FRIENDS ACTIONS------------*/
 export function setFoundBooks(foundBooks){
   return {
     type: 'SET_FOUND_BOOKS',
@@ -236,7 +235,7 @@ export function finishSearchUsers(users){
   }
 }
 
-/* addBookToMySheklf action */
+/* addBookToMyShelf action */
 export function addBookToMyShelf(book){
   return {
     type: 'ADD_BOOK_TO_SHELF',
@@ -263,6 +262,10 @@ export function receiveBooks(books){
 
 export function fetchBooks(query){
   return function(dispatch){
+    if (query.length === 0) {
+      dispatch(receiveBooks([]));
+      return;
+    }
     dispatch(requestBooks(query));
     return searchGoogleBooksAJAX(query, (res) => {
       dispatch(receiveBooks(res));

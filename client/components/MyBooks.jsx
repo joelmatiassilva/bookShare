@@ -18,11 +18,14 @@ export const MyBooks = class MyBooks extends React.Component{
   }
   render(){
     return <div className="my-books">
-      <h2>My Books</h2>
+      <h3>Add Books</h3>
       <DebounceInput debounceTimeout={200} type="text" placeholder="Search for a book" onChange={(event) =>{this.props.fetchBooks(event.target.value)}}/>
       {this.props.loading ? <Preloader/> : null}
-      <h3>Found books from search: </h3>
-      {this.getBooks().length > 0 ? <BookList books={this.getBooks()}/> : null}
+
+      {this.getBooks().length > 0 ?
+        <div><h4>Found books from search: </h4><BookList books={this.getBooks()}/></div> :
+        null}
+
       <h3>Books that I own: </h3>
       {this.props.myBooks ? <BookList books={this.props.myBooks}/> : null}
     </div>
@@ -31,9 +34,9 @@ export const MyBooks = class MyBooks extends React.Component{
 
 function mapStateToProps(state){
   return {
-    foundBooks: state.dashboard.get('foundBooks'),
-    myBooks: state.dashboard.get('myBooks'),
-    loading: state.dashboard.getIn(['loading', 'foundBooks'])
+    foundBooks: state.myLibrary.get('foundBooks'),
+    myBooks: state.myLibrary.get('myBooks'),
+    loading: state.myLibrary.getIn(['loading', 'foundBooks'])
   }
 }
 
