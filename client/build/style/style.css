@@ -1,144 +1,39 @@
-@import url(https://fonts.googleapis.com/css?family=Lora:400,700);
-html,
-body,
-ul,
-ol {
-  margin: 0;
-  padding: 0; }
+/*
+Error: Invalid CSS after "...ary-color: #333": expected "{", was ";"
+        on line 3 of ./client/assets/style/base.scss
 
-* {
-  font-family: 'Lora', Arial, serif; }
+1: @import 'reset';
+2: @import url(https://fonts.googleapis.com/css?family=Lora:400,700);M
+3: $primary-color: #333;
+4: $primary-font-color: #29293d;
+5: $error-color: red;
+6: $success-color: green;
+7: $alert-color: yellow;
+8: $input-width: 300px;
 
-body {
-  background-image: url("/assets/shattered.png"); }
-
-/*Navigation Bar*/
-nav li {
-  display: inline-block;
-  padding: 0 20px; }
-
-nav ul {
-  float: left; }
-
-nav {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 10px;
-  color: #ffffff;
-  height: 20px; }
-
-nav a {
-  color: #ffffff;
-  text-decoration: none;
-  cursor: pointer; }
-
-/*FIXME: input goes to?*/
-input {
-  width: 300px;
-  padding: 5px;
-  font-size: 16px; }
-
-/*Landing Page*/
-.signin form,
-.signup form {
-  width: 415px;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto; }
-  .signin form div,
-  .signup form div {
-    margin-top: 10px;
-    margin-bottom: 10px; }
-  .signin form label,
-  .signup form label {
-    display: inline-block;
-    font-weight: bold;
-    width: 100px; }
-  .signin form .submitBtn,
-  .signup form .submitBtn {
-    text-align: center; }
-    .signin form .submitBtn input,
-    .signup form .submitBtn input {
-      display: inline-block;
-      width: 125px;
-      font-family: "Courier New"; }
-
-a {
-  text-decoration: none; }
-
-.innerDiv {
-  padding: 30px;
-  padding-top: 15px;
-  text-align: center; }
-
-.tabBar {
-  width: 415px;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto; }
-
-.tab {
-  display: inline-block;
-  padding-right: 5px; }
-
-.tab .active {
-  font-weight: bold;
-  text-decoration: none; }
-
-.message, .error, .success, .alert {
-  font-size: 14px;
-  margin: 0px;
-  padding: 0px; }
-
-.error {
-  color: red; }
-
-.success {
-  color: green; }
-
-.alert {
-  color: yellow; }
-
-.hero {
-  text-align: center;
-  color: #29293d;
-  border-radius: 5px;
-  width: 700px;
-  padding-left: 50px auto;
-  margin: 50px auto;
-  padding: 20px; }
-
-.hero h1 {
-  font-size: 40px; }
-
-.book-entry {
-  width: 250px;
-  box-shadow: 0px 3px 5px #888888;
-  background: #F7F7F7;
-  padding: 5px;
-  margin: 7px;
-  border-radius: 5px; }
-
-.book-entry img {
-  box-shadow: 0px 3px 5px #888888; }
-
-.book-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start; }
-
-.my-books preloader {
-  width: 40px; }
-
-.requests-list li {
-  width: 250px; }
-
-.requests-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start; }
-
-.__react_component_tooltip > div {
-  max-width: 300px;
-  text-align: left; }
-
-/*# sourceMappingURL=style.css.map */
+Backtrace:
+./client/assets/style/base.scss:3
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:1179:in `expected'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:1115:in `expected'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:1110:in `tok!'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:654:in `block'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:647:in `ruleset'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:673:in `block_child'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:666:in `block_contents'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:123:in `stylesheet'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:39:in `parse'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/engine.rb:403:in `_to_tree'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/engine.rb:295:in `render_with_sourcemap'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/exec/sass_scss.rb:414:in `run'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/exec/sass_scss.rb:63:in `process_result'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/exec/base.rb:52:in `parse'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/exec/base.rb:19:in `parse!'
+/usr/local/lib/ruby/gems/2.2.0/gems/sass-3.4.21/bin/sass:13:in `<top (required)>'
+/usr/local/bin/sass:23:in `load'
+/usr/local/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"...ary-color: #333\": expected \"{\", was \";\"\A         on line 3 of ./client/assets/style/base.scss\A \A 1: @import 'reset';\A 2: @import url(https://fonts.googleapis.com/css?family=Lora:400,700);M\A 3: $primary-color: #333;\A 4: $primary-font-color: #29293d;\A 5: $error-color: red;\A 6: $success-color: green;\A 7: $alert-color: yellow;\A 8: $input-width: 300px;"; }
