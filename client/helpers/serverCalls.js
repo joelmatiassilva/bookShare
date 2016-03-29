@@ -251,3 +251,21 @@ export function declineFriendRequestAJAX(friendRequestID, callback){
     }
   }); 
 }
+
+export function getFriendBooksAJAX(){
+  $.ajax({
+    url: '/api/deleteFriendRequest',
+    method: 'GET',
+    headers: {
+      authorization: localStorage.token
+    },
+    data: {
+      id: friendRequestID
+    },
+    success: callback,
+    error: function(error){
+      console.error('serverCalls AJAX: Error while declining friend Request borrowed');
+      console.error(error);
+    }
+  });  
+}

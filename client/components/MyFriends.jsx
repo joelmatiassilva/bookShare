@@ -20,7 +20,7 @@ export const MyFriends = class MyFriends extends React.Component{
     return <div>
       <h3>Friends</h3>
       {this.props.friends ? this.props.friends.map((friend) => {
-        return <li>
+        return <li onClick={ (event) => {this.props.viewFriendBooks(friend.id)} }>
           ID: {friend.id}  EMAIL: {friend.email}
         </li>
       }) : null}

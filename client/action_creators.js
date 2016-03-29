@@ -13,7 +13,8 @@ import {
   acceptBookRequestAJAX,
   getBooksLentAJAX,
   getBooksBorrowedAJAX,
-  declineFriendRequestAJAX} from './helpers/serverCalls';
+  declineFriendRequestAJAX,
+  getFriendBooksAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -477,3 +478,12 @@ export function finishDeclineFriendRequest(friendRequestId){
   }
 }
 
+/* View Friend's books actions */
+export function viewFriendBooks(friendId){
+  return function(dispatch){
+    return getFriendBooksAJAX(friendId, (response) => {
+      console.log('Got friend\'s books');
+      dispatch(finishGettingFriendBooks(response)); 
+    })
+  };
+}
