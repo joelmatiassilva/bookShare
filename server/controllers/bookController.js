@@ -219,13 +219,13 @@ module.exports.viewMyBook= function(req, res){
 };
 
 //example of body object {"id": "1"}
-module.exports.viewFriendBooks= function(req, res){
+module.exports.viewFriendBooks = function(req, res){
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
     b.description, b.image, b.categories\
     from Books as b\
     inner join UserBooks as ub on ub.bookId = b.id\
     where ub.userId = ?',
-  { replacements: [req.body.id.toString()], type: sequelize.QueryTypes.SELECT })
+  { replacements: [req.params.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function(books) {
     res.status(200).json(books);
   }).catch(function(err) {res.status(500).json(err);});

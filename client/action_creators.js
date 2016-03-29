@@ -487,3 +487,10 @@ export function viewFriendBooks(friendId){
     })
   };
 }
+
+export function finishGettingFriendBooks(books){
+  return {
+    type: 'FINISH_GETTING_FRIEND_BOOKS',
+    books: books
+  }
+}

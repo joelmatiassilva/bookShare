@@ -252,19 +252,19 @@ export function declineFriendRequestAJAX(friendRequestID, callback){
   }); 
 }
 
-export function getFriendBooksAJAX(){
+export function getFriendBooksAJAX(friendId, callback){
   $.ajax({
-    url: '/api/deleteFriendRequest',
+    url: '/api/friends/'+ friendId +'/books',
     method: 'GET',
     headers: {
       authorization: localStorage.token
     },
     data: {
-      id: friendRequestID
+      id: friendId
     },
     success: callback,
     error: function(error){
-      console.error('serverCalls AJAX: Error while declining friend Request borrowed');
+      console.error('serverCalls AJAX: Error while getting friend ' + friendId + 'borrowed');
       console.error(error);
     }
   });  

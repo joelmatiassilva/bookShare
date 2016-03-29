@@ -60,6 +60,11 @@ function finishAcceptFriendRequest(state, friendRequestId){
   return state.set('friendRequests', newFriendRequests); 
 }
 
+function finishGettingFriendBooks(state, books){
+  console.log('Friend books' + books);
+  return state.set('selectedFriendBooks', books);
+}
+
 export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
@@ -78,6 +83,8 @@ export default function(state = Map(), action){
       return finishDeclineFriendRequest(state, action.friendRequestId);
     case 'FINISH_ACCEPT_FRIEND_REQUEST':
       return finishAcceptFriendRequest(state, action.friendRequestId);
+    case 'FINISH_GETTING_FRIEND_BOOKS':
+      return finishGettingFriendBooks(state, action.books);
     default:
       return setState(state);
   }
