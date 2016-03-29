@@ -22,7 +22,7 @@ export const NavBar = class NavBar extends React.Component{
       <li><Link to="/explore">Explore</Link></li>
       <li><Link to="/myLibrary">My Library</Link></li>
       <li><Link to="/friends">Friends</Link></li>
-      <li><a onClick={this.logout}>Logout</a></li>
+      <a className="logout" onClick={this.logout}>Logout</a>
     </ul> :
     <ul>
       <li><a href="#">Home</a></li>
