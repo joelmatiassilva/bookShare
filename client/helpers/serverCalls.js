@@ -251,3 +251,21 @@ export function declineFriendRequestAJAX(friendRequestID, callback){
     }
   }); 
 }
+
+export function getFriendBooksAJAX(friendId, callback){
+  $.ajax({
+    url: '/api/friends/'+ friendId +'/books',
+    method: 'GET',
+    headers: {
+      authorization: localStorage.token
+    },
+    data: {
+      id: friendId
+    },
+    success: callback,
+    error: function(error){
+      console.error('serverCalls AJAX: Error while getting friend ' + friendId + 'borrowed');
+      console.error(error);
+    }
+  });  
+}
