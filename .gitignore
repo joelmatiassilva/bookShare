@@ -14,3 +14,5 @@ client/build/bundle.js
 
 .sass-cache/
 
+_.*
+
