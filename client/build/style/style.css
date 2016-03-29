@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Lora:400,700);
 html,
 body,
 ul,
@@ -6,25 +7,29 @@ ol {
   padding: 0; }
 
 * {
-  font-family: "Courier New"; }
+  font-family: "Lora", Arial, serif; }
 
 body {
   background-image: url("/assets/shattered.png"); }
 
 /*Navigation Bar*/
-nav li {
-  display: inline-block;
-  padding: 0 20px; }
-
-nav ul {
-  float: left; }
-
 nav {
   background-color: rgba(0, 0, 0, 0.7);
   padding: 10px;
   color: #ffffff;
   height: 20px; }
+  nav li {
+    display: inline-block;
+    padding: 0 20px; }
+  nav ul {
+    float: left; }
+  nav .logout {
+    float: right; }
 
+/*
+nav{
+  background-color: #F0F8FF;
+}*/
 nav a {
   color: #ffffff;
   text-decoration: none;
@@ -59,7 +64,7 @@ input {
     .signup form .submitBtn input {
       display: inline-block;
       width: 125px;
-      font-family: "Courier New"; }
+      font-family: Arial; }
 
 a {
   text-decoration: none; }
@@ -69,19 +74,17 @@ a {
   padding-top: 15px;
   text-align: center; }
 
-.tabBar {
+.tab-bar {
   width: 415px;
   text-align: left;
-  margin-left: auto;
-  margin-right: auto; }
+  margin: 20px auto 20px auto; }
 
 .tab {
   display: inline-block;
-  padding-right: 5px; }
-
-.tab .active {
-  font-weight: bold;
-  text-decoration: none; }
+  padding: 0 20px; }
+  .tab .active {
+    font-weight: bold;
+    text-decoration: none; }
 
 .message, .error, .success, .alert {
   font-size: 14px;

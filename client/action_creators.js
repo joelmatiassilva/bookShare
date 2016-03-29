@@ -14,7 +14,8 @@ import {
   getBooksLentAJAX,
   getBooksBorrowedAJAX,
   declineFriendRequestAJAX,
-  getFriendBooksAJAX} from './helpers/serverCalls';
+  getFriendBooksAJAX,
+  addBookToMyShelfAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -246,9 +247,14 @@ export function finishSearchUsers(users){
 
 /* addBookToMyShelf action */
 export function addBookToMyShelf(book){
-  return {
-    type: 'ADD_BOOK_TO_SHELF',
-    book: book
+  return function(dispatch){
+    console.log('adding book ', book);
+    return addBookToMyShelfAJAX(book, (res) => {
+      console.log('ADDED BOOK');
+      console.log(res);
+      dispatch(getMyBooks());
+      console.log('GOT BOOKS');
+    });
   }
 }
 /* Search for books async actions  */

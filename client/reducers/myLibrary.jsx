@@ -58,36 +58,6 @@ function formatBooksResponse(response){
   return books;
 }
 
-// TODO make this function async
-function addBookToMyShelf(state, book){
-  if(book.title === null || book.title === undefined) return;
-  var bookToSave = {
-    authors: book.authors,
-    categories: book.categories,
-    description: book.description,
-    isbn10: book.isbn10,
-    isbn13: book.isbn13,
-    image: book.image,
-    title: book.title,
-  }
-  $.ajax({
-    url: '/api/books',
-    method: 'POST',
-    data: bookToSave,
-    headers: {
-      authorization: localStorage.token
-    },
-    success: function(res){
-      console.log(res);
-      console.log('Sucessfully added book');
-    },
-    error: function(err){
-      console.error('Error saving book');
-      console.error(err);
-    }
-  });
-  return state;
-}
 
 function requestBooks(state, query){
   //TODO set message or spinner to show user that we are fetching the books
