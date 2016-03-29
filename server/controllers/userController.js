@@ -32,7 +32,7 @@ module.exports.facebookSignIn = function(req, res){
 };
 
 module.exports.findFriends = function(req, res){
-  models.sequelize.query('select f.friendId from friends as f where f.userId = ?',
+  models.sequelize.query('select f.friendId from Friends as f where f.userId = ?',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (friends) {
     friends = friends.map(function(x) {return x.friendId;});
@@ -65,8 +65,8 @@ module.exports.findFriends = function(req, res){
 
 module.exports.getFriendRequests = function(req, res) {
   models.sequelize.query('SELECT u.id, u.username, u.email, fr.accepted,\
-  fr.id AS FriendRequestId FROM friendrequests as fr INNER\
-  JOIN users AS u ON fr.userId = u.id WHERE fr.friendId = ?',
+  fr.id AS FriendRequestId FROM FriendRequests as fr INNER\
+  JOIN Users AS u ON fr.userId = u.id WHERE fr.friendId = ?',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);

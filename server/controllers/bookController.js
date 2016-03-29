@@ -91,9 +91,9 @@ module.exports.acceptBookRequest = function(req, res){
 module.exports.getRequestedBooksToFriends = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
     b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
-    br.id as BookRequestId from bookrequests as br inner\
-  join books as b on br.bookId = b.id\
-  inner join users as u on u.id = br.ownerId where br.borrowerId = ? and br.accepted = 0',
+    br.id as BookRequestId from BookRequests as br inner\
+  join Books as b on br.bookId = b.id\
+  inner join Users as u on u.id = br.ownerId where br.borrowerId = ? and br.accepted = 0',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
@@ -105,9 +105,9 @@ module.exports.getRequestedBooksToFriends = function(req, res) {
 module.exports.getRequestedBooksToMe = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
     b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
-    br.id as BookRequestId from bookrequests as br inner\
-  join books as b on br.bookId = b.id\
-  inner join users as u on u.id = br.borrowerId where br.ownerId = ? and br.accepted = 0',
+    br.id as BookRequestId from BookRequests as br inner\
+  join Books as b on br.bookId = b.id\
+  inner join Users as u on u.id = br.borrowerId where br.ownerId = ? and br.accepted = 0',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
@@ -118,9 +118,9 @@ module.exports.getRequestedBooksToMe = function(req, res) {
 module.exports.getBorrowedBooks = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
     b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
-    br.id as BookRequestId from bookrequests as br inner\
-  join books as b on br.bookId = b.id\
-  inner join users as u on u.id = br.ownerId where br.borrowerId = ? and br.accepted = 1',
+    br.id as BookRequestId from BookRequests as br inner\
+  join Books as b on br.bookId = b.id\
+  inner join Users as u on u.id = br.ownerId where br.borrowerId = ? and br.accepted = 1',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
@@ -131,9 +131,9 @@ module.exports.getBorrowedBooks = function(req, res) {
 module.exports.getLentBooks = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
     b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
-    br.id as BookRequestId from bookrequests as br inner\
-  join books as b on br.bookId = b.id\
-  inner join users as u on u.id = br.borrowerId where br.ownerId = ? and br.accepted = 1',
+    br.id as BookRequestId from BookRequests as br inner\
+  join Books as b on br.bookId = b.id\
+  inner join Users as u on u.id = br.borrowerId where br.ownerId = ? and br.accepted = 1',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
     console.log(requests);
@@ -225,10 +225,10 @@ module.exports.viewFriendBooks= function(req, res){
 module.exports.getAllBooksFromFriends = function (req, res) {
     models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
     b.description, b.image, b.categories, u.id as userId, u.username \
-    from users as u \
-    inner join friends as f on f.friendId = u.id \
-    inner join userbooks as ub on ub.userId = f.friendId\
-    inner join books as b on b.id = ub.bookId \
+    from Users as u \
+    inner join Friends as f on f.friendId = u.id \
+    inner join UserBooks as ub on ub.userId = f.friendId\
+    inner join Books as b on b.id = ub.bookId \
     where f.userId = ?',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
