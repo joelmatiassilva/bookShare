@@ -246,46 +246,6 @@ module.exports.getAllBooksFromFriends = function (req, res) {
   }).catch(function(err) {res.status(500).json(err);});
 };
 
-module.exports.viewFriendsBooks= function(req, res){
-  req.currentUser.getFriends().then(function(friends) {
-    var friendIds = friends.map(function(friend) { return friend.id; });
-
-    Book.findAll({
-      include: [
-        {model: models.User, where: {id: friendIds}}
-      ]
-    }).then(function(books){
-
-      books = books.map(function(book) {
-        return {
-          // friends is an array of users that have this book.
-          friends: book.Users.map(function(user) {
-            return {
-              id: user.id,
-              name: user.name
-            };
-          }),
-          isbn: book.id,
-          author: book.author,
-          title: book.title,
-          description: book.description,
-          image: book.image,
-          genre: book.genre
-        };
-      });
-      console.log(books);
-      res.status(200).json(books);
-    })
-    .catch(function(err) {
-      console.log(err);
-      res.status(500).json(err);
-    });
-  })
-  .catch(function(err) {
-    console.log(err);
-    res.status(500).json(err);
-  });
-};
 
 module.exports.viewFriendBook= function(req, res){
 // TODO
