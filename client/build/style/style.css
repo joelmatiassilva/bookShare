@@ -10,7 +10,8 @@ ol {
   font-family: "Lora", Arial, serif; }
 
 body {
-  background-image: url("/assets/shattered.png"); }
+  background-image: url("/assets/drawnLibrary.jpg");
+  background-size: cover; }
 
 /*Navigation Bar*/
 nav {
@@ -102,7 +103,7 @@ a {
 
 .hero {
   text-align: center;
-  color: #29293d;
+  color: white;
   border-radius: 5px;
   width: 700px;
   padding-left: 50px auto;

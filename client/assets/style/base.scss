@@ -1,7 +1,7 @@
 @import 'reset';
 @import url(https://fonts.googleapis.com/css?family=Lora:400,700);
 $primary-color: #333;
-$primary-font-color: #29293d;
+$primary-font-color: white;
 $error-color: red;
 $success-color: green;
 $alert-color: yellow;
@@ -16,8 +16,8 @@ $secondary-font: Arial;
   // font-family: Tahoma;
 }
 body {
-  background-image: url('/assets/shattered.png');
-  // background-size: cover;
+  background-image: url('/assets/drawnLibrary.jpg');
+  background-size: cover;
   // background-repeat: no-repeat;
 }
 
