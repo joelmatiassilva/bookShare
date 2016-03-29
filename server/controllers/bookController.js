@@ -233,11 +233,12 @@ module.exports.viewFriendBooks = function(req, res){
 
 module.exports.getAllBooksFromFriends = function (req, res) {
     models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
-    b.description, b.image, b.categories, u.id as userId, u.username \
+    b.description, b.image, b.categories, u.id as userId, u.username, br.accepted \
     from Users as u \
     inner join Friends as f on f.friendId = u.id \
     inner join UserBooks as ub on ub.userId = f.friendId\
     inner join Books as b on b.id = ub.bookId \
+    left outer join BookRequests as br on b.id = br.bookId\
     where f.userId = ?',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {

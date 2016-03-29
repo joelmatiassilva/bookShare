@@ -38,7 +38,6 @@ module.exports = function (app, express) {
   app.post('/api/books', bookController.addBook);
   app.get('/api/books', bookController.viewMyShelf);
   app.delete('/api/books/:id', bookController.deleteBook);
-  app.get('/api/friendsBooks', bookController.viewFriendsBooks); // all books belonging to all friends
   app.get('/api/friendsBooks/:id', bookController.viewFriendBook); // one book belonging to one friend
 
   app.post('/api/bookRequest', bookController.makeBookRequest);
