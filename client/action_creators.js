@@ -482,7 +482,6 @@ export function finishDeclineFriendRequest(friendRequestId){
 export function viewFriendBooks(friendId){
   return function(dispatch){
     return getFriendBooksAJAX(friendId, (response) => {
-      console.log('Got friend\'s books');
       dispatch(finishGettingFriendBooks(response)); 
     })
   };
