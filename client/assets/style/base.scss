@@ -1,4 +1,5 @@
 @import 'reset';
+@import url(https://fonts.googleapis.com/css?family=Lora:400,700);
 $primary-color: #333;
 $primary-font-color: #29293d;
 $error-color: red;
@@ -10,7 +11,7 @@ $segment: $input-width+$label-width+15px;
 
 
 *{
-  font-family: "Courier New";
+  font-family: 'Lora', Arial, serif;
   // font-family: Tahoma;
 }
 body {
