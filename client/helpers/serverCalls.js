@@ -269,3 +269,21 @@ export function getFriendBooksAJAX(friendId, callback){
     }
   });  
 }
+
+export function addBookToMyShelfAJAX(book, callback){
+  console.log('ADDING BOOK');
+  console.log(book);
+  $.ajax({
+    url: '/api/books',
+    method: 'POST',
+    data: book,
+    headers: {
+      authorization: localStorage.token
+    },
+    success: callback,
+    error: function(err){
+      console.error('Error saving book');
+      console.error(err);
+    }
+  });
+}
