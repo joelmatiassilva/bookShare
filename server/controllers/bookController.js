@@ -8,8 +8,6 @@ var sequelize = require('sequelize');
 
 module.exports.addBook = function(req, res){
   Book.create(req.body)
-    //FIXME: security: whitelist attributes
-    //TODO: look up sequel transaction to deal with the limbo period
   .then(function(book) {
     req.currentUser.addBook(book).then(function(){
       res.status(201).json(book);
@@ -96,7 +94,6 @@ module.exports.getRequestedBooksToFriends = function(req, res) {
   inner join Users as u on u.id = br.ownerId where br.borrowerId = ? and br.accepted = 0',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
-    console.log(requests);
     res.status(200).json(requests);
   }).catch(function(err) {res.status(500).json(err);});
 };
@@ -110,7 +107,6 @@ module.exports.getRequestedBooksToMe = function(req, res) {
   inner join Users as u on u.id = br.borrowerId where br.ownerId = ? and br.accepted = 0',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
-    console.log(requests);
     res.status(200).json(requests);
   }).catch(function(err) {res.status(500).json(err);});
 };
@@ -123,7 +119,6 @@ module.exports.getBorrowedBooks = function(req, res) {
   inner join Users as u on u.id = br.ownerId where br.borrowerId = ? and br.accepted = 1',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
-    console.log(requests);
     res.status(200).json(requests);
   }).catch(function(err) {res.status(500).json(err);});
 };
@@ -136,7 +131,6 @@ module.exports.getLentBooks = function(req, res) {
   inner join Users as u on u.id = br.borrowerId where br.ownerId = ? and br.accepted = 1',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
-    console.log(requests);
     res.status(200).json(requests);
   }).catch(function(err) {res.status(500).json(err);});
 };
@@ -242,10 +236,11 @@ module.exports.getAllBooksFromFriends = function (req, res) {
     where f.userId = ?',
   { replacements: [req.currentUser.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function (requests) {
-    console.log(requests);
     res.status(200).json(requests);
   }).catch(function(err) {res.status(500).json(err);});
 };
+
+
 
 
 module.exports.viewFriendBook= function(req, res){
