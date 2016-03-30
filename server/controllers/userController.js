@@ -118,9 +118,12 @@ module.exports.acceptFriendRequest = function(req, res) {
     .then(function () {
       Friends.create({userId: friendRequest.friendId, friendId: friendRequest.userId})
       .then(function () {
-        friendRequest.destroy()
+        FriendRequest.destroy({where: {userId: friendRequest.friendId, friendId: friendRequest.userId}})
         .then(function () {
-          res.status(201).end();
+          friendRequest.destroy()
+          .then(function () {
+            res.status(201).end();
+          }).catch(function(err) {res.status(500).json(err);});
         }).catch(function(err) {res.status(500).json(err);});
       }).catch(function(err) {res.status(500).json(err);});
     }).catch(function(err) {res.status(500).json(err);});
