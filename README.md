@@ -1,34 +1,20 @@
-# Project Name
+# Book Share
 
-> Pithy project description
-
-## Team
-
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+**Book Share** allows users to connect through their love of reading by sharing their favorite books with friends.
 
 ## Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
-## Usage
-
-> Some usage instructions
-
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- React
+- Node
+- mySql
 
 ## Development
 
@@ -37,38 +23,19 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
 bower install
-```
-# weird one offs
-brew install mysql
-npm install bluebird
-ruby
-sass
-react-debounce-input
-api keys
-
-Create a database and load the tables:
-
-```
-mysqld # to start up sql server
-mysql -uroot # in a new tab
-CREATE DATABASE bookShare_development;
-exit
-../node_modules/.bin/sequelize db:migrate
-```
-
-Helpful commands
-```sh
-../node_modules/.bin/sequelize help
-../node_modules/.bin/sequelize db:migrate # to update SQL schema
-../node_modules/.bin/sequelize help:model:create #to create a new table
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the app roadmap [here](https://github.com/CavernousRhinos/bookShare/issues)
+
+## Team
+
+  [Yasu Flores](https://github.com/carlosyasu91)
+  [Leorina Baybay](https://github.com/Aniroel)
+  [Jonathan Blaising](https://github.com/jblza)
 
 
 ## Contributing
