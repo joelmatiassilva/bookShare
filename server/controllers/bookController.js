@@ -116,7 +116,7 @@ module.exports.getRequestedBooksToMe = function(req, res) {
 
 module.exports.getBorrowedBooks = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
-    b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
+    b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as borrowedFromId, \
     br.id as BookRequestId from BookRequests as br inner\
   join Books as b on br.bookId = b.id\
   inner join Users as u on u.id = br.ownerId where br.borrowerId = ? and br.accepted = 1',
