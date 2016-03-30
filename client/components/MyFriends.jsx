@@ -14,9 +14,6 @@ export const MyFriends = class MyFriends extends React.Component{
     this.props.clearState();
     this.props.getMyFriends();
   }
-  componentWillUpdate(){
-    console.log('UPDATING MyFriends');
-  }
   render(){
     return <div>
       <h3>Friends</h3>
