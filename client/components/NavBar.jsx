@@ -29,7 +29,7 @@ export const NavBar = class NavBar extends React.Component{
     </div>
     :
     <ul>
-      <li><a href="#">Home</a></li>
+      <li><Link to="/signIn">Home</Link></li>
       <li><a href="#">About</a></li>
     </ul>
      }

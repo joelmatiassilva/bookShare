@@ -8,7 +8,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.children);
+    console.log("Component mount successful");
   }
 
   render() {
