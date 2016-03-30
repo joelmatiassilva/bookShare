@@ -1,28 +1,21 @@
-# Project Name #
+# Book Share
 
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## Book Share
+  **Book Share** allows users to connect through their love of reading by sharing their favorite books.
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## Share the joy, share the adventure!
+  Find new readers for your beloved books and explore your friends' book collections.
 
-## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+## How to Get Started
+  Simply create a free account, add friends, and add your books.
 
-## Problem ##
-  > Describe the problem your product solves.
+## Check it Out!
+  Start sharing at http://bookshare.tech. Happy reading!
 
-## Solution ##
-  > Describe how your product elegantly solves the problem.
 
-## Quote from You ##
-  > A quote from a spokesperson in your company.
 
-## How to Get Started ##
-  > Describe how easy it is to get started.
 
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+
+
+
