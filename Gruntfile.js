@@ -18,6 +18,8 @@ module.exports = function(grunt){
     sass: {
       dist: {
         files: {
+          './client/build/style/slick.css':'./client/build/lib/slick-carousel/slick/slick.scss',
+          './client/build/style/slick-theme.css':'./client/build/lib/slick-carousel/slick/slick-theme.scss',
           './client/build/style/style.css':'./client/assets/style/base.scss',
         }
       }
@@ -40,8 +42,8 @@ module.exports = function(grunt){
       }
     },
     watch: {
-      files: ['./client/assets/style/base.scss', 
-              './client/**/*.jsx', 
+      files: ['./client/assets/style/base.scss',
+              './client/**/*.jsx',
               './client/**/*.js' ,
               './client/build/index.html',
               '!./client/build/bundle.js'],

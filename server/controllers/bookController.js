@@ -80,7 +80,10 @@ module.exports.acceptBookRequest = function(req, res){
   .then(function (request) {
     request.update({accepted: true, dueDate: req.body.dueDate})
     .then(function () {
-      res.status(201).end();
+      BookRequest.destroy({where: {accepted: false, ownerId: request.ownerId, bookId: request.bookId}})
+      .then(function () {
+        res.status(201).end();
+      }).catch(function(err) {res.status(500).json(err);});
     }).catch(function(err) {res.status(500).json(err);});
   }).catch(function(err) {res.status(500).json(err);});
 };
