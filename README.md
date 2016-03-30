@@ -7,6 +7,7 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
+1. [Roadmap](#roadmap)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
@@ -34,7 +35,9 @@ View the app roadmap [here](https://github.com/CavernousRhinos/bookShare/issues)
 ## Team
 
   [Yasu Flores](https://github.com/carlosyasu91)
+
   [Leorina Baybay](https://github.com/Aniroel)
+
   [Jonathan Blaising](https://github.com/jblza)
 
 
