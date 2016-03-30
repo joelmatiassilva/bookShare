@@ -122,6 +122,32 @@ function finishGettingBooksBorrowed(state, books){
   return state.set('booksBorrowed', books);
 }
 
+function finishAddBookToMyShelf(state, book){
+  return state.set('addedBookMessage', 'Successfully added ' + book.title + ' to library');
+}
+
+function finishRejectingBookRequest(state, requestId){
+  var bookRequests = state.getIn(['bookRequests', 'toUser']);
+  var newbookRequests = [];
+  for(var i=0; i < bookRequests.length; i++){
+    if(bookRequests[i].BookRequestId !== requestId){
+      newbookRequests.push(bookRequests[i]);
+    }
+  }
+  return state.setIn(['bookRequests', 'toUser'], newbookRequests);
+}
+
+function finishAcceptingBookRequest(state, requestId){
+  var bookRequests = state.getIn(['bookRequests', 'toUser']);
+  var newbookRequests = [];
+  for(var i=0; i < bookRequests.length; i++){
+    if(bookRequests[i].BookRequestId !== requestId){
+      newbookRequests.push(bookRequests[i]);
+    }
+  }
+  return state.setIn(['bookRequests', 'toUser'], newbookRequests);
+}
+
 export default function(state = Map(), action){
   switch(action.type){
     case 'SET_STATE':
@@ -144,6 +170,10 @@ export default function(state = Map(), action){
       return startBookRequest(state);
     case 'FINISH_BOOK_REQUEST':
       return finishBookRequest(state);
+    case 'FINISH_ACCEPTING_BOOK_REQUEST':
+      return finishAcceptingBookRequest(state, action.requestId);
+    case 'FINISH_REJECT_BOOK_REQUEST':
+      return finishRejectingBookRequest(state, action.requestId);
     case 'START_GETTING_BOOK_REQUESTS_TO_USER':
       return startGettingBookRequestsToUser(state);
     case 'FINISH_GETTING_BOOK_REQUESTS_TO_USER':
@@ -156,6 +186,8 @@ export default function(state = Map(), action){
       return startGettingBooksBorrowed(state);
     case 'FINISH_GETTING_BOOKS_BORROWED':
       return finishGettingBooksBorrowed(state, action.books);
+    case 'FINISH_ADD_BOOK_TO_MY_SHELF':
+      return finishAddBookToMyShelf(state, action.book);
     default:
       return setState(state);
   }

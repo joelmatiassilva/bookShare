@@ -11,10 +11,8 @@ export const MyFriends = class MyFriends extends React.Component{
     super(props);
   }
   componentWillMount(){
+    this.props.clearState();
     this.props.getMyFriends();
-  }
-  componentWillUpdate(){
-    console.log('UPDATING MyFriends');
   }
   render(){
     return <div>
@@ -28,6 +26,7 @@ export const MyFriends = class MyFriends extends React.Component{
       <DebounceInput debounceTimeout={200} type="text" placeholder="Enter an email or username" onChange={(event) => this.props.searchUsers(event.target.value)}/>
       { this.props.loading ? <Preloader/> : null}
       <PeopleList peopleList={this.props.foundUsers}/>
+      {this.props.selectedFriendBooks ? <h3>Friend books</h3> : null }
       <BookList books={this.props.selectedFriendBooks}/>
     </div>
   }
@@ -37,7 +36,8 @@ function mapStateToProps(state){
     friends: state.friends.get('friends'),
     foundUsers: state.friends.get('foundUsers'),
     loading: state.friends.getIn(['loading', 'foundUsers']),
-    selectedFriendBooks: state.friends.get('selectedFriendBooks')
+    selectedFriendBooks: state.friends.get('selectedFriendBooks'),
+    selectedFriend: state.friends.get('selectedFriend')
   }
 }
 

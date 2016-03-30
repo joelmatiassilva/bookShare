@@ -36,7 +36,14 @@ export const SignUp = class SignUp extends React.Component{
         { this.props.passwordConfirmationValidationMessage ?<label className="message error">Please enter a password confirmation</label> : null }
       </div>
       <div className="submitBtn">
-        <input onClick={(event)=>{event.preventDefault();this.props.regularSignUp();}}type='submit' value="Sign Up"/>
+        <input onClick={(event)=>{
+          event.preventDefault();this.props.regularSignUp({
+            username: this.props.username,
+            email: this.props.email,
+            password: this.props.password,
+            passwordConfirmation: this.props.passwordConfirmation
+          });}
+        }type='submit' value="Sign Up"/>
       </div>
     </form>
   </div>;
@@ -48,7 +55,11 @@ function mapStateToProps(state){
     usernameValidationMessage: state.auth.getIn(['displayValidationMessage', 'signUp', 'username']),
     emailValidationMessage: state.auth.getIn(['displayValidationMessage', 'signUp', 'email']),
     passwordValidationMessage: state.auth.getIn(['displayValidationMessage', 'signUp', 'password']),
-    passwordConfirmationValidationMessage: state.auth.getIn(['displayValidationMessage', 'signUp', 'passwordConfirmation'])
+    passwordConfirmationValidationMessage: state.auth.getIn(['displayValidationMessage', 'signUp', 'passwordConfirmation']),
+    username: state.auth.getIn(['userInfo', 'username']),
+    email: state.auth.getIn(['userInfo','email']),
+    password: state.auth.getIn(['userInfo','password']),
+    passwordConfirmation: state.auth.getIn(['userInfo','passwordConfirmation'])
   }
 }
 

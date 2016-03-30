@@ -62,48 +62,37 @@ function endSignIn(state, token, username){
   return state.setIn(['userInfo', 'token'], token);
 }
 
+function checkInput(state, key, input){
+  if(isNullUndefinedOrEmpty(input)){
+    state = state.setIn(['displayValidationMessage', 'signUp', key], true);
+  } else {
+    state = state.setIn(['displayValidationMessage', 'signUp', key], false);
+  }
+  return state;
+}
+
 function startRegularSignUp(state){
   var username = state.getIn(['userInfo', 'username']);
   var email = state.getIn(['userInfo','email']);
   var password = state.getIn(['userInfo','password']);
   var passwordConfirmation = state.getIn(['userInfo','passwordConfirmation']);
-  if(isNullUndefinedOrEmpty(username)){
-    state = state.setIn(['displayValidationMessage', 'signIn', 'username'], true);
-  }
-  //TODO all the validations for email, password and passwordConfirmation
+  state = checkInput(state, 'username', username);
+  state = checkInput(state, 'email', email);
+  state = checkInput(state, 'password', password);
+  state = checkInput(state, 'passwordConfirmation', passwordConfirmation);
   return state;
 }
 
-function finishRegularSignUp(state, token){
+function finishRegularSignUp(state, response){
   console.log('FINISHING REGULAR SIGNUP');
-  localStorage.setItem('token', res.token);
+  console.log(response);
+  localStorage.setItem('token', response.token);
+  localStorage.setItem('displayName', response.displayName);
   hashHistory.push('/explore');
   console.log('GOT RESPONSE, USER SIGNED UP');
   return state;
 }
 
-function regularSignUp(state){
-  var username = state.getIn(['userInfo', 'username']);
-  var email = state.getIn(['userInfo','email']);
-  var password = state.getIn(['userInfo','password']);
-  var passwordConfirmation = state.getIn(['userInfo','passwordConfirmation']);
-  if(password !== passwordConfirmation) return state.set('errorMessage', 'Passwords do not match');
-    $.ajax({
-      url: '/api/signUp',
-      method: 'POST',
-      data: {username: username, password: password, email: email},
-      success: function(res){
-        localStorage.setItem('token', res.token);
-        hashHistory.push('/explore');
-        console.log('GOT RESPONSE, USER SIGNED UP')
-      },
-      error: function(err){
-        console.log('ERROR, USER NOT SIGNED UP')
-        console.error(err);
-      }
-    });
-  return state;
-}
 
 export default function(state = Map(), action){
   switch(action.type){
@@ -120,7 +109,7 @@ export default function(state = Map(), action){
     case 'SET_EMAIL':
       return setEmail(state, action.email);
     case 'START_REGULAR_SIGNUP':
-      return startRegularSignUp(state);
+      return startRegularSignUp(state, action.userData);
     case 'FINISH_REGULAR_SIGNUP':
       return finishRegularSignUp(state, action.token);
     case 'REGULAR_SIGNUP':

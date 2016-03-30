@@ -17,13 +17,17 @@ export const NavBar = class NavBar extends React.Component{
   render(){
     return <nav>
       {this.checkIfLoggedIn() ?
+    <div>
     <ul>
       <span>Welcome {localStorage.displayName} </span>
       <li><Link to="/explore">Explore</Link></li>
       <li><Link to="/myLibrary">My Library</Link></li>
       <li><Link to="/friends">Friends</Link></li>
-      <a className="logout" onClick={this.logout}>Logout</a>
-    </ul> :
+      
+    </ul>
+    <a className="logout" onClick={this.logout}>Logout</a> 
+    </div>
+    :
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#">About</a></li>
