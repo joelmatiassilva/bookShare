@@ -156,6 +156,7 @@ a {
   padding: 5px;
   margin: 7px;
   border-radius: 5px;
+  display: inline-block;
 }
 
 .book-entry img{
@@ -163,10 +164,7 @@ a {
 }
 
 .book-list{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
+   }
 
 .my-books preloader{
   width: 40px;
