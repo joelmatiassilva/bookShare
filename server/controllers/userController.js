@@ -24,7 +24,7 @@ module.exports.addUser = function(req, res){
       var token = helper.encode(user);
       res.status(201).json({token: token});
     }).catch(function(err) {res.status(500).json(err);});
-  }).catch(function(err) {res.status(500).json({message: "User/Email already exists"});});
+  }).catch(function(err) {res.status(500).json({message: "User/Email already exists" + err});});
 };
 
 module.exports.facebookSignIn = function(req, res){

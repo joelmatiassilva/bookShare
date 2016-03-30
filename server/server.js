@@ -45,4 +45,4 @@ models.sequelize.sync().then(function () {
   console.log(err);
 });
 
-// User.create({name: "Bob", email: "bob@123.com", passwordHash: "falafel"});
+module.exports = app;
