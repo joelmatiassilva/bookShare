@@ -41,7 +41,7 @@ export const SignIn = class SignIn extends React.Component {
         <input onChange={(event)=>this.changePassword(event.target.value)} type="password" id="signInPassword" placeholder="Enter your password"/>
         { this.props.passwordValidationMessage ? <label className="message error">Please enter a password</label> : null }
       </div>
-
+      <label className="messaage error">Server error</label>
       <div className="submitBtn">
         <input onClick={(event) =>{
           event.preventDefault();

@@ -98,19 +98,20 @@ export function searchUsersAJAX(query, callback){
 }
 
 export function regularSignUpAJAX(data, callback){
-  if(data.invalidData === true){
+  if(data.password !== data.passwordConfirmation){
     callback(null, 'Form data is not valid');
-  } 
-  $.ajax({
-    url: '/api/signUp',
-    method: 'POST',
-    data: { username: data.username, password: data.password, email: data.email },
-    success: callback,
-    error: function(err){
-      console.log('ERROR, USER NOT SIGNED UP')
-      console.error(err);
-    }
-  });
+  } else {
+    $.ajax({
+      url: '/api/signUp',
+      method: 'POST',
+      data: data,
+      success: callback,
+      error: function(err){
+        console.log('ERROR, USER NOT SIGNED UP')
+        console.error(err);
+      }
+    });
+  }
 }
 
 export function acceptFriendRequestAJAX(friendRequestID, callback){
@@ -188,6 +189,25 @@ export function acceptBookRequestAJAX(requestId, callback){
   console.log('ACCEPTING REQUESTID: '+ requestId);
   $.ajax({
     url: '/api/acceptBookRequest',
+    method: 'POST',
+    headers: {
+      authorization: localStorage.token
+    },
+    data: {
+      id: requestId
+    },
+    success: callback,
+    error: function(error){
+      console.error('serverCalls AJAX: Error while accepting book request done to user');
+      console.error(error);
+    }
+  });
+}
+
+export function rejectBookRequestAJAX(requestId, callback){
+  console.log('REJECTING REQUESTID: '+ requestId);
+  $.ajax({
+    url: '/api/deleteBookRequest',
     method: 'POST',
     headers: {
       authorization: localStorage.token
@@ -287,3 +307,4 @@ export function addBookToMyShelfAJAX(book, callback){
     }
   });
 }
+

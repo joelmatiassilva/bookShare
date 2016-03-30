@@ -15,7 +15,9 @@ import {
   getBooksBorrowedAJAX,
   declineFriendRequestAJAX,
   getFriendBooksAJAX,
-  addBookToMyShelfAJAX} from './helpers/serverCalls';
+  addBookToMyShelfAJAX,
+  regularSignUpAJAX,
+  rejectBookRequestAJAX} from './helpers/serverCalls';
 
 export function setState(state){
   return {
@@ -72,9 +74,10 @@ export function setToken(token){
   }
 }
 
-export function startRegularSignUp(){
+export function startRegularSignUp(userData){
   return {
-    type: 'START_REGULAR_SIGNUP'
+    type: 'START_REGULAR_SIGNUP',
+    userData: userData
   }
 }
 
@@ -85,10 +88,16 @@ export function finishRegularSignUp(token){
   }
 }
 
-export function regularSignUp(){
-  return {
-    type: 'REGULAR_SIGNUP'
+export function regularSignUp(userData){
+  return function(dispatch){
+    dispatch(startRegularSignUp(userData));
+    regularSignUpAJAX(userData, (data, errorData) =>{
+      dispatch(finishRegularSignUp(data));
+    });
   }
+  // return {
+  //   type: 'REGULAR_SIGNUP'
+  // }
 }
 
 export function startSignIn(username, password){
@@ -248,15 +257,21 @@ export function finishSearchUsers(users){
 /* addBookToMyShelf action */
 export function addBookToMyShelf(book){
   return function(dispatch){
-    console.log('adding book ', book);
     return addBookToMyShelfAJAX(book, (res) => {
-      console.log('ADDED BOOK');
       console.log(res);
+      dispatch(finishAddBookToMyShelf(book));
       dispatch(getMyBooks());
-      console.log('GOT BOOKS');
     });
   }
 }
+
+export function finishAddBookToMyShelf(book){
+  return {
+    type: 'FINISH_ADD_BOOK_TO_MY_SHELF',
+    book: book
+  }
+}
+
 /* Search for books async actions  */
 export function requestBooks(query){
   console.log('REQUESTING BOOKS for query: ' + query);
@@ -399,9 +414,10 @@ export function startAcceptingBookRequest(){
 }
 
 
-export function finishAcceptingBookRequest(){
+export function finishAcceptingBookRequest(requestId){
   return {
-    type: 'FINISH_ACCEPTING_BOOK_REQUEST'
+    type: 'FINISH_ACCEPTING_BOOK_REQUEST',
+    requestId: requestId
   }
 }
 
@@ -412,10 +428,31 @@ export function acceptBookRequest(requestId){
     return acceptBookRequestAJAX(requestId, (bookRequests) => {
       console.log('ACCEPTED BOOK REQUEST');
       console.log(bookRequests);
-      dispatch(finishAcceptingBookRequest(bookRequests));
+      dispatch(finishAcceptingBookRequest(requestId));
     });
   }
 }
+
+/* Actions to reject book requests */
+
+export function finishRejectingBookRequest(requestId){
+  return {
+    type: 'FINISH_REJECT_BOOK_REQUEST',
+    requestId: requestId
+  }
+}
+
+export function rejectBookRequest(requestId){
+  return function(dispatch){
+    console.log('Starting to ACCEPT bookRequests');
+    return rejectBookRequestAJAX(requestId, (bookRequests) => {
+      console.log('REJECTED BOOK REQUEST');
+      console.log(bookRequests);
+      dispatch(finishRejectingBookRequest(requestId));
+    });
+  }
+}
+
 
 /* Action to get books lent */
 export function startGettingBooksLent(){

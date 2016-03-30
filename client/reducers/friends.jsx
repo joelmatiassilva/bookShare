@@ -61,7 +61,8 @@ function finishAcceptFriendRequest(state, friendRequestId){
 }
 
 function finishGettingFriendBooks(state, books){
-  console.log('Friend books' + books);
+  console.log('Friend books');
+  console.log(books);
   return state.set('selectedFriendBooks', books);
 }
 
