@@ -23,7 +23,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    salt: DataTypes.STRING
+    salt: DataTypes.STRING,
+
+    imageUrl: DataTypes.STRING
   },
 
   {

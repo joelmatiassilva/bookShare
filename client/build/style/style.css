@@ -8,10 +8,9 @@ ol {
 
 * {
   font-family: "Lora", Arial, serif;
-  color: #343434; }
+  color: black; }
 
 html {
-  background: url("/assets/letters.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -110,6 +109,9 @@ a {
     font-weight: bold;
     text-decoration: none; }
 
+li {
+  list-style: none; }
+
 .message, .error, .success, .alert {
   font-size: 14px;
   margin: 0px;
@@ -171,7 +173,7 @@ a {
   text-align: left; }
 
 .hero .about {
-  background-color: #343434; }
+  background-color: black; }
 
 .people div {
   display: inline-block;
@@ -179,5 +181,16 @@ a {
   justify-content: center;
   padding: 25px;
   margin: 25px; }
+
+.userSearch li,
+.friends li {
+  display: inline-block;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5px;
+  margin: 5px; }
+  .userSearch li .userName,
+  .friends li .userName {
+    display: block; }
 
 /*# sourceMappingURL=style.css.map */

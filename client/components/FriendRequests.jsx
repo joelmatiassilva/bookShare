@@ -16,7 +16,7 @@ export const FriendRequests = class FriendRequests extends React.Component{
         { this.props.friendRequests ? this.props.friendRequests.map((friendRequest) => {
           return <p>{friendRequest.username} wants to be your friend
           <button onClick={(event) =>
-            { this.props.acceptFriendRequest(friendRequest.FriendRequestId);} 
+            { this.props.acceptFriendRequest(friendRequest.FriendRequestId);}
             }>Accept
             </button><button onClick={(event) =>
             { this.props.declineFriendRequest(friendRequest.FriendRequestId);}

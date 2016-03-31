@@ -4,10 +4,11 @@ import {connect} from 'react-redux';
 
 export const PeopleListEntry = class PeopleListEntry extends React.Component {
   render(){
-    return <ul>
-      Username: {this.props.name} Email: {this.props.email} 
+    return <li>
+      <img src={this.props.imageUrl}/>
+      <span className="userName">{this.props.name}</span>
       <button onClick={() => this.props.makeFriendRequest(this.props.email)}>Add friend</button>
-    </ul>;
+    </li>;
   }
 }
 

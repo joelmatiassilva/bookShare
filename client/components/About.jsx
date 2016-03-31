@@ -22,7 +22,6 @@ class About extends React.Component{
               <img src="./assets/babyOwl.jpg" />
               <p> Yasu Flores</p>
             </a>
-
           </div>
 
           <div>
