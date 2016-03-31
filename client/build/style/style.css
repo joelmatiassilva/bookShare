@@ -182,12 +182,14 @@ li {
   padding: 25px;
   margin: 25px; }
 
+.userSearch li,
 .friends li {
   display: inline-block;
   flex-wrap: wrap;
   justify-content: center;
   padding: 5px;
   margin: 5px; }
+  .userSearch li .userName,
   .friends li .userName {
     display: block; }
 
