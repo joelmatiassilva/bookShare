@@ -13,10 +13,16 @@ export const MyBooks = class MyBooks extends React.Component{
   getBooks(){
     return this.props.foundBooks || [];
   }
+  fetchBooks(event){
+    var isFocusEvent = event.nativeEvent instanceof FocusEvent;
+    if(!isFocusEvent){
+      this.props.fetchBooks(event.target.value);
+    }
+  }
   render(){
     return <div className="my-books">
       <h3>Add Books</h3>
-      <DebounceInput debounceTimeout={200} type="text" placeholder="Search for a book" onChange={(event) =>{this.props.fetchBooks(event.target.value)}}/>
+      <DebounceInput debounceTimeout={200} type="text" placeholder="Search for a book" onChange={this.fetchBooks.bind(this)}/>
       {this.props.loading ? <Preloader/> : null}
       {this.getBooks().length > 0 ?
         <div><h4>Found books from search: </h4><BookList books={this.getBooks()}/></div> :

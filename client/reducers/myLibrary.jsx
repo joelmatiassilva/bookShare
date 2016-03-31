@@ -61,6 +61,7 @@ function formatBooksResponse(response){
 
 function requestBooks(state, query){
   //TODO set message or spinner to show user that we are fetching the books
+  console.log('REQUESTING BOOKS');
   if(isNullUndefinedOrEmpty(query)){
     state = state.setIn(['loading', 'foundBooks'], false)
   } else {
@@ -71,10 +72,9 @@ function requestBooks(state, query){
 
 function receiveBooks(state, books){
   //TODO stop spinner or hide fetching message
-  console.log('FINISHED LOADING');
-  var newState = state.setIn(['loading', 'foundBooks'], false);
+  var state = state.setIn(['loading', 'foundBooks'], false);
   var formattedBooks = formatBooksResponse(books);
-  return newState.set('foundBooks', formattedBooks);
+  return state.set('foundBooks', formattedBooks);
 }
 
 function setFoundBooks(state, foundBooks){

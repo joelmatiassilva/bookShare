@@ -6,7 +6,8 @@ import {hashHistory} from 'react-router';
 import BookList from './BookList'
 import * as actionCreators from '../action_creators';
 import {connect} from 'react-redux';
-import NotificationSystem from 'react-notification-system';
+import {reducer as notifReducer, actions as notifActions, Notifs} from 're-notif';
+const {notifSend, notifClear} = notifActions;
 
 export const Explore = class Explore extends React.Component{
   constructor(props){
@@ -18,31 +19,22 @@ export const Explore = class Explore extends React.Component{
     }
     this.props.getExploreBooks();
   }
-  _addNotification(event){
-    event.preventDefault();
-    console.log('notificationSystem');
-    console.log(this.refs.notificationSystem);
-    this.refs.notificationSystem.addNotification({
-      message: 'Notification message',
-      level: 'success'
-    });
+  send(){
+    var notif = { message: 'hello, new notification', kind: 'success', dismissAfter: 1500};
+    this.props.notifSend(notif);
   }
-
-  componentDidMount(){
-    this._notificationSystem = this.refs.notificationSystem;
-    console.log('NOTIFICATION SYSTEM');
-    console.log(this._notificationSystem);
-    console.log(this.refs.notificationSystem);
+  clear(){
+    this.props.notifClear();
   }
   render(){
     return <div>
       <NavBarContainer/>
       <div className="innerDiv">
+        <Notifs/>
         <h3>Welcome to Explore!</h3>
         <SearchBar/>
         <BookList books={this.props.books}/>
-        <button onClick={this._addNotification}>Add notification</button>
-        <NotificationSystem ref="notificationSystem"/>
+        <button onClick={this.send.bind(this)}>Send</button>
       </div>
     </div>;
   }

@@ -6,15 +6,15 @@ export const TabBar = class TabBar extends React.Component{
     super(props);
   }
   render(){
-    return <div className="tab-bar">
-      <div className="sign-up tab">
-        <Link activeClassName="active" to="/signUp">Sign Up</Link>
-      </div>
+    return <ul className="tab-bar">
+      <li className="sign-up tab">
+        <Link className="button first" activeClassName="active" to="/signUp">Sign Up</Link>
+      </li>
 
-      <div className="sign-in tab">
-        <Link activeClassName="active" to="/signIn">Sign In</Link>
-      </div>
-    </div>
+      <li className="sign-in tab">
+        <Link className="button last" activeClassName="active" to="/signIn">Sign In</Link>
+      </li>
+    </ul>
   }
 }
 
