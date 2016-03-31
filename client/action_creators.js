@@ -19,6 +19,11 @@ import {
   regularSignUpAJAX,
   rejectBookRequestAJAX} from './helpers/serverCalls';
 
+import {reducer as notifReducer, actions as notifActions, Notifs} from 're-notif';
+
+export const notifSend = notifActions.notifSend;
+export const notifClear = notifActions.notifClear;
+
 export function setState(state){
   return {
     type: 'SET_STATE',

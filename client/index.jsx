@@ -34,7 +34,7 @@ store.subscribe(() => {
 
 var Main = () => (
   <Provider store={store}>
-    <Router history={hashHistory} >
+    <Router history={hashHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={SignInContainer}/>
         <Route path="/signIn" component={SignInContainer} />
