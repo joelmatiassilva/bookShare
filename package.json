@@ -70,6 +70,7 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
+    "grunt-copy": "^0.1.0",
     "grunt-nodemon": "^0.4.1"
   },
   "babel": {
