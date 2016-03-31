@@ -16,6 +16,7 @@ module.exports.addUser = function(req, res){
   User.create(req.body, {fields: ['username', 'email', 'password']})
   .then(function(user) {
     user.generateSalt();
+    user.imageUrl="/assets/puppy.jpg";
     user.save()
     .then(function(){
       user.password = user.hashPassword(user.password);
@@ -54,7 +55,8 @@ module.exports.findFriends = function(req, res){
         return {
           id: user.id,
           name: user.username,
-          email: user.email
+          email: user.email,
+          imageUrl: user.imageUrl
         };
       });
       res.status(200).json(users);
@@ -147,7 +149,8 @@ module.exports.viewAllFriends = function(req, res){
       return {
         id: friend.id,
         name: friend.username,
-        email: friend.email
+        email: friend.email,
+        imageUrl: friend.imageUrl
       };
     });
     res.status(200).json(friends);
