@@ -41,6 +41,21 @@ module.exports = function(grunt){
         }
       }
     },
+    copy: {
+      main: {
+        files:
+          [
+            { src:['client/build/lib/slick-carousel/slick/ajax-loader.gif'], dest:'client/build/style/ajax-loader.gif' },
+            {
+              cwd: 'client/build/lib/slick-carousel/slick/fonts',  // set working folder / root to copy
+              src: ['**/*'],           // copy all files and subfolders
+              dest: 'client/build/style/fonts',    // destination folder
+              expand: true           // required when using cwd
+            }
+          ]
+
+      }
+    },
     watch: {
       files: ['./client/assets/style/base.scss',
               './client/**/*.jsx',
@@ -62,12 +77,13 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-copy');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('build', ['clean','sass', 'shell:webpack']);
+  grunt.registerTask('build', ['clean','sass', 'shell:webpack', 'copy']);
   grunt.registerTask('run', ['clean','sass', 'shell:webpack', 'nodemon']);
 }
