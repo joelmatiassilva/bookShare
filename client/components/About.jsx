@@ -8,14 +8,14 @@ class About extends React.Component{
       <div className="hero about">
         <h2> Welcome to Book Share!</h2>
         <div className="description">
-          Book Share allows users to connect through their love of reading by sharing their favorite books with friends.<br></br>
+          Book Share allows users to connect through their love of reading by sharing their favorite books with friends.
 
-        <h2> Spread the joy! </h2>
-          Find new readers for your beloved books and explore your friend\'s book collections.
+          <h2> Spread the joy! </h2>
+          Find new readers for your beloved books and explore your friend's book collections.
         </div>
 
         <h2>Who we are</h2>
-
+        Click on our photos to learn more!
         <div className="people">
           <div>
             <a href="https://github.com/carlosyasu91">
@@ -24,7 +24,6 @@ class About extends React.Component{
             </a>
 
           </div>
-
 
           <div>
             <a href="https://github.com/Aniroel">
@@ -39,7 +38,6 @@ class About extends React.Component{
             </a>
               <p>Jonathan Blaising</p>
           </div>
-
         </div>
       </div>
     </div>
@@ -47,3 +45,5 @@ class About extends React.Component{
 }
 
 export default About;
+
+
