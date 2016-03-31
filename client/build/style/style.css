@@ -127,7 +127,7 @@ li {
   color: yellow; }
 
 .hero {
-  background-color: #EFEFEF;
+  background-color: rgba(239, 239, 239, 0.9);
   text-align: center;
   border-radius: 5px;
   width: 700px;
@@ -192,5 +192,10 @@ li {
   .userSearch li .userName,
   .friends li .userName {
     display: block; }
+
+/* SLICK addons */
+.slick-slider .slick-track, .slick-slider .slick-list {
+  background-color: rgba(210, 210, 210, 0.3);
+  border-radius: 3px; }
 
 /*# sourceMappingURL=style.css.map */
