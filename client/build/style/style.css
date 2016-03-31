@@ -34,7 +34,6 @@ nav {
   nav .logout {
     float: right; }
 
-/*FIXME: input goes to?*/
 input {
   width: 300px;
   padding: 5px;
@@ -170,5 +169,15 @@ a {
 .__react_component_tooltip > div {
   max-width: 300px;
   text-align: left; }
+
+.hero .about {
+  background-color: #343434; }
+
+.people div {
+  display: inline-block;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 25px;
+  margin: 25px; }
 
 /*# sourceMappingURL=style.css.map */

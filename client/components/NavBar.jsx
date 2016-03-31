@@ -30,7 +30,7 @@ export const NavBar = class NavBar extends React.Component{
     :
     <ul>
       <li><Link to="/signIn">Home</Link></li>
-      <li><a href="#">About</a></li>
+      <li><a href="#/about">About</a></li>
     </ul>
      }
   </nav>

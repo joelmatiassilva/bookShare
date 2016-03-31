@@ -13,6 +13,7 @@ import reducer from './reducers/index.jsx';
 import {SignUpContainer} from './components/SignUp';
 import {SignInContainer} from './components/SignIn';
 import App from './components/App';
+import About from './components/About';
 import {ExploreContainer} from './components/Explore';
 import {MyLibraryContainer} from './components/MyLibrary';
 import {FriendsContainer} from './components/Friends';
@@ -43,6 +44,7 @@ var Main = () => (
       <Route path="/explore" component={ExploreContainer} />
       <Route path="/myLibrary" component={MyLibraryContainer} />
       <Route path="/friends" component={FriendsContainer} />
+      <Route path="/about" component={About} />
     </Router>
   </Provider>
 );
