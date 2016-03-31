@@ -128,7 +128,7 @@ module.exports.getBorrowedBooks = function(req, res) {
 
 module.exports.getLentBooks = function(req, res) {
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
-    b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as userId, \
+    b.description, b.image, b.categories, br.accepted, u.username, u.email, u.id as lentToId, \
     br.id as BookRequestId from BookRequests as br inner\
   join Books as b on br.bookId = b.id\
   inner join Users as u on u.id = br.borrowerId where br.ownerId = ? and br.accepted = 1',
@@ -218,9 +218,10 @@ module.exports.viewMyBook= function(req, res){
 //example of body object {"id": "1"}
 module.exports.viewFriendBooks = function(req, res){
   models.sequelize.query('select b.id, b.isbn10, b.isbn13, b.authors, b.title,\
-    b.description, b.image, b.categories\
+    b.description, b.image, b.categories, u.id as userId, u.username\
     from Books as b\
     inner join UserBooks as ub on ub.bookId = b.id\
+    inner join Users as u on u.id = ub.userId\
     where ub.userId = ?',
   { replacements: [req.params.id.toString()], type: sequelize.QueryTypes.SELECT })
   .then(function(books) {

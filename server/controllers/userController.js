@@ -23,7 +23,7 @@ module.exports.addUser = function(req, res){
       return user.save();
     }).then(function(){
       var token = helper.encode(user);
-      res.status(201).json({token: token});
+      res.status(201).json({token: token, displayName: user.username});
     }).catch(function(err) {res.status(500).json(err);});
   }).catch(function(err) {res.status(500).json({message: "User/Email already exists" + err});});
 };

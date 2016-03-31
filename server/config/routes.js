@@ -46,7 +46,7 @@ module.exports = function (app, express) {
   app.post('/api/tradeRequests', bookController.makeTradeRequest);
   app.post('/api/deleteTradeRequest', bookController.deleteTradeRequest);
   app.post('/api/acceptTradeRequest', bookController.acceptTradeRequest);
-  app.post('/api/completeTradeRequest', bookController.completeTradeRequest);
+  app.post('/api/completeTradeRequest', bookController.completeTradeRequest); 
   app.post('/api/viewFriendBooks', bookController.viewFriendBooks);
 
   app.use(helpers.errorLogger);

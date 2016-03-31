@@ -167,7 +167,7 @@ li {
 }
 
 .hero{
-  background-color: #EFEFEF;
+  background-color: rgba(239,239,239,0.90);
   text-align: center;
   border-radius: 5px;
   width: 700px;
@@ -249,4 +249,10 @@ li {
   .userName {
     display: block;
   }
+}
+
+/* SLICK addons */
+.slick-slider .slick-track, .slick-slider .slick-list {
+  background-color: rgba(210,210,210, 0.3);
+  border-radius: 3px;
 }
