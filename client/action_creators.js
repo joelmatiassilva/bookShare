@@ -530,7 +530,7 @@ export function finishDeclineFriendRequest(friendRequestId){
 export function viewFriendBooks(friendId){
   return function(dispatch){
     return getFriendBooksAJAX(friendId, (response) => {
-      dispatch(finishGettingFriendBooks(response)); 
+      dispatch(finishGettingFriendBooks(response));
     })
   };
 }
@@ -539,5 +539,14 @@ export function finishGettingFriendBooks(books){
   return {
     type: 'FINISH_GETTING_FRIEND_BOOKS',
     books: books
+  }
+}
+
+export function filterExploreFriendsBooks(filter){
+  return function(dispatch){
+    dispatch({
+      type: 'FILTER_EXPLORE_FRIENDS_BOOKS',
+      filter: filter
+    })
   }
 }
