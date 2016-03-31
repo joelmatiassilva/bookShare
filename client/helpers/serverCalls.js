@@ -11,8 +11,8 @@ export function asyncSignIn(usernameOrEmail, password, callback){
     data: {usernameOrEmail: usernameOrEmail, password: password},
     success: callback,
     error: function(err){
-      console.log('ERROR, USER NOT LOGGED IN');
       console.error(err);
+      window.alert("Unknown user or email.  Please try again.");
     }
   });
 }
@@ -49,7 +49,7 @@ export function getMyFriendsAJAX(callback){
 
 export function getMyFriendRequests(callback){
   $.ajax({
-    url:'/api/friendRequests', 
+    url:'/api/friendRequests',
     method: 'GET',
     headers: {
       authorization: localStorage.token
@@ -70,15 +70,15 @@ export function makeFriendRequestAsync(email, callback){
       authorization: localStorage.token
     },
     data: {
-      email: email 
+      email: email
     },
     success: function(res){
-      console.log('makeFriendRequest Response: '); 
+      console.log('makeFriendRequest Response: ');
       console.log(res);
     },
     error: function(){
       console.log('makeFriendRequest Error: ');
-    } 
+    }
   })
 }
 
@@ -269,7 +269,7 @@ export function declineFriendRequestAJAX(friendRequestID, callback){
       console.error('serverCalls AJAX: Error while declining friend Request borrowed');
       console.error(error);
     }
-  }); 
+  });
 }
 
 export function getFriendBooksAJAX(friendId, callback){
@@ -287,7 +287,7 @@ export function getFriendBooksAJAX(friendId, callback){
       console.error('serverCalls AJAX: Error while getting friend ' + friendId + 'borrowed');
       console.error(error);
     }
-  });  
+  });
 }
 
 export function addBookToMyShelfAJAX(book, callback){

@@ -17,6 +17,7 @@ $secondary-font: Arial;
   color: $primary-font-color;
 }
 html {
+
   background: url('/assets/letters.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -46,7 +47,6 @@ nav{
   }
 }
 
-/*FIXME: input goes to?*/
 input{
   width: 300px;
   padding: 5px;
@@ -221,3 +221,15 @@ a {
   text-align: left;
 }
 
+.hero .about {
+  background-color: $primary-font-color;
+
+}
+
+.people div {
+  display: inline-block;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 25px;
+  margin: 25px;
+}

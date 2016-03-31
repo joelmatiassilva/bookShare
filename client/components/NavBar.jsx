@@ -23,14 +23,14 @@ export const NavBar = class NavBar extends React.Component{
       <li><Link to="/explore">Explore</Link></li>
       <li><Link to="/myLibrary">My Library</Link></li>
       <li><Link to="/friends">Friends</Link></li>
-      
+
     </ul>
-    <a className="logout" onClick={this.logout}>Logout</a> 
+    <a className="logout" onClick={this.logout}>Logout</a>
     </div>
     :
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
+      <li><Link to="/signIn">Home</Link></li>
+      <li><a href="#/about">About</a></li>
     </ul>
      }
   </nav>
