@@ -19,13 +19,6 @@ export const Explore = class Explore extends React.Component{
     }
     this.props.getExploreBooks();
   }
-  send(){
-    var notif = { message: 'hello, new notification', kind: 'success', dismissAfter: 1500};
-    this.props.notifSend(notif);
-  }
-  clear(){
-    this.props.notifClear();
-  }
   render(){
     return <div>
       <NavBarContainer/>
@@ -34,7 +27,6 @@ export const Explore = class Explore extends React.Component{
         <h3>Welcome to Explore!</h3>
         <SearchBar/>
         <BookList books={this.props.books}/>
-        <button onClick={this.send.bind(this)}>Send</button>
       </div>
     </div>;
   }
