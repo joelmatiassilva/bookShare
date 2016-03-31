@@ -14,9 +14,11 @@ class PeopleList extends React.Component{
     } else if (this.props.peopleList) {
       return <div class-name="people-list">
         <h3>Search results:</h3>
-        {this.props.peopleList ?
-          this.props.peopleList.map((person) => <PeopleListEntryContainer {...person}/>) :
-          null}
+        <ul className="userSearch">
+          {this.props.peopleList ?
+            this.props.peopleList.map((person) => <PeopleListEntryContainer {...person}/>) :
+            null}
+        </ul>
       </div>;
     }
   }
