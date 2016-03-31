@@ -35,17 +35,18 @@ export const BookListEntry = class BooksListEntry extends React.Component{
       {this.props.borrower ?
         <p>Lent to: {this.props.borrower}</p> : null}
       {this.props.owner ?
-      <p>Borrowed from: {this.props.owner}</p> : null}
+        <p>Borrowed from: {this.props.owner}</p> : null}
       {this.props.searchedBook ?
         <button onClick={() => {this.props.addBookToMyShelf(this.getBookInfo()); }}>Add to my Library</button>
         : null}
       <div className="owner-button">
       { this.props.userId ?
-          <p>Owner: {this.props.username}</p> : null}
-      { this.props.userId ? <button onClick={
-        () => this.props.borrowBook({bookId: this.props.id, ownerId: this.props.userId})
-      }>Borrow book</button> : null }
-     </div>
+        <p>Owner: {this.props.username}</p> : null}
+      { this.props.userId ? 
+        <button onClick={
+          () => this.props.borrowBook({bookId: this.props.id, ownerId: this.props.userId})
+        }>Borrow book</button> : null }
+       </div>
       <ReactTooltip />
     </div>;
   }
