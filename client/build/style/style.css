@@ -8,7 +8,7 @@ ol {
 
 div, p, span, h1, h2, h3, label, form, input {
   font-family: Arial, serif;
-  color: #d3d3d3; }
+  color: black; }
 
 html {
   background: url("/assets/blueAbstract.jpg") no-repeat center center fixed;
@@ -208,11 +208,6 @@ li {
   .userSearch li .userName,
   .friends li .userName {
     display: block; }
-
-/* SLICK addons */
-.slick-slider .slick-track, .slick-slider .slick-list {
-  background-color: rgba(210, 210, 210, 0.3);
-  border-radius: 3px; }
 
 .people img {
   border-radius: 50%; }
