@@ -9,14 +9,14 @@ var expect = require('chai').expect;
 var request = require('supertest');
 // var fs = require('fs');
 
-describe('GET /api/user/:id', function(){
-  var token;
+var token;
 
-  beforeEach(function() {
+function setup(mochaDescribe){
+  mochaDescribe.beforeEach(function() {
     return sequelize.sync({force: true});
   });
 
-  beforeEach(function(done) {
+  mochaDescribe.beforeEach(function(done) {
     request(app)
     .post('/api/signUp', {
       headers: {'Content-type' : 'application/json'},
@@ -30,6 +30,10 @@ describe('GET /api/user/:id', function(){
       done();
     });
   });
+}
+
+describe('GET /api/user/:id', function(){
+  setup(this);
 
   it('404s when the user ID is not found', function(done){
     request(app)
@@ -47,28 +51,38 @@ describe('GET /api/user/:id', function(){
         .expect(200, done);
     });
   });
-
-  xit('allows users to add books', function (done) {
-
-
-  });
-
-  xit('fetches all of a users owned books', function (done) {
-
-
-  });
-
-  xit('fetches all of a users borrowed books', function (done) {
-
-
-  });
-
-  xit('fetches all of a users lent books', function (done) {
-
-
-  });
-
-
-
-
 });
+
+
+describe('POST /api/books/', function(){
+  setup(this);
+  it('allows users to add books', function (done) {
+    request(app)
+    .post('/api/books')
+    .set('Authorization', token)
+    .send({
+      isbn10: '1234567890',
+      isbn13: '1234567890123',
+      authors: 'J.K. Rowling',
+      title: 'Harry Potter 10',
+      description: 'Best Wizard Ever!',
+      image: 'insertPictureHere',
+      categories: 'Fiction'
+    })
+    .expect(201, done);
+  });
+});
+
+
+  // xit('fetches all of a users owned books', function (done) {
+
+  // });
+
+  // xit('fetches all of a users borrowed books', function (done) {
+
+
+  // });
+
+  // xit('fetches all of a users lent books', function (done) {
+
+  // });
