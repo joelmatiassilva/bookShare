@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lora:400,700);
 $search-input-color: #333;
 $primary-font-color: black;
+$secondary-font-color: white;
 
 $error-color: red;
 $success-color: green;
@@ -95,7 +96,7 @@ input{
           color:#ffffff;
           font-family:Arial;
           font-size:16px;
-          padding:12px 37px;
+          padding:4px 16px;
           text-decoration:none;
           text-shadow:0px 1px 0px #283966;
           text-align: center;
@@ -142,6 +143,7 @@ a {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+
   .button {
     background: #dbdbdb;
     padding: 5px 10px;
@@ -149,9 +151,9 @@ a {
     -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
     box-shadow: rgba(0,0,0,1) 0 1px 0;
     text-shadow: rgba(0,0,0,.4) 0 1px 0;
-    color: #262626;
+    color: $secondary-font-color;
     font-size: 14px;
-    font-family: Georgia, serif;
+    font-family: $primary-font-color;
     text-decoration: none;
     vertical-align: middle;
   }
@@ -164,6 +166,7 @@ a {
      border-top-color: #4d4e73;
      background: #4d4e73;
      }
+
 }
 .tab {
   display: inline-block;
