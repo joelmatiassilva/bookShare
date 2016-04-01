@@ -28,9 +28,9 @@ export const Explore = class Explore extends React.Component{
         <h3>Welcome to Explore!</h3>
 
         <SearchBarContainer/>
-        HI - { this.props.filteredBooks && this.props.filteredBooks.map( (book) => {
+        { this.props.filteredBooks && this.props.filteredBooks.map( (book) => {
           <div>{book.title}</div>
-        }) } - HERE
+        }) }
          <BookList books={(this.props.filter && this.props.filter.length > 0) ? this.props.filteredBooks : this.props.books} />
 
       </div>

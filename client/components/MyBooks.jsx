@@ -27,7 +27,6 @@ export const MyBooks = class MyBooks extends React.Component{
       {this.getBooks().length > 0 ?
         <div><h4>Found books from search: </h4><BookList books={this.getBooks()}/></div> :
         null}
-      {this.props.addedBookMessage ? <label>{this.props.addedBookMessage}</label> : null }
       <h3>My books </h3>
       {this.props.myBooks ? <BookList books={this.props.myBooks}/> : null}
     </div>
