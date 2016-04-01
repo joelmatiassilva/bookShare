@@ -49,7 +49,7 @@ export const SignIn = class SignIn extends React.Component {
           $('#user').val('');
           $('#signInPassword').val('');
           this.setState({username: '', password: ''});
-        } }type="submit" value="Log in"/>
+        } }type="submit" value="Sign in"/>
       </div>
 
 
