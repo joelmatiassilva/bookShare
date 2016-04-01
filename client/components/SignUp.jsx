@@ -44,7 +44,7 @@ export const SignUp = class SignUp extends React.Component{
             password: this.props.password,
             passwordConfirmation: this.props.passwordConfirmation
           });}
-        }type='submit' value="Sign Up"/>
+        } type='submit' value="Sign Up"/>
       </div>
     </form>
   </div>;

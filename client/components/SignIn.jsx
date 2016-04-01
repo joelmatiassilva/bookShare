@@ -52,9 +52,7 @@ export const SignIn = class SignIn extends React.Component {
         } }type="submit" value="Log in"/>
       </div>
 
-      {/*<div className="submitBtn">
-        <a href="login/facebook">Login with facebook</a>
-      </div>*/}
+
     </form>
   </div>;
   }
