@@ -10,34 +10,42 @@ var request = require('supertest');
 // var fs = require('fs');
 
 describe('GET /api/user/:id', function(){
+  var token;
 
-  beforeEach(function(done) {
-    sequelize.sync({force: true}).then(function() { done(); });
+  beforeEach(function() {
+    return sequelize.sync({force: true});
   });
 
   beforeEach(function(done) {
     request(app)
-      .post('/api/signUp', {
-        headers: {'content-type' : 'application/json'},
-        body:    JSON.stringify({username: 'pie', email: "pie@pie.com", password: "piepie"})
-      }).end(function(err, response) {
+    .post('/api/signUp', {
+      headers: {'Content-type' : 'application/json'},
+    })
+    .send({username: 'Jack', email: "jack@yahoo.com", password: "jack2"})
+    .end(function(err, response) {
+      if (err) {
         console.log('err', err);
-        console.log("response", response);
-        done();
-      });
+      }
+      token = response.body.token;
+      done();
+    });
   });
 
-  it('responds with json', function(done){
+  it('404s when the user ID is not found', function(done){
     request(app)
-      .get('/api/user/1')
-      .set('Accept', 'application/json')
-      // .expect('Content-Type', /json/)
-      .expect(200, done);
+      .get('/api/user/0')
+      .set('Authorization', token)
+      .expect(404, done);
   });
 
 
-  xit('fetches a created user', function (done) {
-
+  it('fetches a created user', function (done) {
+    models.User.findOne().then(function(user) {
+      request(app)
+        .get('/api/user/' + user.id)
+        .set('Authorization', token)
+        .expect(200, done);
+    });
   });
 
   xit('allows users to add books', function (done) {

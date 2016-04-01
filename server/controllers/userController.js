@@ -160,7 +160,11 @@ module.exports.viewAllFriends = function(req, res){
 module.exports.getUser = function(req, res){
   User.findById(req.params.id)
   .then(function(user) {
-    res.status(200).json(user);
+    if (!user) {
+      res.status(404).end();
+    } else {
+      res.status(200).json(user);
+    }
   })
   .catch(function(err) {res.status(500).json(err);});
 };
