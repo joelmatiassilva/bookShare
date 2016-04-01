@@ -543,10 +543,11 @@ export function finishGettingFriendBooks(books){
 }
 
 export function filterExploreFriendsBooks(filter){
-  return function(dispatch){
-    dispatch({
-      type: 'FILTER_EXPLORE_FRIENDS_BOOKS',
-      filter: filter
-    })
+  // console.log("in action creator filterExploreFriendsBooks", filter)
+  return {
+    type: 'FILTER_EXPLORE_FRIENDS_BOOKS',
+    filter: filter
   }
 }
+
+// those that return fn are async

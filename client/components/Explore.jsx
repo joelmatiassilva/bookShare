@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavBarContainer} from './NavBar';
+import {SearchBarContainer} from './SearchBar';
 import ExploreBooksList from './ExploreBooksList';
 import SearchBar from './SearchBar';
 import {hashHistory} from 'react-router';
@@ -25,15 +26,22 @@ export const Explore = class Explore extends React.Component{
       <div className="innerDiv">
         <Notifs/>
         <h3>Welcome to Explore!</h3>
-        <SearchBar/>
-        <BookList books={this.props.books}/>
+
+        <SearchBarContainer/>
+        HI - { this.props.filteredBooks && this.props.filteredBooks.map( (book) => {
+          <div>{book.title}</div>
+        }) } - HERE
+         <BookList books={(this.props.filter && this.props.filter.length > 0) ? this.props.filteredBooks : this.props.books} />
+
       </div>
     </div>;
   }
 }
 function mapPropsToState(state){
   return {
-    books: state.explore.get('books')
+    books: state.explore.get('books'),
+    filteredBooks: state.explore.get('filteredBooks'),
+    filter: state.explore.get('filter')
   }
 }
 

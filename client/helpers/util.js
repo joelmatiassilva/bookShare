@@ -7,3 +7,7 @@ export function isNullUndefinedOrEmpty(str){
     return false;
   }
 }
+
+export function doesPasswordMatch(){
+
+}

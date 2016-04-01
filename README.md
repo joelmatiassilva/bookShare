@@ -9,6 +9,8 @@
     1. [Installing Dependencies](#installing-dependencies)
 1. [Features](#features)
 1. [Routes](#routes)
+1. [Schema](#schema)
+1. [Testing](#testing)
 1. [Roadmap](#roadmap)
 1. [Team](#team)
 1. [Contributing](#contributing)
@@ -72,10 +74,19 @@ bower install
 | /api/completeTradeRequest   | POST   | Book Controller | completeTradeRequest       |
 | /api/viewFriendBooks        | POST   | Book Controller | viewFriendBooks            |
 
-### Database Schema
+### Schema
 
 
+### Testing
 
+Create bookshare_test database.
+
+From within the root directory:
+```cd``` into ```server``` directory and run the following to start testing.
+
+```sh
+mocha
+```
 
 ### Roadmap
 

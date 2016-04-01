@@ -84,8 +84,6 @@ function startRegularSignUp(state){
 }
 
 function finishRegularSignUp(state, response){
-  console.log('FINISHING REGULAR SIGNUP');
-  console.log(response);
   localStorage.setItem('token', response.token);
   localStorage.setItem('displayName', response.displayName);
   hashHistory.push('/explore');

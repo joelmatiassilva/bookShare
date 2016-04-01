@@ -36,13 +36,16 @@ facebookSetup(app);
 
 router(app, express);
 
-models.sequelize.sync().then(function () {
-  var server = app.listen(process.env.PORT || 5000, function() {
-    console.log('Express server listening on port ' + server.address().port);
+// if called from the command-line, start the server
+if (require.main === module) {
+  models.sequelize.sync().then(function () {
+    var server = app.listen(process.env.PORT || 5000, function() {
+      console.log('Express server listening on port ' + server.address().port);
+    });
+  })
+  .catch(function(err) {
+    console.log(err);
   });
-})
-.catch(function(err) {
-  console.log(err);
-});
+}
 
 module.exports = app;
