@@ -7,10 +7,11 @@ ol {
   padding: 0; }
 
 * {
-  font-family: "Lora", Arial, serif;
-  color: black; }
+  font-family: Arial, serif;
+  color: #d3d3d3; }
 
 html {
+  background: url("/assets/blueAbstract.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -18,7 +19,7 @@ html {
 
 /*Navigation Bar*/
 nav {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
   padding: 10px;
   height: 20px; }
   nav a {
@@ -158,7 +159,7 @@ li {
   width: 100%; }
 
 .my-books preloader {
-  width: 40px; }
+  width: 30px; }
 
 .requests-list li {
   width: 250px; }
@@ -173,7 +174,7 @@ li {
   text-align: left; }
 
 .hero .about {
-  background-color: black; }
+  background-color: #d3d3d3; }
 
 .people div {
   display: inline-block;

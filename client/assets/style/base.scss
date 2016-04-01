@@ -2,33 +2,32 @@
 @import url(https://fonts.googleapis.com/css?family=Lora:400,700);
 $search-input-color: #333;
 // $primary-font-color: #343434;
-$primary-font-color: black;
+$primary-font-color: #d3d3d3;
+// $primary-font-color: black;
 $error-color: red;
 $success-color: green;
 $alert-color: yellow;
 $input-width: 300px;
 $label-width: 100px;
 $segment: $input-width+$label-width+15px;
-$primary-font: 'Lora', Arial, serif;
+$primary-font: Arial, serif;
 $secondary-font: Arial;
-
-
 * {
   font-family: $primary-font;
   color: $primary-font-color;
 }
 html {
-
+  // background: url('/assets/lightLetter.jpg') no-repeat center center fixed;
   // background: url('/assets/letters.jpg') no-repeat center center fixed;
+  background: url('/assets/blueAbstract.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
-
 /*Navigation Bar*/
 nav{
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
   padding: 10px;
   height: 20px;
   a{
@@ -47,14 +46,12 @@ nav{
     float: right;
   }
 }
-
 input{
   width: 300px;
   padding: 5px;
   font-size: 16px;
   color: $search-input-color;
 }
-
 /*Landing Page*/
 .signin,
 .signup {
@@ -63,12 +60,10 @@ input{
     text-align: left;
     margin-left: auto;
     margin-right: auto;
-
     div{
       margin-top: 10px;
       margin-bottom: 10px;
     }
-
     label{
       display: inline-block;
       font-weight: bold;
@@ -80,22 +75,18 @@ input{
         display: inline-block;
         width: 125px;
         font-family: $secondary-font;
-
       }
     }
   }
 }
-
 a {
   text-decoration: none;
 }
-
 .innerDiv{
   padding: 30px;
   padding-top: 15px;
   text-align: center;
 }
-
 .tab-bar{
   width: $segment;
   text-align: center;
@@ -131,7 +122,6 @@ a {
      background: #4d4e73;
      }
 }
-
 .tab {
   display: inline-block;
   padding: 0px;
@@ -140,32 +130,26 @@ a {
     text-decoration: none;
   }
 }
-
 li {
   list-style: none;
 }
-
 .message{
   font-size: 14px;
   margin: 0px;
   padding: 0px;
 }
-
 .error{
   @extend .message;
   color: $error-color;
 }
-
 .success{
   @extend .message;
   color: $success-color;
 }
-
 .alert{
   @extend .message;
   color: $alert-color;
 }
-
 .hero{
   background-color: rgba(239,239,239,0.90);
   text-align: center;
@@ -179,7 +163,6 @@ li {
     margin-top: 15px;
   }
 }
-
 .book-entry{
   width: 250px;
   height: 300px;
@@ -195,41 +178,31 @@ li {
     box-shadow: 0px 3px 5px #888888;
   }
 }
-
 .owner-button{
   position: absolute;
   bottom: 10px;
   width: 100%;
 }
-
-
 .book-list{
    }
-
 .my-books preloader{
-  width: 40px;
+  width: 30px;
 }
-
 .requests-list li{
   width: 250px;
 }
-
 .requests-list{
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-
 .__react_component_tooltip > div {
   max-width: 300px;
   text-align: left;
 }
-
 .hero .about {
   background-color: $primary-font-color;
-
 }
-
 .people div {
   display: inline-block;
   flex-wrap: wrap;
@@ -237,7 +210,6 @@ li {
   padding: 25px;
   margin: 25px;
 }
-
 .userSearch li,
 .friends li {
   display: inline-block;
@@ -245,18 +217,15 @@ li {
   justify-content: center;
   padding: 5px;
   margin: 5px;
-
   .userName {
     display: block;
   }
 }
-
 /* SLICK addons */
 .slick-slider .slick-track, .slick-slider .slick-list {
   background-color: rgba(210,210,210, 0.3);
   border-radius: 3px;
 }
-
 .people img{
   border-radius: 50%;
 }
