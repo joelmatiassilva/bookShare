@@ -10,6 +10,11 @@ echo 'setup.hs: Finished npm install'
 bower install --allow-root
 echo 'setup.hs: Finished bower install'
 cd client
-rm -f keys.example.js
+rm keys.example.js
 echo "export default {GOOGLE_BOOKS_KEY: '$googleKey'};" >> keys.js
 cd ..
+echo 'setup.hs: Finished setting up google books API key'
+grunt build
+echo 'setup.hs: Finishing building with grunt'
+echo 'setup.hs: Starting to run server'
+PORT=80 nodemon server/server.js
