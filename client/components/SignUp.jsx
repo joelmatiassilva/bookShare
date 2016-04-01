@@ -35,6 +35,7 @@ export const SignUp = class SignUp extends React.Component{
         <input onChange={(event)=>this.props.setPasswordConfirmation(event.target.value)}type='password' id="retypePassword" name='retypePassword' placeholder="Retype your password"/>
         { this.props.passwordConfirmationValidationMessage ?<label className="message error">Please enter a password confirmation</label> : null }
       </div>
+
       <div className="submitBtn">
         <input onClick={(event)=>{
           event.preventDefault();this.props.regularSignUp({

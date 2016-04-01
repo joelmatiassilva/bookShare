@@ -543,11 +543,10 @@ export function finishGettingFriendBooks(books){
 }
 
 export function filterExploreFriendsBooks(filter){
-  return
-    ({
+  return {
       type: 'FILTER_EXPLORE_FRIENDS_BOOKS',
       filter: filter
-    })
+    }
 
 }
 

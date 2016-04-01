@@ -27,10 +27,9 @@ export const Explore = class Explore extends React.Component{
         <Notifs/>
         <h3>Welcome to Explore!</h3>
 
-        <SearchBar/>
+        <SearchBarContainer/>
         <BookList books={this.props.books}/>
 
-        <SearchBarContainer/>
         { /* if this has things ?  <BookList filteredBooks={this.props.filteredBooks}/>  :  <BookList books={this.props.books}/> */ }
       </div>
     </div>;

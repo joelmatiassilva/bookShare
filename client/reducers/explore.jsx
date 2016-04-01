@@ -18,7 +18,13 @@ function finishGettingExploreBooks(state, books){
 }
 
 function filterExploreFriendsBooks(state, filter){
-  //algorithm to filter books
+  var friendBooks = state.get('books')
+  console.log("In filterBooks")
+  var fuse = new Fuse(friendBooks, { keys: ["title", "authors", "username"] });
+  console.log("fuse", fuse)
+  filteredBooks = fuse.search(filter)
+  console.log("filter", filter)
+  console.log("In filteredBook", filteredBooks)
   state = state.set('filteredBooks', filteredBooks);
   return state;
 }
