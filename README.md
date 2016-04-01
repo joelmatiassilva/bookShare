@@ -32,6 +32,16 @@ bower install
 
 ### Features
 
+* Secure sign-in with salting and hashing
+* Google Books API Integration
+* Implemented SASS as a preprocessor
+* Generated Gruntfile to clean build files, transpile with webpack and generate style.css with SASS
+* Implemented MySQL Database
+* React front-end
+* Redux integration on the front-end
+* Implemented Node with Express library for the server
+
+
 ### Routes
 
 | Route                       | Method | Controller      | Method                     |
@@ -61,6 +71,10 @@ bower install
 | /api/acceptTradeRequest     | POST   | Book Controller | acceptTradeRequest         |
 | /api/completeTradeRequest   | POST   | Book Controller | completeTradeRequest       |
 | /api/viewFriendBooks        | POST   | Book Controller | viewFriendBooks            |
+
+### Database Schema
+
+
 
 
 ### Roadmap
