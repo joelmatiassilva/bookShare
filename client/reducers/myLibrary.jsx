@@ -147,6 +147,9 @@ function finishAcceptingBookRequest(state, requestId){
   }
   return state.setIn(['bookRequests', 'toUser'], newbookRequests);
 }
+function finishReturningBook(state){
+  return state;
+}
 
 export default function(state = Map(), action){
   switch(action.type){
@@ -188,6 +191,8 @@ export default function(state = Map(), action){
       return finishGettingBooksBorrowed(state, action.books);
     case 'FINISH_ADD_BOOK_TO_MY_SHELF':
       return finishAddBookToMyShelf(state, action.book);
+    case 'FINISH_RETURNING_BOOK':
+      return finishReturningBook(state);
     default:
       return setState(state);
   }

@@ -17,7 +17,8 @@ import {
   getFriendBooksAJAX,
   addBookToMyShelfAJAX,
   regularSignUpAJAX,
-  rejectBookRequestAJAX} from './helpers/serverCalls';
+  rejectBookRequestAJAX,
+  returnBookAJAX} from './helpers/serverCalls';
 
 import {reducer as notifReducer, actions as notifActions, Notifs} from 're-notif';
 
@@ -156,6 +157,7 @@ export function makeFriendRequest(email){
   return dispatch => {
     return makeFriendRequestAsync(email, (response) => {
       console.log(response);
+      dispatch(searchUsers(' '));
     });
   }
 }
@@ -232,7 +234,6 @@ export function finishGettingMyFriends(friends){
 
 /* Search for friends async actions */
 export function searchUsers(query){
-
   return function(dispatch){
     if (query.length === 0) {
       dispatch(finishSearchUsers(undefined));
@@ -317,6 +318,7 @@ export function acceptFriendRequest(friendRequestID){
       console.log('Accepted friend request');
       console.log(response);
       dispatch(finishAcceptFriendRequest(friendRequestID));
+      dispatch(getMyFriends());
     });
   }
 }
@@ -434,6 +436,7 @@ export function acceptBookRequest(requestId){
       console.log('ACCEPTED BOOK REQUEST');
       console.log(bookRequests);
       dispatch(finishAcceptingBookRequest(requestId));
+      dispatch(getBooksLent());
     });
   }
 }
@@ -547,6 +550,21 @@ export function filterExploreFriendsBooks(filter){
   return {
     type: 'FILTER_EXPLORE_FRIENDS_BOOKS',
     filter: filter
+  }
+}
+
+export function finishReturningBook(){
+  return {
+    type: 'FINISH_RETURNING_BOOK'
+  }
+}
+
+export function returnBook(BookRequestId){
+  return function(dispatch){
+    return returnBookAJAX(BookRequestId, () => {
+      dispatch(finishReturningBook());
+      dispatch(getBooksBorrowed());
+    });
   }
 }
 
