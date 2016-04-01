@@ -7,6 +7,8 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
+1. [Features](#features)
+1. [Routes](#routes)
 1. [Roadmap](#roadmap)
 1. [Team](#team)
 1. [Contributing](#contributing)
@@ -27,6 +29,8 @@ From within the root directory:
 npm install
 bower install
 ```
+
+### Features
 
 ### Routes
 
