@@ -45,7 +45,7 @@ bower install
 
 ### Routes
 
-| Route                       | Method | Controller      | Method                     |
+| Route                       | Method | Controller      | Handler                    |
 |-----------------------------|--------|-----------------|----------------------------|
 | /api/friendRequests         | POST   | User Controller | addFriend                  |
 | /api/friends                | GET    | User Controller | viewAllFriends             |
