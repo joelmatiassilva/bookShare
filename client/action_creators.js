@@ -543,11 +543,11 @@ export function finishGettingFriendBooks(books){
 }
 
 export function filterExploreFriendsBooks(filter){
+  // console.log("in action creator filterExploreFriendsBooks", filter)
   return {
-      type: 'FILTER_EXPLORE_FRIENDS_BOOKS',
-      filter: filter
-    }
-
+    type: 'FILTER_EXPLORE_FRIENDS_BOOKS',
+    filter: filter
+  }
 }
 
 // those that return fn are async

@@ -28,17 +28,20 @@ export const Explore = class Explore extends React.Component{
         <h3>Welcome to Explore!</h3>
 
         <SearchBarContainer/>
-        <BookList books={this.props.books}/>
+        HI - { this.props.filteredBooks && this.props.filteredBooks.map( (book) => {
+          <div>{book.title}</div>
+        }) } - HERE
+         <BookList books={(this.props.filter && this.props.filter.length > 0) ? this.props.filteredBooks : this.props.books} />
 
-        { /* if this has things ?  <BookList filteredBooks={this.props.filteredBooks}/>  :  <BookList books={this.props.books}/> */ }
       </div>
     </div>;
   }
 }
 function mapPropsToState(state){
   return {
-    books: state.explore.get('books'), //gets the booklists
-    filteredBooks: state.explore.get('filteredBooks')
+    books: state.explore.get('books'),
+    filteredBooks: state.explore.get('filteredBooks'),
+    filter: state.explore.get('filter')
   }
 }
 

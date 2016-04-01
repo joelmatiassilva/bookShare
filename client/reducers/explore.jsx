@@ -19,14 +19,14 @@ function finishGettingExploreBooks(state, books){
 
 function filterExploreFriendsBooks(state, filter){
   var friendBooks = state.get('books')
-  console.log("In filterBooks")
+  // console.log("In filterBooks", filter, friendBooks)
   var fuse = new Fuse(friendBooks, { keys: ["title", "authors", "username"] });
-  console.log("fuse", fuse)
-  filteredBooks = fuse.search(filter)
-  console.log("filter", filter)
+  // console.log("fuse", fuse)
+  var filteredBooks = fuse.search(filter)
   console.log("In filteredBook", filteredBooks)
-  state = state.set('filteredBooks', filteredBooks);
-  return state;
+
+  state = state.set('filter', filter);
+  return state.set('filteredBooks', filteredBooks);
 }
 
 export default function(state = Map(), action){
