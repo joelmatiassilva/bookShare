@@ -76,7 +76,7 @@ bower install
 
 ### Schema
 
-![Bookshare database schema](https://github.com/CavernousRhinos/Bookshare/images/schema.png "Bookshare Database Schema")
+![Bookshare database schema](https://raw.githubusercontent.com/carlosyasu91/bookShare/styles2/images/schema.png "Bookshare Database Schema")
 
 ### Testing
 
