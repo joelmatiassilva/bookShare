@@ -28,6 +28,37 @@ npm install
 bower install
 ```
 
+### Routes
+
+| Route                       | Method | Controller      | Method                     |
+|-----------------------------|--------|-----------------|----------------------------|
+| /api/friendRequests         | POST   | User Controller | addFriend                  |
+| /api/friends                | GET    | User Controller | viewAllFriends             |
+| /api/user/:id               | GET    | User Controller | getUser                    |
+| /api/findFriends/:query     | GET    | User Controller | findFriends                |
+| /api/friendRequests         | GET    | User Controller | getFriendRequests          |
+| /api/acceptFriendRequest    | POST   | User Controller | acceptFriendRequest        |
+| /api/deleteFriendRequest    | POST   | User Controller | deleteFriendRequest        |
+| /api/friends/:id/books      | GET    | Book Controller | viewFriendBooks            |
+| /api/books                  | GET    | Book Controller | addBook                    |
+| /api/books                  | DELETE | Book Controller | viewMyShelf                |
+| /api/friendsBooks/:id       | GET    | Book Controller | viewFriendBook             |
+| /api/friendsBooks/:id       | GET    | Book Controller | deleteBook                 |
+| /api/bookRequest            | POST   | Book Controller | makeBookRequest            |
+| /api/deleteBookRequest      | POST   | Book Controller | deleteBookRequest          |
+| /api/acceptBookRequest      | POST   | Book Controller | acceptBookRequest          |
+| /api/myBookRequests         | GET    | Book Controller | getRequestedBooksToFriends |
+| /api/myRequestedBooks       | GET    | Book Controller | getRequestedBooksToMe      |
+| /api/lentBooks              | GET    | Book Controller | getLentBooks               |
+| /api/borrowedBooks          | GET    | Book Controller | getBorrowedBooks           |
+| /api/getAllBooksFromFriends | GET    | Book Controller | getAllBooksFromFriends     |
+| /api/tradeRequests          | POST   | Book Controller | makeTradeRequest           |
+| /api/deleteTradeRequest     | POST   | Book Controller | deleteTradeRequest         |
+| /api/acceptTradeRequest     | POST   | Book Controller | acceptTradeRequest         |
+| /api/completeTradeRequest   | POST   | Book Controller | completeTradeRequest       |
+| /api/viewFriendBooks        | POST   | Book Controller | viewFriendBooks            |
+
+
 ### Roadmap
 
 View the app roadmap [here](https://github.com/CavernousRhinos/bookShare/issues)

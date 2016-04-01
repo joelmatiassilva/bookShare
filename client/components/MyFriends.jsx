@@ -19,12 +19,13 @@ export const MyFriends = class MyFriends extends React.Component{
   render(){
     return <div>
       <h3>Friends</h3>
-      <ul>
-      {this.props.friends ? this.props.friends.map((friend) => {
-        return <li onClick={ (event) => {this.props.viewFriendBooks(friend.id)} }>
-          ID: {friend.id}  EMAIL: {friend.email}
-        </li>
-      }) : null}
+      <ul className="friends">
+        {this.props.friends ? this.props.friends.map((friend) => {
+          return <li onClick={ (event) => {this.props.viewFriendBooks(friend.id)} }>
+            <img src={friend.imageUrl}/>
+            <span className="userName">{friend.name}</span>
+          </li>
+        }) : null}
       </ul>
       <h4>Find and add friends</h4>
       <DebounceInput debounceTimeout={200} type="text" placeholder="Enter an email or username" onChange={(event) => this.props.searchUsers(event.target.value)}/>
