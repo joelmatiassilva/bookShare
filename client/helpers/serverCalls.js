@@ -308,3 +308,20 @@ export function addBookToMyShelfAJAX(book, callback){
   });
 }
 
+export function returnBookAJAX(requestId, callback){
+  $.ajax({
+    url: '/api/deleteBookRequest',
+    method: 'POST',
+    data: {
+      id: requestId
+    },
+    headers: {
+      authorization: localStorage.token
+    },
+    success: callback,
+    error: function(err){
+      console.error('Error saving book');
+      console.error(err);
+    }
+  });
+}

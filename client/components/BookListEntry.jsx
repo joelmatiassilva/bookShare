@@ -46,6 +46,9 @@ export const BookListEntry = class BooksListEntry extends React.Component{
         { this.props.userId ? <button onClick={
           () => this.props.borrowBook({bookId: this.props.id, ownerId: this.props.userId})
         }>Borrow book</button> : null }
+        { this.props.borrowedFromId ? <button onClick={
+          () => this.props.returnBook(this.props.BookRequestId)
+        }>Return</button> : null }
        </div>
      </div>
       <ReactTooltip effect="solid" place="bottom"/>

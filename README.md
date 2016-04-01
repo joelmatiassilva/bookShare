@@ -30,7 +30,16 @@ From within the root directory:
 ```sh
 npm install
 bower install
+
 ```
+
+If you are using Mac OSX or Linux run
+
+```sh
+shell setup.sh
+```
+
+From the root directory, this script is assuming you have node and bower installed
 
 ### Features
 
