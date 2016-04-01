@@ -6,7 +6,7 @@ ol {
   margin: 0;
   padding: 0; }
 
-* {
+div, p, span, h1, h2, h3, label, form, input {
   font-family: Arial, serif;
   color: #d3d3d3; }
 
@@ -55,7 +55,8 @@ input {
   .signup form label {
     display: inline-block;
     font-weight: bold;
-    width: 100px; }
+    width: 100px;
+    color: #3D3D3D; }
   .signin form .submitBtn,
   .signup form .submitBtn {
     text-align: center; }
@@ -137,7 +138,10 @@ li {
   padding: 20px; }
   .hero h1 {
     font-size: 40px;
-    margin-top: 15px; }
+    margin-top: 15px;
+    color: #3D3D3D; }
+  .hero h2 {
+    color: #3D3D3D; }
 
 .book-entry {
   width: 250px;
@@ -158,6 +162,12 @@ li {
   bottom: 10px;
   width: 100%; }
 
+.owner-button p,
+.owner-button button,
+.owner-button div,
+.owner-button span {
+  color: #3D3D3D !important; }
+
 .my-books preloader {
   width: 30px; }
 
@@ -173,8 +183,13 @@ li {
   max-width: 300px;
   text-align: left; }
 
-.hero .about {
-  background-color: #d3d3d3; }
+.hero, .about span, .hero, .about p {
+  color: #3D3D3D !important; }
+
+.hero .about .description,
+.hero .about span,
+.hero .about p {
+  color: #3D3D3D !important; }
 
 .people div {
   display: inline-block;

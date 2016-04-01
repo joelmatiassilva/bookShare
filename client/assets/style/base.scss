@@ -12,7 +12,7 @@ $label-width: 100px;
 $segment: $input-width+$label-width+15px;
 $primary-font: Arial, serif;
 $secondary-font: Arial;
-* {
+div, p, span, h1, h2, h3, label, form, input {
   font-family: $primary-font;
   color: $primary-font-color;
 }
@@ -68,6 +68,7 @@ input{
       display: inline-block;
       font-weight: bold;
       width: 100px;
+      color: #3D3D3D;
     }
     .submitBtn {
       text-align: center;
@@ -161,6 +162,10 @@ li {
   h1{
     font-size: 40px;
     margin-top: 15px;
+    color: #3D3D3D;
+  }
+  h2{
+    color: #3D3D3D;
   }
 }
 .book-entry{
@@ -183,6 +188,15 @@ li {
   bottom: 10px;
   width: 100%;
 }
+
+.owner-button p,
+.owner-button button,
+.owner-button div,
+.owner-button span
+{
+  color: #3D3D3D !important;
+}
+
 .book-list{
    }
 .my-books preloader{
@@ -200,8 +214,15 @@ li {
   max-width: 300px;
   text-align: left;
 }
-.hero .about {
-  background-color: $primary-font-color;
+
+.hero, .about span, .hero, .about p{
+  color: #3D3D3D !important;
+}
+
+.hero .about .description,
+.hero .about span,
+.hero .about p{
+  color: #3D3D3D !important;
 }
 .people div {
   display: inline-block;
