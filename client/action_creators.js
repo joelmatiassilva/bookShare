@@ -157,6 +157,7 @@ export function makeFriendRequest(email){
   return dispatch => {
     return makeFriendRequestAsync(email, (response) => {
       console.log(response);
+      dispatch(searchUsers(' '));
     });
   }
 }
@@ -233,7 +234,6 @@ export function finishGettingMyFriends(friends){
 
 /* Search for friends async actions */
 export function searchUsers(query){
-
   return function(dispatch){
     if (query.length === 0) {
       dispatch(finishSearchUsers(undefined));
