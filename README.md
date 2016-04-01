@@ -43,10 +43,9 @@ bower install
 * Redux integration on the front-end
 * Implemented Node with Express library for the server
 
-
 ### Routes
 
-| Route                       | Method | Controller      | Method                     |
+| Route                       | Method | Controller      | Handler                    |
 |-----------------------------|--------|-----------------|----------------------------|
 | /api/friendRequests         | POST   | User Controller | addFriend                  |
 | /api/friends                | GET    | User Controller | viewAllFriends             |
@@ -76,6 +75,7 @@ bower install
 
 ### Schema
 
+![Bookshare database schema](https://raw.githubusercontent.com/carlosyasu91/bookShare/styles2/images/schema.png "Bookshare Database Schema")
 
 ### Testing
 
