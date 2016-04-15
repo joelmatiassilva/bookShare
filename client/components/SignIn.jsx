@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router'
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/authActions';
 import {TabBar} from './TabBar';
 import NavBar from './NavBar';
 import Preloader from './Preloader';
