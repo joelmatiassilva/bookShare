@@ -1,4 +1,3 @@
-import {searchGoogleBooksAJAX} from './searchBooks';
 import {
   makeFriendRequestAsync,
   getMyFriendRequests,
@@ -8,7 +7,7 @@ import {
   createBookRequestAJAX,
   declineFriendRequestAJAX,
   getFriendBooksAJAX
-} from './helpers/serverCalls';
+} from '../helpers/serverCalls';
 
 /* Make friend request */
 export function makeFriendRequest(email){

@@ -1,12 +1,11 @@
 import React from 'react';
 import {Link, hashHistory} from 'react-router';
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/authActions';
 
 
 export const NavBar = class NavBar extends React.Component{
   logout(){
-    {/*Fix logout*/}
     localStorage.clear();
     hashHistory.push('/signIn');
     this.props.clearState();

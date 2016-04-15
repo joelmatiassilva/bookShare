@@ -5,7 +5,7 @@ import ExploreBooksList from './ExploreBooksList';
 import SearchBar from './SearchBar';
 import {hashHistory} from 'react-router';
 import BookList from './BookList'
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/exploreActions';
 import {connect} from 'react-redux';
 import {reducer as notifReducer, actions as notifActions, Notifs} from 're-notif';
 const {notifSend, notifClear} = notifActions;

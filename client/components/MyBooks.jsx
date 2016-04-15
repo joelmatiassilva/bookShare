@@ -1,7 +1,7 @@
 import React from 'react';
 import BookList from './BookList';
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/myLibraryActions';
 import DebounceInput from 'react-debounce-input';
 
 import Preloader from './Preloader';

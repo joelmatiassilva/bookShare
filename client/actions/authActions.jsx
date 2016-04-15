@@ -1,7 +1,6 @@
-import {searchGoogleBooksAJAX} from './searchBooks';
 import {
   asyncSignIn,
-  regularSignUpAJAX} from './helpers/serverCalls';
+  regularSignUpAJAX} from '../helpers/serverCalls';
 
 
 export function setState(state){

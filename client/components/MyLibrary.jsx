@@ -6,7 +6,7 @@ import BooksBorrowed from './BooksBorrowed';
 import {BookRequestsToUser} from './BookRequestsToUser';
 import {hashHistory} from 'react-router';
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/myLibraryActions';
 
 
 export const MyLibrary = class MyLibrary extends React.Component{

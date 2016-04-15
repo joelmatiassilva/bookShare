@@ -1,6 +1,5 @@
-import {searchGoogleBooksAJAX} from './searchBooks';
 import {
-  getExploreBooksAJAX} from './helpers/serverCalls';
+  getExploreBooksAJAX} from '../helpers/serverCalls';
 
 
 /* Get all books from my friends functions async */

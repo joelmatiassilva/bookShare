@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/friendsActions';
 import DebounceInput from 'react-debounce-input';
 import PeopleList from './PeopleList';
 import BookList from './BookList';

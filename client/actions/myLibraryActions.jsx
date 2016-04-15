@@ -1,4 +1,4 @@
-import {searchGoogleBooksAJAX} from './searchBooks';
+import {searchGoogleBooksAJAX} from '../searchBooks';
 import {
   getMyBooksAJAX,
   getBookRequestsToUserAJAX,
@@ -7,7 +7,7 @@ import {
   getBooksBorrowedAJAX,
   addBookToMyShelfAJAX,
   rejectBookRequestAJAX,
-  returnBookAJAX} from './helpers/serverCalls';
+  returnBookAJAX} from '../helpers/serverCalls';
 
 export function setFoundBooks(foundBooks){
   return {

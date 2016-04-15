@@ -1,7 +1,7 @@
 import React from 'react';
 import Fuse from 'fuse.js';
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/exploreActions';
 
 class SearchBar extends React.Component{
   constructor(props){

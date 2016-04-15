@@ -1,7 +1,7 @@
 import {Link} from 'react-router';
 import React from 'react';
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/authActions';
 import {TabBar} from './TabBar';
 
 export const SignUp = class SignUp extends React.Component{
