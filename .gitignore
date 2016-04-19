@@ -10,8 +10,8 @@ dist/
 server/keys.js
 client/keys.js
 
-./build/lib
-./build/bundle.js
+build/lib
+build/bundle.js
 
 
 .DS_Store
