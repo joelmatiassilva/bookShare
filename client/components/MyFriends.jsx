@@ -11,7 +11,8 @@ export const MyFriends = class MyFriends extends React.Component{
     super(props);
   }
   componentWillMount(){
-    this.props.clearState();
+    console.log(this.props);
+    // this.props.clearState();
     this.props.getMyFriends();
   }
   searchUsers(event){

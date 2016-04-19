@@ -9,6 +9,12 @@ import {
   getFriendBooksAJAX
 } from '../helpers/serverCalls';
 
+export function clearState(){
+  return {
+    type: 'CLEAR_STATE'
+  }
+}
+
 /* Make friend request */
 export function makeFriendRequest(email){
   return dispatch => {

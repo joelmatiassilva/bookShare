@@ -24,6 +24,7 @@ module.exports = function(grunt){
     },
     clean:[
       './build/js/components.js',
+      './build/bundle.js',
       './build/style/style.css',
       './build/style/style.css.map',
       '.sass-cache/**',

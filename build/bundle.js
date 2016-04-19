@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9d55cb3c301d2b236144"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8290b70a976cf6b68a4c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -39885,7 +39885,8 @@
 	  _createClass(MyFriends, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      this.props.clearState();
+	      console.log(this.props);
+	      // this.props.clearState();
 	      this.props.getMyFriends();
 	    }
 	  }, {
@@ -39970,6 +39971,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.clearState = clearState;
 	exports.makeFriendRequest = makeFriendRequest;
 	exports.startGettingFriendRequestToMe = startGettingFriendRequestToMe;
 	exports.finishGettingFriendRequestToMe = finishGettingFriendRequestToMe;
@@ -39992,6 +39994,12 @@
 	exports.finishGettingFriendBooks = finishGettingFriendBooks;
 
 	var _serverCalls = __webpack_require__(276);
+
+	function clearState() {
+	  return {
+	    type: 'CLEAR_STATE'
+	  };
+	}
 
 	/* Make friend request */
 	function makeFriendRequest(email) {
