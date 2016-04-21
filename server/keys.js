@@ -1,4 +1,0 @@
-module.exports = {
-  APP_ID: '1716292605259504',
-  APP_SECRET: '2390fe4c4f7c0a3e8a70fbd24d333162'
-}
