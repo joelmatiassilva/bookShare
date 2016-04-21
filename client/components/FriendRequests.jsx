@@ -1,5 +1,5 @@
 import React from 'react';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/friendsActions';
 import {connect} from 'react-redux';
 
 export const FriendRequests = class FriendRequests extends React.Component{

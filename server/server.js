@@ -1,3 +1,4 @@
+
 //modules
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -24,13 +25,13 @@ app.use(session({secret: 'unicorn', resave: true, saveUninitialized: true}));
 app.use(morgan('dev'));
 
 app.get('/', function(req, res) {
-    res.sendFile(path.resolve(__dirname + '/../client/build/index.html'));
+    res.sendFile(path.resolve(__dirname + '/../build/index.html'));
 });
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(__dirname + '/../client/build'));
+app.use(express.static(__dirname + '/../build'));
 
 facebookSetup(app);
 

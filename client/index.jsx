@@ -17,7 +17,7 @@ import About from './components/About';
 import {ExploreContainer} from './components/Explore';
 import {MyLibraryContainer} from './components/MyLibrary';
 import {FriendsContainer} from './components/Friends';
-import {setState} from './action_creators';
+import {setState} from './actions/authActions';
 import {Map} from 'immutable';
 
 var store = createStore(

@@ -5,7 +5,7 @@ import {FriendRequestsContainer} from './FriendRequests';
 
 import {hashHistory} from 'react-router';
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/friendsActions';
 
 export const Friends = class Friends extends React.Component{
   constructor(props){

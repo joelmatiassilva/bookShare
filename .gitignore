@@ -6,12 +6,12 @@ bower_components/
 
 .sass-cache
 
-dist/
+build/lib
+
 server/keys.js
 client/keys.js
+build/bundle.js
 
-client/build/lib
-client/build/bundle.js
 
 .DS_Store
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import {connect} from 'react-redux';
-import * as actionCreators from '../action_creators';
+import * as actionCreators from '../actions/myLibraryActions';
 
 export const BookListEntry = class BooksListEntry extends React.Component{
   formatDescription(){

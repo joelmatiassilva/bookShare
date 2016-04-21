@@ -18,14 +18,15 @@ module.exports = function(grunt){
     sass: {
       dist: {
         files: {
-          './client/build/style/style.css':'./client/assets/style/base.scss',
+          './build/style/style.css':'./client/assets/style/base.scss',
         }
       }
     },
     clean:[
-      'client/build/js/components.js',
-      'client/build/style/style.css',
-      'client/build/style/style.css.map',
+      './build/js/components.js',
+      './build/bundle.js',
+      './build/style/style.css',
+      './build/style/style.css.map',
       '.sass-cache/**',
     ],
     babel: {
@@ -35,7 +36,7 @@ module.exports = function(grunt){
       },
       dist: {
         files: {
-          'client/build/js/components.js': 'client/components/App.jsx'
+          'build/js/components.js': 'client/components/App.jsx'
         }
       }
     },
@@ -43,8 +44,8 @@ module.exports = function(grunt){
       files: ['./client/assets/style/base.scss',
               './client/**/*.jsx',
               './client/**/*.js' ,
-              './client/build/index.html',
-              '!./client/build/bundle.js'],
+              './build/index.html',
+              '!./build/bundle.js'],
       tasks: ['clean', 'sass', 'shell:webpack']
     },
     nodemon: {
