@@ -10,7 +10,6 @@ export const TabBar = class TabBar extends React.Component{
       <li className="sign-up tab">
         <Link className="button first" activeClassName="active" to="/signUp">Sign Up</Link>
       </li>
-
       <li className="sign-in tab">
         <Link className="button last" activeClassName="active" to="/signIn">Sign In</Link>
       </li>
