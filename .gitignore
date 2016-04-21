@@ -10,7 +10,7 @@ dist/
 server/keys.js
 client/keys.js
 
-build/lib
+build/lib/
 build/bundle.js
 
 
