@@ -41,6 +41,7 @@ function setEmail(state, email){
 
 function startSignIn(state, username, password){
   //TODO activate Spinner for better UX
+  state = state.set('loadingSignIn', true);
   if(isNullUndefinedOrEmpty(username)){
     state = state.setIn(['displayValidationMessage', 'signIn', 'username'], true);
   } else {
@@ -55,6 +56,7 @@ function startSignIn(state, username, password){
 }
 
 function endSignIn(state, token, username){
+  state = state.set('loadingSignIn', false);
   localStorage.setItem('token', token);
   localStorage.setItem('displayName', username);
   hashHistory.push('/explore');

@@ -172,7 +172,6 @@ module.exports.acceptTradeRequest = function(req, res){
 };
 
 module.exports.completeTradeRequest = function(req, res){
-
   TradeRequest.findById(req.body.id)
   .then(function (request) {
     //switch books and delete request

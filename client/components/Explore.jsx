@@ -32,7 +32,8 @@ export const Explore = class Explore extends React.Component{
           <div>{book.title}</div>
         }) }
          <BookList books={(this.props.filter && this.props.filter.length > 0) ? this.props.filteredBooks : this.props.books} />
-
+        {/* !this.props.filteredBooks ?<h1>You don't have any friends yet, go add some!</h1> : null */}
+        {/*<h1>You don't have any friends yet, go add some!</h1>*/}
       </div>
     </div>;
   }

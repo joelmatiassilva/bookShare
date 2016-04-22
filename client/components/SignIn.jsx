@@ -35,13 +35,11 @@ export const SignIn = class SignIn extends React.Component {
         <input onChange={(event) => this.changeUsername(event.target.value)} type="text" name="user" id="user" placeholder="Enter a username or email"/>
         { this.props.usernameValidationMessage ? <label className="message error">Please enter a username</label> : null }
       </div>
-
       <div>
         <label htmlFor="signInPassword">Password</label>
         <input onChange={(event)=>this.changePassword(event.target.value)} type="password" id="signInPassword" placeholder="Enter your password"/>
         { this.props.passwordValidationMessage ? <label className="message error">Please enter a password</label> : null }
       </div>
-
       <div className="submitBtn">
         <input onClick={(event) =>{
           event.preventDefault();
@@ -51,8 +49,9 @@ export const SignIn = class SignIn extends React.Component {
           this.setState({username: '', password: ''});
         } }type="submit" value="Sign in"/>
       </div>
-
-
+      <div className="loader">
+      {this.props.loadingSignIn ? <Preloader/> : null }
+      </div>
     </form>
   </div>;
   }
@@ -60,7 +59,8 @@ export const SignIn = class SignIn extends React.Component {
 function mapStateToProps(state){
   return {
     usernameValidationMessage: state.auth.getIn(['displayValidationMessage', 'signIn', 'username']),
-    passwordValidationMessage: state.auth.getIn(['displayValidationMessage', 'signIn', 'password'])
+    passwordValidationMessage: state.auth.getIn(['displayValidationMessage', 'signIn', 'password']),
+    loadingSignIn: state.auth.get('loadingSignIn')
   }
 }
 

@@ -16,7 +16,7 @@ div, p, span, h1, h2, h3, label, form, input {
   color: $primary-font-color;
 }
 html {
-  background: url('/assets/blueAbstract.jpg') no-repeat center center fixed;
+  background: url('/assets/library.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -49,6 +49,12 @@ input{
   font-size: 16px;
   color: $search-input-color;
 }
+
+.loader{
+  text-align: center;
+  margin: 0 auto;
+}
+
 /*Landing Page*/
 .signin,
 .signup {
@@ -171,6 +177,7 @@ a {
   .active {
     font-weight: bold;
     text-decoration: none;
+    background: rgba(0, 67, 160, 0.2);
   }
 }
 li {
