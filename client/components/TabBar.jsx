@@ -16,4 +16,3 @@ export const TabBar = class TabBar extends React.Component{
     </ul>
   }
 }
-
