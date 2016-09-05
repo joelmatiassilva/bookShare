@@ -1,11 +1,11 @@
 import React from 'react';
 import {NavBarContainer} from './NavBar';
-import {MyBooksContainer} from './MyBooks';
+import {MyBooksContainer} from './MyLibrary/MyBooks';
 import BooksLent from './BooksLent';
 import BooksBorrowed from './BooksBorrowed';
-import {BookRequestsToUser} from './BookRequestsToUser';
-import {hashHistory} from 'react-router';
-import {connect} from 'react-redux';
+import { BookRequestsToUser } from './BookRequestsToUser';
+import { hashHistory } from 'react-router';
+import { connect } from 'react-redux';
 import * as actionCreators from '../actions/myLibraryActions';
 
 

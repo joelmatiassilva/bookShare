@@ -16,12 +16,13 @@ div, p, span, h1, h2, h3, label, form, input {
   color: $primary-font-color;
 }
 html {
-  background: url('/assets/library.jpg') no-repeat center center fixed;
+  background: #00326b;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+
 /*Navigation Bar*/
 nav{
   background-color: rgba(0, 0, 0, 0.3);

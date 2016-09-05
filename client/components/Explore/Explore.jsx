@@ -1,14 +1,14 @@
 import React from 'react';
-import {NavBarContainer} from './NavBar';
-import {SearchBarContainer} from './SearchBar';
-import ExploreBooksList from './ExploreBooksList';
-import SearchBar from './SearchBar';
+import { NavBarContainer } from './../NavBar';
+import {SearchBarContainer} from './../SearchBar';
+import ExploreBooksList from './../ExploreBooksList';
+import SearchBar from './../SearchBar';
 import {hashHistory} from 'react-router';
-import BookList from './BookList'
-import * as actionCreators from '../actions/exploreActions';
-import {connect} from 'react-redux';
-import {reducer as notifReducer, actions as notifActions, Notifs} from 're-notif';
-const {notifSend, notifClear} = notifActions;
+import BookList from './../BookList'
+import * as actionCreators from '../../actions/exploreActions';
+import { connect } from 'react-redux';
+import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
+const { notifSend, notifClear } = notifActions;
 
 export const Explore = class Explore extends React.Component{
   constructor(props){

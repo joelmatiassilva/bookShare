@@ -11,7 +11,7 @@ build/lib
 server/keys.js
 client/keys.js
 build/bundle.js
-
+build/style/style.css.map
 
 .DS_Store
 

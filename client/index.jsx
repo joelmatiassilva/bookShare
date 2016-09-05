@@ -14,7 +14,7 @@ import {SignUpContainer} from './components/SignUp';
 import {SignInContainer} from './components/SignIn';
 import App from './components/App';
 import About from './components/About';
-import {ExploreContainer} from './components/Explore';
+import {ExploreContainer} from './components/Explore/Explore';
 import {MyLibraryContainer} from './components/MyLibrary';
 import {FriendsContainer} from './components/Friends';
 import {setState} from './actions/authActions';
