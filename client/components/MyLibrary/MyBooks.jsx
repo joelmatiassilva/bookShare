@@ -1,10 +1,10 @@
 import React from 'react';
-import BookList from './BookList';
+import BookList from './../BookList';
 import {connect} from 'react-redux';
-import * as actionCreators from '../actions/myLibraryActions';
+import * as actionCreators from '../../actions/myLibraryActions';
 import DebounceInput from 'react-debounce-input';
 
-import Preloader from './Preloader';
+import Preloader from './../Preloader';
 
 export const MyBooks = class MyBooks extends React.Component{
   constructor(props){

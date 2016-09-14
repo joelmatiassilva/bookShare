@@ -1,16 +1,16 @@
 import React from 'react';
-import {NavBarContainer} from './NavBar';
+import { NavBarContainer } from './NavBar';
 
 class About extends React.Component{
   render(){
     return <div>
       <NavBarContainer/>
       <div className="hero about">
-        <h2> Welcome to Book Share!</h2>
+        <h2> Why Zorabooks?</h2>
         <div className="description">
-          Book Share allows users to connect through their love of reading by sharing their favorite books with friends.
-
-          <h2> Spread the joy! </h2>
+          Because we love books and if you do too, we want you to have access to as many as possible!
+          Zorabooks allows users to connect through their love of reading by sharing their favorite books with friends.
+        <h3> Spread the joy! </h3>
           Find new readers for your beloved books and explore your friend's book collections.
         </div>
 
