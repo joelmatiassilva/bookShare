@@ -1,0 +1,19 @@
+#!/bin/bash
+containerId=$(docker inspect --format="{{.Id}}" mariadb)
+docker system prune &&
+docker image prune &&
+docker volume prune &&
+
+if [[ $containerId != *"sha256:"* ]]; then
+  echo "************************************* Es un contenedor! *************************************"
+  echo $containerId
+  echo "************************************* Se para el contenedor *************************************"
+  docker stop $containerId
+  echo "************************************* Se borra el contenedor *************************************"
+  docker rm $containerId
+fi
+
+echo "************************************* Se levanta el contenedor *************************************"
+docker run -p 3306:3306 --name mariadb -e MYSQL_ROOT_PASSWORD=123456 -d mariadb
+echo "************************************* Se muestra la información del contenedor corriendo. *************************************"
+docker ps
