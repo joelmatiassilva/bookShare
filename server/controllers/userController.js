@@ -144,6 +144,7 @@ module.exports.deleteFriendRequest = function(req, res) {
 }
 
 module.exports.viewAllFriends = function(req, res){
+  console.log('entro aca')
   req.currentUser.getFriends().then(function(friends) {
     friends = friends.map(function(friend) {
       return {
@@ -175,4 +176,8 @@ module.exports.deleteUser = function(req, res){
     res.status(204).end();
   }).catch(function(err) {res.status(500).json(err);});
 };
+
+module.exports.hola = function (req, res) {
+  console.log('hola');
+}
 

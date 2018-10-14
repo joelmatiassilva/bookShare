@@ -4,6 +4,9 @@ var userController = require('../controllers/userController.js');
 var bookController = require('../controllers/bookController.js');
 
 module.exports = function (app, express) {
+
+  app.get('/api/version', (req, res) => { res.send(req.originalUrl)});
+
   /*User Routes*/
   app.post('/api/signUp', userController.addUser);
   app.post('/api/signIn', userController.signIn);
@@ -46,7 +49,7 @@ module.exports = function (app, express) {
   app.post('/api/tradeRequests', bookController.makeTradeRequest);
   app.post('/api/deleteTradeRequest', bookController.deleteTradeRequest);
   app.post('/api/acceptTradeRequest', bookController.acceptTradeRequest);
-  app.post('/api/completeTradeRequest', bookController.completeTradeRequest); 
+  app.post('/api/completeTradeRequest', bookController.completeTradeRequest);
   app.post('/api/viewFriendBooks', bookController.viewFriendBooks);
 
   app.use(helpers.errorLogger);

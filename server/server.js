@@ -10,7 +10,7 @@ var passport = require('passport');
 
 //config
 var router = require('./config/routes');
-var facebookSetup = require('./config/facebook');
+// var facebookSetup = require('./config/facebook');
 
 //db
 var models = require("./models");
@@ -33,7 +33,7 @@ app.use(passport.session());
 
 app.use(express.static(__dirname + '/../build'));
 
-facebookSetup(app);
+// facebookSetup(app);
 
 router(app, express);
 
