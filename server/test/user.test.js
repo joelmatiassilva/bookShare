@@ -54,25 +54,6 @@ describe('GET /api/user/:id', function(){
 });
 
 
-describe('POST /api/books/', function(){
-  setup(this);
-  it('allows users to add books', function (done) {
-    request(app)
-    .post('/api/books')
-    .set('Authorization', token)
-    .send({
-      isbn10: '1234567890',
-      isbn13: '1234567890123',
-      authors: 'J.K. Rowling',
-      title: 'Harry Potter 10',
-      description: 'Best Wizard Ever!',
-      image: 'insertPictureHere',
-      categories: 'Fiction'
-    })
-    .expect(201, done);
-  });
-});
-
 
   // xit('fetches all of a users owned books', function (done) {
 
