@@ -34,7 +34,8 @@ function setup(mochaDescribe){
 
 describe('POST /api/books/', function(){
   setup(this);
-  it('allows users to add books', function (done) {
+
+  it('allows users to add books',  (done) => {
     request(app)
     .post('/api/books')
     .set('Authorization', token)
@@ -47,10 +48,26 @@ describe('POST /api/books/', function(){
       image: 'insertPictureHere',
       categories: 'Fiction'
     })
-    .expect(201, done);
+    .expect(201)
+    .end((err, res)=>{
+      done();
+    });
   });
 });
 
+describe('GET /api/books/', () => {
+
+  it('view my self', (done) => {
+    request(app)
+    .get('/api/books')
+    .set('Authorization', token)
+    .expect(200)
+    .end((err, res)=>{
+      done();
+    });
+  });
+
+});
 
   // xit('fetches all of a users owned books', function (done) {
 
