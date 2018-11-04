@@ -8,14 +8,14 @@ var sequelize = require('sequelize');
 
 module.exports.addBook = (req, res) => {
   Book.create(req.body)
-  .then(function(book) {
-    req.currentUser.addBook(book).then(function(){
+  .then((book) => {
+    req.currentUser.addBook(book).then(() =>{
       res.status(201).json(book);
-    }).catch(function(err){
+    }).catch((err) =>{
       return res.status(500).json(err);
     });
   })
-  .catch(function(err){
+  .catch((err) =>{
     return res.status(500).json(err);
   });
 
