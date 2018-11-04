@@ -6,7 +6,7 @@ var BookRequest = models.BookRequest;
 var TradeRequest = models.TradeRequest;
 var sequelize = require('sequelize');
 
-module.exports.addBook = (req, res) => {
+exports.addBook = (req, res) => {
   Book.create(req.body)
   .then((book) => {
     req.currentUser.addBook(book).then(() =>{
