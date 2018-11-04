@@ -6,7 +6,7 @@ var BookRequest = models.BookRequest;
 var TradeRequest = models.TradeRequest;
 var sequelize = require('sequelize');
 
-module.exports.addBook = function(req, res){
+module.exports.addBook = (req, res) => {
   Book.create(req.body)
   .then(function(book) {
     req.currentUser.addBook(book).then(function(){
@@ -254,4 +254,3 @@ module.exports.viewFriendBook= function(req, res){
 module.exports.deleteBook= function(req, res){
 //TODO
 };
-
